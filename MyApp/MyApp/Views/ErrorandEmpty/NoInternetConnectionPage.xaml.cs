@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -38,6 +39,17 @@ namespace MyApp.Views.ErrorAndEmpty
             else
             {
                 ErrorImage.IsVisible = true;
+            }
+        }
+        private async void TryAgain_Clicked(object sender, EventArgs e)
+        {
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                await Navigation.PushAsync(new NoInternetConnectionPage(), false);
+            }
+            else
+            {
+                await Navigation.PopToRootAsync();
             }
         }
     }

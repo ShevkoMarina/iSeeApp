@@ -40,22 +40,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="SettingsPage.xaml.cs">
+    <Compile Update="Views\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="SettingsPage.xaml">
+    <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="PriceListPage.xaml">
+    <EmbeddedResource Update="Views\CategoryPages\PriceListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="TabbedPage1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="TextPage.xaml">
+    <EmbeddedResource Update="Views\CategoryPages\TextPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Themes\LightTheme.xaml">
@@ -82,10 +82,10 @@
     <EmbeddedResource Update="Views\FunctionsCatalogPage\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\ProductListTemplate.xaml">
+    <EmbeddedResource Update="Templates\ProductListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\Styles.xaml">
+    <EmbeddedResource Update="Templates\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

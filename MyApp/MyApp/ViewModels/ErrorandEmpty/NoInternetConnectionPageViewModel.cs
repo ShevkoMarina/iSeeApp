@@ -31,8 +31,8 @@ namespace MyApp.ViewModels.ErrorAndEmpty
         {
             this.ImagePath = "NoInternet.svg";
             this.Header = "NO INTERNET";
-            this.Content = "You must be connected to the internet to complete this action";
-            this.TryAgainCommand = new Command(this.TryAgain);
+            this.Content = "Check your internet connection";
+           
         }
 
         #endregion
@@ -58,10 +58,10 @@ namespace MyApp.ViewModels.ErrorAndEmpty
                 return this.imagePath;
             }
 
-            set
+            private set
             {
                 this.imagePath = value;
-                this.NotifyPropertyChanged();
+              //  this.NotifyPropertyChanged();
             }
         }
 
@@ -97,19 +97,6 @@ namespace MyApp.ViewModels.ErrorAndEmpty
                 this.content = value;
                 this.NotifyPropertyChanged();
             }
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Invoked when the Try again button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void TryAgain(object obj)
-        {
-            // Do something
         }
 
         #endregion

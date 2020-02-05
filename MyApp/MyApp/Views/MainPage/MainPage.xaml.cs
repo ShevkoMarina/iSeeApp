@@ -18,15 +18,19 @@ using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using MyApp.Views.Catalog;
 using MyApp.Views.FunctionsCatalogPage;
+using MyApp.Views.ErrorAndEmpty;
 
 namespace MyApp
 {
+    // При возникновении исключения пересылать на страницу Error
 
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        #region MainPage static fields
         public static AudioRecorderService recorder;
         public static SpeechConfig EngSpeechConf;
+        #endregion
         public MainPage()
         {
             InitializeComponent();
@@ -104,6 +108,7 @@ namespace MyApp
             await AnalyzeAudio();
         }
 
+        // Привет
         public async void ReadPriceList(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PriceListPage());
@@ -215,10 +220,22 @@ namespace MyApp
                 }
             }
         }
-
+        
         private async void banknotes_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CatalogListPage());
+            if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
+            {
+                await Navigation.PushAsync(new NoInternetConnectionPage());
+            }
+            else
+            {
+                await Navigation.PushAsync(new CatalogListPage());
+            }
+        }
+
+        private async void textButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NoInternetConnectionPage());
         }
     }
 }

@@ -78,7 +78,7 @@
             <!--  Try again button  -->
             <button:SfButton
                 Grid.Row="1"
-                Command="{Binding TryAgainCommand}"
+                Clicked="TryAgain_Clicked"
                 Style="{StaticResource SfGradientButtonStyle}"
                 Text="TRY AGAIN" />
 

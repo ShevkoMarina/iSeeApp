@@ -64,6 +64,7 @@ xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Button
                 Opacity="0.90"
                 Text="Recognize text"
                 x:Name ="textButton"
+                Clicked="textButton_Clicked"
                 
                 />
         </StackLayout>
