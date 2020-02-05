@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             
+             mc:Ignorable="d"
+             x:Class="MyApp.SettingsPage">
+    <ContentPage.Content>
+        
+        <StackLayout Padding="20">
+            <Label x:Name="settings"
+                VerticalOptions="StartAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="languageLabel" Grid.Row="0" Grid.Column="0"/>
+                <syncfusion:SfPicker x:Name="picker" HeaderText="Select a language" Grid.Row="0" Grid.Column="1" />
+
+                  
+                <Label x:Name="volume" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="voice" Grid.Row="2" Grid.Column="0"/>
+                <Switch Grid.Row="2" Grid.Column="1" IsToggled="False" HorizontalOptions="Start"/>
+            </Grid>
+            
+
+            <Button
+                Text="Send Message To Developer"
+                Clicked="Button_Clicked"
+                />
+       
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

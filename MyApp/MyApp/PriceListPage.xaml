@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#44243E"
+             x:Class="MyApp.PriceListPage">
+    <ContentPage.Content>
+        <StackLayout
+            x:Name="PricePageLayout"
+            Padding="5,10">
+ 
+                <Label 
+                x:Name="result"
+                VerticalOptions="CenterAndExpand"
+                Text=""
+                FontSize="20"/>
+
+            <StackLayout
+                Orientation="Horizontal">
+
+                <ImageButton
+                     HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    x:Name="TakePhotoButton"
+                    Source="Camera.jpg"               
+                    Clicked="TakePhotoButton_Clicked"/>
+                <ImageButton
+                    x:Name="GetPhotoButton"
+                    Source="Gallery.jpg"   
+                     HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand"
+                    Clicked="GetPhotoButton_Clicked"/>
+            </StackLayout>
+            <ImageButton
+                x:Name="RecordButton"
+            Clicked="StartRecorder_Clicked"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="EndAndExpand"
+            Source="Micro2.jpg"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
