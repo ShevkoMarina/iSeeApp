@@ -61,7 +61,7 @@ namespace MyApp.ViewModels.ErrorAndEmpty
             private set
             {
                 this.imagePath = value;
-              //  this.NotifyPropertyChanged();
+               this.NotifyPropertyChanged();
             }
         }
 

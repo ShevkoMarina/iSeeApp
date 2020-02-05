@@ -16,8 +16,7 @@ using Plugin.AudioRecorder;
 using System.Collections;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
-using MyApp.Views.Catalog;
-using MyApp.Views.FunctionsCatalogPage;
+using MyApp.Views.Navigation;
 using MyApp.Views.ErrorAndEmpty;
 
 namespace MyApp
@@ -229,7 +228,7 @@ namespace MyApp
             }
             else
             {
-                await Navigation.PushAsync(new CatalogListPage());
+                await Navigation.PushAsync(new NavigationListCardPage());
             }
         }
 

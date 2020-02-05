@@ -15,7 +15,7 @@ namespace MyApp.Behaviors
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(SfListViewTapBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(SfListViewTapBehavior));
 
         /// <summary>
         /// Gets or sets the Command.

@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,6 +174,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
       <Version>17.4.0.46</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator">
+      <Version>17.4.0.46</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>4.0.1.5</Version>
     </PackageReference>
@@ -186,4 +190,14 @@
       <Name>MyApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TimeZone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ReSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ViewMode.png" />
+  </ItemGroup>
+  <ItemGroup />
 </Project>

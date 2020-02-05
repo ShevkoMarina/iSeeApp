@@ -1,3 +1,4 @@
+using Syncfusion.SfRotator.XForms.iOS;
 using Syncfusion.SfPicker.XForms.iOS;
 using Syncfusion.XForms.iOS.BadgeView;
 using Syncfusion.XForms.iOS.Expander;
@@ -34,6 +35,7 @@ namespace MyApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+            SfRotatorRenderer.Init();
 SfPickerRenderer.Init();
             SfExpanderRenderer.Init();
             SfCheckBoxRenderer.Init();
