@@ -1,6 +1,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MyApp.Views.Navigation;
 
 namespace MyApp
 {
@@ -11,7 +12,7 @@ namespace MyApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new NavigationListCardPage());
         }
 
         protected override void OnStart()

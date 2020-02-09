@@ -6,14 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\ecommerce.json" />
     <None Remove="Data\navigation.json" />
     <None Remove="Images\NoInternet.svg" />
     <None Remove="Images\SomethingWentWrong.svg" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />
     <EmbeddedResource Include="Images\NoInternet.svg" />
     <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
@@ -43,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Detail\RecognitionPage.xaml.cs">
+      <DependentUpon>RecognitionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -55,7 +56,7 @@
     <EmbeddedResource Update="Views\AboutUs\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Detail\FeedbackDetailPage.xaml">
+    <EmbeddedResource Update="Views\Detail\RecognitionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Detail\Styles.xaml">

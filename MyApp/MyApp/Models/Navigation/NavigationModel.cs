@@ -38,20 +38,14 @@ namespace MyApp.Models.Navigation
         {
             get
             {
-                return App.BaseImageUrl + this.itemImage;
+                return 
+                    this.itemImage;
             }
-
             set
             {
                 this.itemImage = value;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the average rating of an item.
-        /// </summary>
-        [DataMember(Name = "itemRating")]
-        public double ItemRating { get; set; }
 
         #endregion
     }

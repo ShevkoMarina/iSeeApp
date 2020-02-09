@@ -190,10 +190,10 @@ namespace MyApp
                     case "Text.":
                         break;
                     case "Camera":
-                        await CameraActions.TakePhoto();
+                       // await CameraActions.TakePhoto();
                         break;
                     case "Gallery":
-                        await CameraActions.GetPhoto();
+                       // await CameraActions.GetPhoto();
                         break;
                     default:
                         await Classes.TextSyntezer.SpeakResult("This command doesn't exist.");

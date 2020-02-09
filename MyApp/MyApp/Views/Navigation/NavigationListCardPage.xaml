@@ -27,18 +27,85 @@
             </Grid.RowDefinitions>
 
             <!--  Title View  -->
-            <controls:TitleView Title="Home" Grid.Row="0" />
+            <controls:TitleView Title="Home" Grid.Row="0" FontSize="22" />
 
             <StackLayout Grid.Row="1" Spacing="0">
 
-                <listView:SfListView
+                <listView:SfListView  
+                    x:Name="PrintedTextItem"
+                    ItemTapped="PrintedTextItem_Clicked"
                     Padding="15,0,10,0"
                     AutoFitMode="Height"
-                    IsScrollBarVisible="false"
+                    SelectionMode="Single"
+                    SelectionGesture="Tap"
+                    IsScrollBarVisible="False"
                     ItemSpacing="0,27,0,0"
-                    ItemsSource="{Binding NavigationList}"
+                    ItemsSource="{Binding NavigationList1}"
                     SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--  View of each card item  -->
+                                <controls:CustomShadowFrame
+                                    Margin="0,2,5,5"
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{DynamicResource Gray-White}"
+                                    BorderWidth="1"
+                                    CornerRadius="4"
+                                    HasShadow="True"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+                                    <template:NavigationListTemplate />
+                                </controls:CustomShadowFrame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+                <listView:SfListView                   
+                   
+                    Padding="15,0,10,0"
+                    AutoFitMode="Height"
+                    SelectionMode="Single"
+                    SelectionGesture="Tap"
+                   
+                    IsScrollBarVisible="False"
+                    ItemSpacing="0,27,0,0"
+                    ItemsSource="{Binding NavigationList2}"
+                    SelectionBackgroundColor="Transparent"
+                    VerticalOptions="FillAndExpand">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--  View of each card item  -->
+                                <controls:CustomShadowFrame
+                                    Margin="0,2,5,5"
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{DynamicResource Gray-White}"
+                                    BorderWidth="1"
+                                    CornerRadius="4"
+                                    HasShadow="True"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
+                                    <template:NavigationListTemplate />
+                                </controls:CustomShadowFrame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+                <listView:SfListView                   
+                  
+                    Padding="15,0,10,0"
+                    AutoFitMode="Height"
+                    SelectionMode="Single"
+                    SelectionGesture="Tap"
+                   
+                    IsScrollBarVisible="False"
+                    ItemSpacing="0,27,0,0"
+                    ItemsSource="{Binding NavigationList3}"
+                    SelectionBackgroundColor="Transparent"
                     VerticalOptions="FillAndExpand">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
@@ -61,7 +128,6 @@
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
             </StackLayout>
-
         </Grid>
 
     </ContentPage.Content>

@@ -1,235 +1,34 @@
 {
-  "albumInfos": [
+  "navigationList1": [
     {
-      "albumName": "Favourites",
-      "albumImage": "Album1.png",
-      "photosCount": "178",
-      "category": "MY ALBUM"
-    },
-    {
-      "albumName": "WhatsApp",
-      "albumImage": "Album2.png",
-      "photosCount": "187",
-      "category": "MY ALBUM"
-    },
-    {
-      "albumName": "Work",
-      "albumImage": "Album3.png",
-      "photosCount": "156",
-      "category": "MY ALBUM"
-    },
-    {
-      "albumName": "Facebook",
-      "albumImage": "Album4.png",
-      "photosCount": "67",
-      "category": "MY ALBUM"
-    },
-    {
-      "albumName": "People",
-      "albumImage": "Album5.png",
-      "photosCount": "18",
-      "category": "OTHER ALBUM"
-    },
-    {
-      "albumName": "Place",
-      "albumImage": "Album6.png",
-      "photosCount": "96",
-      "category": "OTHER ALBUM"
-    },
-    {
-      "albumName": "Wildlife",
-      "albumImage": "Album7.png",
-      "photosCount": "134",
-      "category": "OTHER ALBUM"
-    },
-    {
-      "albumName": "Food",
-      "albumImage": "Album8.png",
-      "photosCount": "104",
-      "category": "OTHER ALBUM"
-    }
-  ],
-  "navigationList": [
-    {
-      "itemName": "Hamburger",
+
+      "itemName": "Printed text",
       "name": "Burger King",
       "description": "Burger, Pizza",
-      "itemDescription": "Classic hamburger with Angus beef grilled to perfection",
-      "itemImage": "Recipe19.png",
-      "offer": "40% OFF - Use code OFF40",
-      "itemRating": 4.5
-    },
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "Micro.jpg"
+    }
+    
+  ],
+  "navigationList2": [
     {
-      "itemName": "Black Bean Burger",
-      "itemDescription": "Our signature black bean burger on a whole-grain bun",
-      "itemImage": "Recipe8.png",
+      "itemName": "Banknotes",
+      "itemDescription": "Recognition of the nominal value of banknotes ",
+      "itemImage": "Banknotes.png",
       "name": "McDonalds",
-      "description": "Burger, Fast Food",
-      "offer": "60% OFF - Use code OFF60",
-      "itemRating": 4.4
-    },
+      "description": "Burger, Fast Food"
+    }
+  ],
+  "navigationList3": [
     {
-      "itemName": "Macarons",
-      "itemDescription": "Eight colorful flavors of macarons, fresh daily",
-      "itemImage": "Recipe3.png",
+      "itemName": "Handwritten text",
+      "itemDescription": "Recognition of handwritten text like notes",
+      "itemImage": "Micro.jpg",
       "name": "Macrons",
-      "description": "Cafe, Beverages",
-      "offer": "50% OFF - Use code OFF50",
-      "itemRating": 4.2
-    },
-    {
-      "itemName": "Egg on Toast",
-      "itemDescription": "A sunny-side up egg on toast, just like grandma used to make",
-      "itemImage": "Recipe9.png",
-      "name": "Kings Kitchen",
-      "description": "North Indian, Chinese, Sushi",
-      "offer": "40% OFF - Use code OFF40",
-      "itemRating": 4.5
-    },
-    {
-      "itemName": "Chocolate Caramel Cake",
-      "itemDescription": "Rich dark chocolate cake layered with caramel icing",
-      "itemImage": "Recipe13.png",
-      "name": "Chai Wale",
-      "description": "Cafe, Beverages, Fast Food",
-      "offer": "50% OFF - Use code OFF50",
-      "itemRating": 4.6
-    },
-    {
-      "itemName": "Red Velvet Cake",
-      "itemDescription": "Classic red velvet cake with rich, cream cheese frosting and dark chocolate shavings",
-      "itemImage": "Recipe4.png",
-      "name": "Krispy Kreme",
-      "description": "Desserts, Beverages",
-      "offer": "60% OFF - Use code OFF60",
-      "itemRating": 4.2
+      "description": "Cafe, Beverages"
     }
   ],
-  "photos": [
-    {
-      "imageURL": "ProfileImage1.png",
-      "updatedDate": "2019-06-22"
-    },
-    {
-      "imageURL": "ProfileImage2.png",
-      "updatedDate": "2019-06-20"
-    },
-    {
-      "imageURL": "ProfileImage3.png",
-      "updatedDate": "2019-06-21"
-    },
-    {
-      "imageURL": "ProfileImage4.png",
-      "updatedDate": "2019-06-23"
-    },
-    {
-      "imageURL": "ProfileImage5.png",
-      "updatedDate": "2019-06-22"
-    },
-    {
-      "imageURL": "ProfileImage6.png",
-      "updatedDate": "2019-06-21"
-    },
-    {
-      "imageURL": "ProfileImage7.png",
-      "updatedDate": "2019-06-20"
-    },
-    {
-      "imageURL": "ProfileImage8.png",
-      "updatedDate": "2019-06-23"
-    },
-    {
-      "imageURL": "ProfileImage9.png",
-      "updatedDate": "2019-06-20"
-    },
-    {
-      "imageURL": "ProfileImage10.png",
-      "updatedDate": "2019-06-21"
-    },
-    {
-      "imageURL": "ProfileImage11.png",
-      "updatedDate": "2019-06-22"
-    },
-    {
-      "imageURL": "ProfileImage12.png",
-      "updatedDate": "2019-06-20"
-    },
-    {
-      "imageURL": "ProfileImage13.png",
-      "updatedDate": "2019-06-21"
-    },
-    {
-      "imageURL": "ProfileImage14.png",
-      "updatedDate": "2019-06-23"
-    },
-    {
-      "imageURL": "ProfileImage15.png",
-      "updatedDate": "2019-06-22"
-    },
-    {
-      "imageURL": "ProfileImage16.png",
-      "updatedDate": "2019-06-21"
-    },
-    {
-      "imageURL": "ProfileImage17.png",
-      "updatedDate": "2019-06-20"
-    },
-    {
-      "imageURL": "ProfileImage18.png",
-      "updatedDate": "2019-06-22"
-    },
-    {
-      "imageURL": "ProfileImage19.png",
-      "updatedDate": "2019-06-20"
-    },
-    {
-      "imageURL": "ProfileImage20.png",
-      "updatedDate": "2019-06-23"
-    }
-  ],
-  "songsPageList": [
-    {
-      "songImage": "Songs_Image1.png",
-      "songname": "Santorini",
-      "composer": "Yanni"
-    },
-    {
-      "songImage": "Songs_Image2.png",
-      "songname": "Orinoco flow",
-      "composer": "Enya"
-    },
-    {
-      "songImage": "Songs_Image3.png",
-      "songname": "Thanksgiving",
-      "composer": "George Winston"
-    },
-    {
-      "songImage": "Songs_Image4.png",
-      "songname": "The Voice Of Enigma ",
-      "composer": "Enigma"
-    },
-    {
-      "songImage": "Songs_Image5.png",
-      "songname": "Steam Forest",
-      "composer": "Andreas Vollenweider"
-    },
-    {
-      "songImage": "Songs_Image6.png",
-      "songname": "In The Morning Light",
-      "composer": "Yanni"
-    },
-    {
-      "songImage": "Songs_Image7.png",
-      "songname": "Children of the Sun",
-      "composer": "Dead Can Dance "
-    },
-    {
-      "songImage": "Songs_Image8.png",
-      "songname": "A Thousand Teardrops",
-      "composer": "Shadowfax"
-    }
 
-  ],
 
   "questions": [
     {
@@ -292,181 +91,6 @@
     }
   ],
 
-  "moviesPageList": [
-
-    {
-      "moviename": "The Shawshank Redemption",
-      "movieyear": "1994",
-      "movierating": 9.2
-    },
-    {
-      "moviename": "The Godfather",
-      "movieyear": "1972",
-      "movierating": 9.1
-    },
-    {
-      "moviename": "The Godfather: Part II",
-      "movieyear": "1974",
-      "movierating": 9.0
-    },
-    {
-      "moviename": "The Dark Knight",
-      "movieyear": "2008",
-      "movierating": 9.0
-    },
-    {
-      "moviename": "12 Angry Men",
-      "movieyear": "1957",
-      "movierating": 8.9
-    },
-    {
-      "moviename": "Schindler list",
-      "movieyear": "1993",
-      "movierating": 8.9
-    },
-    {
-      "moviename": "The Lord Of The Rings: The Return of the King",
-      "movieyear": "2003",
-      "movierating": 8.9
-    },
-    {
-      "moviename": "Pulp Fiction",
-      "movieyear": "1994",
-      "movierating": 8.9
-    },
-    {
-      "moviename": "The Good the Bad and the Ugly",
-      "movieyear": "1966",
-      "movierating": 8.8
-    },
-    {
-      "moviename": "Titanic",
-      "movieyear": "1997",
-      "movierating": 7.8
-    },
-    {
-      "moviename": "Spider-Man: Far From Home",
-      "movieyear": "2019",
-      "movierating": 7.6
-    },
-    {
-      "moviename": "Avator",
-      "movieyear": "2009",
-      "movierating": 7.8
-    },
-    {
-      "moviename": "Avengers: Infinity War",
-      "movieyear": "2018",
-      "movierating": 8.5
-    }
-  ],
-
-  "namesListPage": [
-    {
-      "name": "Alora Elliot"
-    },
-    {
-      "name": "Arden Noelle"
-    },
-    {
-      "name": "Austin Bradley"
-    },
-    {
-      "name": "Aurelia Lilan "
-    },
-    {
-      "name": "Arthur Kim"
-    },
-    {
-      "name": "Bernard Daniels"
-    },
-    {
-      "name": "Bernard Rodriquez"
-    },
-    {
-      "name": "Barden Daniel"
-    },
-    {
-      "name": "Brandan Todd"
-    },
-    {
-      "name": "Charlotte Nash"
-    },
-    {
-      "name": "Carlos Esteban"
-    },
-    {
-      "name": "Christina Hanson"
-    },
-    {
-      "name": "Camila Sage"
-    },
-    {
-      "name": "Dustin Blake"
-    }
-  ],
-  "contactsPageList": [
-    {
-      "name": "Aaron Thorsson",
-      "backgroundColor": "#837bff"
-    },
-    {
-      "name": "Alexander Allen",
-      "backgroundColor": "#678cc8"
-    },
-    {
-      "name": "Alta Sims",
-      "backgroundColor": "#29aaa0"
-    },
-    {
-      "name": "Ann Keller",
-      "backgroundColor": "#db7faa"
-    },
-    {
-      "name": "Arthur Kim",
-      "backgroundColor": "#dc9737"
-    },
-    {
-      "name": "Bernard Daniels",
-      "backgroundColor": "#a8d35f"
-    },
-    {
-      "name": "Bernard Rodriquez",
-      "backgroundColor": "#ec5b76"
-    },
-    {
-      "name": "Bettie Conlon",
-      "backgroundColor": "#6c88ff"
-    },
-    {
-      "name": "Blake Moore",
-      "backgroundColor": "#cf62e2"
-    },
-    {
-      "name": "Brandon Todd",
-      "backgroundColor": "#f57780"
-    },
-    {
-      "name": "Carlos Esteban",
-      "backgroundColor": "#a8d35f"
-    },
-    {
-      "name": "Charlotte Nash",
-      "backgroundColor": "#ec5b76"
-    },
-    {
-      "name": "Chase Blair",
-      "backgroundColor": "#6c88ff"
-    },
-    {
-      "name": "Christina Lloyd",
-      "backgroundColor": "#cf62e2"
-    },
-    {
-      "name": "Christina Hanson",
-      "backgroundColor": "#f57780"
-    }
-  ],
   "suggestionList": [
     {
       "imagePath": "ProfileImage2.png",
@@ -624,50 +248,6 @@
       "documentName": "Button UX Document.docx",
       "time": "1 day ago",
       "documentSize": "38KB"
-    }
-  ],
-  "selectableName": [
-    {
-      "name": "Alora Elliot"
-    },
-    {
-      "name": "Arden Noelle"
-    },
-    {
-      "name": "Austin Bradley"
-    },
-    {
-      "name": "Aurelia Lilan "
-    },
-    {
-      "name": "Arthur Kim"
-    },
-    {
-      "name": "Bernard Daniels"
-    },
-    {
-      "name": "Bernard Rodriquez"
-    },
-    {
-      "name": "Barden Daniel"
-    },
-    {
-      "name": "Brandan Todd"
-    },
-    {
-      "name": "Charlotte Nash"
-    },
-    {
-      "name": "Carlos Esteban"
-    },
-    {
-      "name": "Christina Hanson"
-    },
-    {
-      "name": "Camila Sage"
-    },
-    {
-      "name": "Dustin Blake"
     }
   ]
 }

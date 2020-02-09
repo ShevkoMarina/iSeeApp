@@ -1,17 +1,28 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Plugin.Permissions.Abstractions;
+using Xamarin.Forms.Internals;
+using Xamarin.Forms.Xaml;
+using MyApp.Classes;
 using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using System.Collections.Generic;
-using System.Text;
-using MyApp.Classes;
-namespace MyApp
+using Xamarin.Forms;
+using MyApp.Views.ErrorAndEmpty;
+
+namespace MyApp.Views.Detail
 {
-    public class CameraActions
+   
+    [Preserve(AllMembers = true)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RecognitionPage
     {
-        public static async Task TakePhoto()
+        // Обработать ошибку когда текста на фото не распознано
+        public RecognitionPage()
+        {
+            InitializeComponent();        
+        }
+
+        private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -19,10 +30,6 @@ namespace MyApp
 
                 if (status != PermissionStatus.Granted)
                 {
-                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
-                    {
-                       // await DisplayAlert("Need camera", "I need permition", "OK");
-                    }
                     var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
                     if (results.ContainsKey(Permission.Camera))
                     {
@@ -33,17 +40,17 @@ namespace MyApp
                 {
                     if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
                     {
-                        MediaFile file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                        MediaFile photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                         {
                             SaveToAlbum = true,
                             Directory = "MarinaApp",
                             Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
                         });
 
-                        if (file == null)
+                        if (photo == null)
                             return;
-                        await TextDetector.ReadTextInEnglish(file.Path);
-                        
+                        UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                        await TextDetector.ReadTextInEnglish(photo.Path);
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
 
                     }
@@ -51,20 +58,16 @@ namespace MyApp
             }
             catch (Exception ex)
             {
-               // await DisplayAlert("Error", ex.Message, "OK");
+                await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
-        public static async Task GetPhoto()
+        private async void GetPhotoButton_Clicked(object sender, EventArgs e)
         {
             try
             {
                 var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
                 if (status != PermissionStatus.Granted)
                 {
-                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera))
-                    {
-                        //await DisplayAlert("Need camera", "I need permition", "OK");
-                    }
                     var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera);
                     if (results.ContainsKey(Permission.Camera))
                     {
@@ -78,17 +81,15 @@ namespace MyApp
                         MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
                         if (photo == null)
                             return;
+                        UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
                         await TextDetector.ReadTextInEnglish(photo.Path);
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
-
-                        //img.Source = ImageSource.FromFile(photo.Path);
                     }
                 }
             }
             catch (Exception ex)
             {
-                
-                //await DisplayAlert("Error", ex.Message, "OK");
+                await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
     }

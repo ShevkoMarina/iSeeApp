@@ -159,7 +159,7 @@ namespace MyApp
             if (SettingsPage.Language == "English")
             {
                 await TextSyntezer.SpeakResult("Photo was successfully uploaded");
-                await TextDetector.ReadTextInEnglish(file.Path);
+               // await TextDetector.ReadTextInEnglish(file.Path);
                 
             }
             else
@@ -181,7 +181,7 @@ namespace MyApp
             if (SettingsPage.Language == "English")
             {
                 await TextSyntezer.SpeakResult("Photo was successfully uploaded");
-                await TextDetector.ReadTextInEnglish(photo.Path);
+                //await TextDetector.ReadTextInEnglish(photo.Path);
 
             }
             else

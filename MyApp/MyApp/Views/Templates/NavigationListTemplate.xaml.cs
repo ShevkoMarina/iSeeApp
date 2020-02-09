@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MyApp.Views.Detail;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -22,7 +22,12 @@ namespace MyApp.Views.Templates
         /// </summary>
 		public NavigationListTemplate()
         {
-            InitializeComponent();
+            InitializeComponent();  
+        }
+        
+        private async void PrintedTextButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RecognitionPage());
         }
     }
 }

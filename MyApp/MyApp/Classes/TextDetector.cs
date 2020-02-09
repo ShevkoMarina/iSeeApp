@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Plugin.Media.Abstractions;
 using System;
+using MyApp.Views.Detail;
 
 
 namespace MyApp.Classes
@@ -77,8 +78,8 @@ namespace MyApp.Classes
         }
 
         public static async Task ReadTextInEnglish(string localImagePath)
-        {          
-          
+        {
+            
                 AnyErrors = false;
                 const int numberOfCharsInOperationId = 36;
                 using (Stream imageStream = File.OpenRead(localImagePath))

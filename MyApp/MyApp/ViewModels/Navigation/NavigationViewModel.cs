@@ -46,8 +46,21 @@ namespace MyApp.ViewModels.Navigation
         /// <summary>
         /// Gets or sets a collection of values to be displayed in the Navigation list page.
         /// </summary>
-        [DataMember(Name = "navigationList")]
-        public ObservableCollection<NavigationModel> NavigationList { get; set; }
+        [DataMember(Name = "navigationList1")]
+        public ObservableCollection<NavigationModel> NavigationList1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of values to be displayed in the Navigation list page.
+        /// </summary>
+        [DataMember(Name = "navigationList2")]
+        public ObservableCollection<NavigationModel> NavigationList2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets a collection of values to be displayed in the Navigation list page.
+        /// </summary>
+        [DataMember(Name = "navigationList3")]
+        public ObservableCollection<NavigationModel> NavigationList3 { get; set; }
+
 
         #endregion
 
@@ -57,9 +70,9 @@ namespace MyApp.ViewModels.Navigation
         /// Invoked when an item is selected from the navigation list.
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
-        private void NavigateToNextPage(object selectedItem)
+        private async void NavigateToNextPage(object selectedItem)
         {
-            // Do something
+            
         }
 
         #endregion
