@@ -19,7 +19,11 @@ namespace MyApp.Views.Navigation
         
         private async void PrintedTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {         
-            await Navigation.PushAsync(new RecognitionPage());          
-        }     
+            await Navigation.PushAsync(new RecognitionPrintedPage());          
+        }
+        private async void HandwrittenTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new RecognitionHandwrittenPage());
+        }
     }
 }

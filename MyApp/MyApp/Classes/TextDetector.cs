@@ -12,7 +12,9 @@ using MyApp.Views.Detail;
 
 
 namespace MyApp.Classes
+
 {
+
     // сделать распохнование печатного на всех яхыках и как доп опция сделать рукописный на англ
     // что делать с исключением
     // сделать экран загрузки
@@ -21,7 +23,6 @@ namespace MyApp.Classes
     public static class TextDetector
     {
         public static string DetectedText { get; private set; }
-        public static string[] DetectedLines { get; private set; }
         public static bool AnyErrors { get; private set; }
 
 
@@ -35,8 +36,8 @@ namespace MyApp.Classes
             AnyErrors = false;
             try
             {
-               
-                
+
+                string detectedtext = "";
                 HttpClient client = new HttpClient();
                 // Request headers.
                 client.DefaultRequestHeaders.Add(
@@ -61,15 +62,17 @@ namespace MyApp.Classes
                 }
 
                 // Asynchronously get the JSON response.
-                string contentString = await response.Content.ReadAsStringAsync();
-                
-                
+                string json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+                JObject jObj = JObject.Parse(json);
+                PrintedTextFromPhoto r = new PrintedTextFromPhoto();
+                r = jObj.ToObject<PrintedTextFromPhoto>();
+                foreach (var region in r.regions)
+                    foreach (var line in region.lines)
+                        foreach (var word in line.words)
+                            detectedtext += word.text + " ";
                 // Display the JSON response.
-
-                DetectedText = JToken.Parse(contentString).ToString();
-            
-
-
+                DetectedText = detectedtext;
             }
             catch(Exception)
             {
@@ -114,7 +117,7 @@ namespace MyApp.Classes
                     foreach (TextRecognitionResult recResult in textRecognitionLocalFileResults)
                     {
                         string textResult = "";
-                        foreach (Line line in recResult.Lines)
+                        foreach (var line in recResult.Lines)
 
                         {
                             textResult += line.Text + " ";                         

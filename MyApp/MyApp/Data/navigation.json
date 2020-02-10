@@ -6,7 +6,7 @@
       "name": "Burger King",
       "description": "Burger, Pizza",
       "itemDescription": "Recognition of labels in shops and pricelists restaurants",
-      "itemImage": "Micro.jpg"
+      "itemImage": "PrintedTextImage.png"
     }
     
   ],
@@ -14,7 +14,7 @@
     {
       "itemName": "Banknotes",
       "itemDescription": "Recognition of the nominal value of banknotes ",
-      "itemImage": "Banknotes.png",
+      "itemImage": "BanknotesCS.png",
       "name": "McDonalds",
       "description": "Burger, Fast Food"
     }
@@ -23,7 +23,7 @@
     {
       "itemName": "Handwritten text",
       "itemDescription": "Recognition of handwritten text like notes",
-      "itemImage": "Micro.jpg",
+      "itemImage": "letter.png",
       "name": "Macrons",
       "description": "Cafe, Beverages"
     }

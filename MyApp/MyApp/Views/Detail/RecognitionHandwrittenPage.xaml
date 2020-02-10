@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MyApp.Views.Detail.RecognitionPage"
+    x:Class="MyApp.Views.Detail.RecognitionHandwrittenPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:content="clr-namespace:MyApp.Views.Detail.Templates"
     xmlns:viewmodel="clr-namespace:MyApp.ViewModels.Detail"
@@ -30,26 +29,20 @@ xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Button
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-
-
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+           
             <!--  Product Image  -->
-            <controls:TitleView Title="Printed text" Grid.Row="0" FontSize="22" />
+            <controls:TitleView Title="Printed text" VerticalOptions="Start" HorizontalOptions="Center" FontSize="22" />
+            <ActivityIndicator IsVisible="True" x:Name="activityIndicator"/>
 
-            <Image
-                Grid.Row="1"
+                <Image            
                 x:Name="UserImage"
                 Aspect="AspectFill"
                 Source="UploadPhoto.png"
                 BackgroundColor="{DynamicResource Gray-200}" />
             
 
-            <Grid VerticalOptions="EndAndExpand" Grid.Row="2">
+            <Grid VerticalOptions="EndAndExpand">
                 <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
 
                 <Grid
@@ -59,7 +52,6 @@ xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Button
                     VerticalOptions="EndAndExpand">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
@@ -71,7 +63,7 @@ xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Button
                     <!--  Profile Image  -->
                     <border:SfBorder                    
                         BorderWidth="0"
-                        CornerRadius="50"
+                        CornerRadius="55"
                         HeightRequest="110"
                         Style="{StaticResource CommonSfBorderStyle}"
                         WidthRequest="110">
@@ -81,20 +73,10 @@ xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Button
                             Source="Camera.png"/>
                     </border:SfBorder>
 
-                    <!--  Product Review  -->
-                    <Label
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        FontSize="18"
-                        Style="{StaticResource CommonLabelStyle}"
-                       
-                        TextColor="{DynamicResource Gray-White}" />
-         
                     <border:SfBorder   
                         Grid.Column="1"
                         BorderWidth="0"
-                        CornerRadius="50"
+                        CornerRadius="55"
                         HeightRequest="110"
                         Style="{StaticResource CommonSfBorderStyle}"
                         WidthRequest="110">

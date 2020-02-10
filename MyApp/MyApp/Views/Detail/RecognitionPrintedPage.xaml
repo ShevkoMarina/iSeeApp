@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyApp.Views.Detail.RecognitionPrintedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:content="clr-namespace:MyApp.Views.Detail.Templates"
+    xmlns:viewmodel="clr-namespace:MyApp.ViewModels.Detail"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:controls="clr-namespace:MyApp.Controls"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <content:MobileView x:Key="MobileView" />
+
+            <content:TabletView x:Key="TabletView" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding Context for OverAllFeedback Page  -->
+    <ContentPage.BindingContext>
+        <viewmodel:DetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+           
+            <!--  Product Image  -->
+            <controls:TitleView Title="Printed text" VerticalOptions="Start" HorizontalOptions="Center" FontSize="22" />
+            <ActivityIndicator IsVisible="True" x:Name="activityIndicator"/>
+
+                <Image            
+                x:Name="UserImage"
+                Aspect="AspectFill"
+                Source="UploadPhoto.png"
+                BackgroundColor="{DynamicResource Gray-200}" />
+            
+
+            <Grid VerticalOptions="EndAndExpand">
+                <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
+
+                <Grid
+                    Padding="16"
+                    ColumnSpacing="10"
+                    RowSpacing="8"
+                    VerticalOptions="EndAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--  Profile Image  -->
+                    <border:SfBorder                    
+                        BorderWidth="0"
+                        CornerRadius="55"
+                        HeightRequest="110"
+                        Style="{StaticResource CommonSfBorderStyle}"
+                        WidthRequest="110">
+                        <ImageButton 
+                            Clicked="TakePhotoButton_Clicked"
+                            x:Name="TakePhotoButton"
+                            Source="Camera.png"/>
+                    </border:SfBorder>
+
+                    <border:SfBorder   
+                        Grid.Column="1"
+                        BorderWidth="0"
+                        CornerRadius="55"
+                        HeightRequest="110"
+                        Style="{StaticResource CommonSfBorderStyle}"
+                        WidthRequest="110">
+                        <ImageButton 
+                            Clicked ="GetPhotoButton_Clicked"
+                            x:Name="GetPhotoButton"
+                            Source="gallery.png"/>
+                    </border:SfBorder>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

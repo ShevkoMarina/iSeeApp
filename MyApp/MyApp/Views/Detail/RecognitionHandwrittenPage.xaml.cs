@@ -14,12 +14,13 @@ namespace MyApp.Views.Detail
    
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecognitionPage
+    public partial class RecognitionHandwrittenPage
     {
         // Обработать ошибку когда текста на фото не распознано
-        public RecognitionPage()
+        public RecognitionHandwrittenPage()
         {
-            InitializeComponent();        
+            InitializeComponent();  
+            
         }
 
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
@@ -50,6 +51,7 @@ namespace MyApp.Views.Detail
                         if (photo == null)
                             return;
                         UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                        activityIndicator.IsEnabled = true;
                         await TextDetector.ReadTextInEnglish(photo.Path);
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
 
