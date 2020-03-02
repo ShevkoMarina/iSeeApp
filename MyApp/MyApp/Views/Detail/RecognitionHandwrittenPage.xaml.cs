@@ -22,6 +22,7 @@ namespace MyApp.Views.Detail
             InitializeComponent();  
             
         }
+        
 
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
@@ -53,6 +54,8 @@ namespace MyApp.Views.Detail
                         UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
                         activityIndicator.IsEnabled = true;
                         await TextDetector.ReadTextInEnglish(photo.Path);
+                        
+                        await DisplayAlert("Info",TextDetector.DetectedText,"OK");
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
 
                     }
@@ -85,6 +88,7 @@ namespace MyApp.Views.Detail
                             return;
                         UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
                         await TextDetector.ReadTextInEnglish(photo.Path);
+                        await DisplayAlert("Info", TextDetector.DetectedText, "OK");
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
                     }
                 }

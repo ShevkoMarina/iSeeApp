@@ -2,6 +2,7 @@
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using MyApp.Views.Detail;
+using MyApp.Views.ButtonNavigation;
 
 namespace MyApp.Views.Navigation
 {
@@ -16,7 +17,10 @@ namespace MyApp.Views.Navigation
             this.BindingContext = NavigationDataService.Instance.NavigationViewModel;
          
         }
-        
+        private async void BanknotesItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            await Navigation.PushAsync(new BottomNavigationPage());
+        }
         private async void PrintedTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {         
             await Navigation.PushAsync(new RecognitionPrintedPage());          

@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0047: Удалить ненужные круглые скобки
+dotnet_diagnostic.IDE0047.severity = none

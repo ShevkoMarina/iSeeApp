@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
+
 <ContentPage
     x:Class="MyApp.Views.Navigation.NavigationListCardPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -32,6 +33,7 @@
             <StackLayout Grid.Row="1" Spacing="0">
 
                 <listView:SfListView  
+                    IsScrollingEnabled="False"
                     x:Name="PrintedTextItem"
                     ItemTapped="PrintedTextItem_Clicked"
                     Padding="15,0,10,0"
@@ -64,12 +66,12 @@
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
                 <listView:SfListView                   
-                   
+                    IsScrollingEnabled="False"
                     Padding="15,0,10,0"
                     AutoFitMode="Height"
                     SelectionMode="Single"
                     SelectionGesture="Tap"
-                   
+                    
                     IsScrollBarVisible="False"
                     ItemSpacing="0,27,0,0"
                     ItemsSource="{Binding NavigationList2}"
@@ -96,12 +98,12 @@
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
                 <listView:SfListView                   
-                  
+                    IsScrollingEnabled="False"
                     Padding="15,0,10,0"
                     AutoFitMode="Height"
                     SelectionMode="Single"
                     SelectionGesture="Tap"
-                   
+                    ItemTapped="HandwrittenTextItem_Clicked"
                     IsScrollBarVisible="False"
                     ItemSpacing="0,27,0,0"
                     ItemsSource="{Binding NavigationList3}"
@@ -129,6 +131,5 @@
                 </listView:SfListView>
             </StackLayout>
         </Grid>
-
     </ContentPage.Content>
 </ContentPage>
