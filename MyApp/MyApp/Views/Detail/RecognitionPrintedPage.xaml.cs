@@ -8,6 +8,7 @@ using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using MyApp.Views.ErrorAndEmpty;
+using System.Drawing;
 
 namespace MyApp.Views.Detail
 {
@@ -19,7 +20,7 @@ namespace MyApp.Views.Detail
         // Обработать ошибку когда текста на фото не распознано
         public RecognitionPrintedPage()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
@@ -49,17 +50,32 @@ namespace MyApp.Views.Detail
 
                         if (photo == null)
                             return;
-                        UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-                        activityIndicator.IsEnabled = true;
-                        await TextDetector.ReadPrintedText(photo.Path);
+                        this.BackgroundImageSource = ImageSource.FromStream(() =>
+                        {
+                            return photo.GetStream();
+                        });
+                        //UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+
+                        // await DisplayAlert("Info", Environment.GetFolderPath("\data\"), "OK"); ;
+                        BusyIndicator.IsVisible = true;
+                        BusyIndicator.IsBusy = true;
+                        await TextDetector.ReadGoogle(photo.Path);
+
+                        BusyIndicator.IsVisible = false;
+                        BusyIndicator.IsBusy = false;
+
+                        // await TextDetector.ReadPrintedText(photo.Path);
                         await DisplayAlert("Info", TextDetector.DetectedText, "OK");
-                        await TextSyntezer.SpeakResult(TextDetector.DetectedText);
+                     
+                       var locales = await TextSyntezer.SpeakResult(TextDetector.DetectedText);
+                       
 
                     }
                 }
             }
             catch (Exception ex)
             {
+                await DisplayAlert("Info", ex.Message, "OK");
                 await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
@@ -81,12 +97,28 @@ namespace MyApp.Views.Detail
                     if (CrossMedia.Current.IsPickPhotoSupported)
                     {
                         MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+                        
                         if (photo == null)
                             return;
-                        UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-                        await TextDetector.ReadPrintedText(photo.Path);
+                      
+                        this.BackgroundImageSource = ImageSource.FromStream(() =>
+                        {
+                            return photo.GetStreamWithImageRotatedForExternalStorage();
+                        });
+                           // UserImage.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
+                           //await TextDetector.ReadPrintedText(photo.Path);
+
+
+                        BusyIndicator.IsVisible = true;
+                        BusyIndicator.IsBusy = true;
+                        await TextDetector.ReadGoogle(photo.Path);
+
+                        BusyIndicator.IsVisible = false;
+                        BusyIndicator.IsBusy = false;
+
                         await DisplayAlert("Info", TextDetector.DetectedText, "OK");
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
+                        //this.BackgroundImageSource = "UploadPhoto.png";
                     }
                 }
             }

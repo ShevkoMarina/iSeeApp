@@ -4,10 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationIcon />
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\navigation.json" />
     <None Remove="Images\NoInternet.svg" />
     <None Remove="Images\SomethingWentWrong.svg" />
   </ItemGroup>
@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.44.0" />
+    <PackageReference Include="Google.Cloud.Vision.V1" Version="1.7.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="5.0.0" />
     <PackageReference Include="Microsoft.CognitiveServices.Speech" Version="1.8.0" />
     <PackageReference Include="Plugin.AudioRecorder" Version="1.1.0" />
@@ -42,6 +44,7 @@
     <PackageReference Include="Xam.Plugin.Media" Version="4.0.1.5" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.34" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +71,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AboutUs\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Detail\BanknotesRecognition.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ButtonNavigation\AlbumPage.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -41,7 +41,7 @@ namespace MyApp
                         if (file == null)
                             return;
                         await TextSyntezer.SpeakResult("Photo was successfully uploaded");
-                        await TextDetector.ReadPrintedText(file.Path);
+                     //   await TextDetector.ReadPrintedText(file.Path);
                         await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
                         break;
@@ -52,7 +52,7 @@ namespace MyApp
                         if (photo == null)
                             return;
                         await TextSyntezer.SpeakResult("Photo was successfully uploaded");
-                        await TextDetector.ReadPrintedText(photo.Path);
+                     //   await TextDetector.ReadPrintedText(photo.Path);
                         await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
                         await TextSyntezer.SpeakResult(TextDetector.DetectedText);
                         break;
@@ -165,7 +165,7 @@ namespace MyApp
             else
             {
                 await TextSyntezer.SpeakResult("Фото успешно загружено");
-                await TextDetector.ReadPrintedText(file.Path);
+              //  await TextDetector.ReadPrintedText(file.Path);
             }
             await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
             await TextSyntezer.SpeakResult(TextDetector.DetectedText);
@@ -187,7 +187,7 @@ namespace MyApp
             else
             {
                 await TextSyntezer.SpeakResult("Фото успешно загружено");
-                await TextDetector.ReadPrintedText(photo.Path);
+               // await TextDetector.ReadPrintedText(photo.Path);
             }
             await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
             await TextSyntezer.SpeakResult(TextDetector.DetectedText);

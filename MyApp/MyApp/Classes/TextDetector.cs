@@ -8,6 +8,8 @@ using System.Net.Http.Headers;
 using System;
 using System.Drawing;
 using System.Collections.Generic;
+using Google.Cloud.Vision.V1;
+using Google.Apis.Auth.OAuth2;
 
 namespace MyApp.Classes
 {
@@ -25,7 +27,16 @@ namespace MyApp.Classes
 
         static string endpoint = Constants.ComputerVisionEndpoint;
         static string uriBase = endpoint + "vision/v2.1/ocr";
-
+        public static async Task ReadGoogle(string localImagePath)
+        {
+            DetectedText = "";
+            ImageContext context = new ImageContext();
+           // context.LanguageHints.Add("ru");
+            ImageAnnotatorClient client = ImageAnnotatorClient.Create();
+            IReadOnlyList<EntityAnnotation> textAnnotations = await client.DetectTextAsync(Google.Cloud.Vision.V1.Image.FromFile(localImagePath));
+            DetectedText = textAnnotations[0].Description;
+        }
+        /*
         public static async Task ReadPrintedText(string localImagePath)
         {
             AnyErrors = false;
@@ -76,7 +87,7 @@ namespace MyApp.Classes
                 AnyErrors = true;
             }
         }
-
+        */
         public static async Task ReadTextInEnglish(string localImagePath)
         {
 
@@ -121,35 +132,35 @@ namespace MyApp.Classes
                         //await DisplayAlert("Резы", line.Text, "OK");
                     }
                     DetectedText = textResult;
-
-
                 }
             };
         }
-        public static byte[] Monochrome(Bitmap image, int level)
+        public static void Monochrome(ref Bitmap image, int level)
         {
-            byte[] imageInBytes = new byte[image.Width * image.Height];
-            int k = 0;
             for (int j = 0; j < image.Height; j++)
             {
                 for (int i = 0; i < image.Width; i++)
                 {
                     var color = image.GetPixel(i, j);
-                    byte gray = (byte)((color.R + color.G + color.B) / 3);
-                    imageInBytes[k++] = gray;
-                //    imageInBytes[i]
+                    int sr = (color.R + color.G + color.B) / 3;
+                    image.SetPixel(i, j, (sr < level ? Color.Black : Color.White));
                 }
             }
-            return imageInBytes;
         }
-
+        /*
         private static Bitmap Preprocessing(string imageFilePath)
         {
+            
             Bitmap image = GetImageAsBitmap(imageFilePath);
            // MedianFiltering(image);
-            Monochrome(image, 80);
+           /*
+            Monochrome(ref image, 80);
             return image;
+            
+            return MedianFiltering(image);
+           
         }
+    */
 
         public static void MedianFiltering(Bitmap bm)
         {
@@ -204,6 +215,5 @@ namespace MyApp.Classes
                 return binaryReader.ReadBytes((int)fileStream.Length);
             }
         }
-
     }
 }

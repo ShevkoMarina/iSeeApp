@@ -1,28 +1,25 @@
-﻿using System;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
-using MyApp.Classes;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+﻿using MyApp.Classes;
+using MyApp.Views.ErrorAndEmpty;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using System;
 using Xamarin.Forms;
-using MyApp.Views.ErrorAndEmpty;
+using Xamarin.Forms.Xaml;
+using Syncfusion.SfBusyIndicator.XForms;
 
-namespace MyApp.Views.Detail
+
+namespace MyApp.Views
 {
-   
-    [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecognitionHandwrittenPage
+    public partial class BanknotesRecognition : ContentPage
     {
-        // Обработать ошибку когда текста на фото не распознано
-        public RecognitionHandwrittenPage()
+        public BanknotesRecognition()
         {
+           
             InitializeComponent();
         }
-        
-
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
             try
@@ -43,11 +40,13 @@ namespace MyApp.Views.Detail
                     {
                         MediaFile photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                         {
+                            PhotoSize = PhotoSize.Small,
                             SaveToAlbum = true,
                             Directory = "MarinaApp",
                             Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
-                        });
 
+                        }); ;
+                      
                         if (photo == null)
                             return;
 
@@ -57,19 +56,19 @@ namespace MyApp.Views.Detail
                         {
                             return photo.GetStreamWithImageRotatedForExternalStorage();
                         });
-                        await TextDetector.ReadTextInEnglish(photo.Path);
+                        await BanknotesDetector.MakePredictionRequest(photo.Path);
                         BusyIndicator.IsVisible = false;
                         BusyIndicator.IsBusy = false;
 
-                        await DisplayAlert("Info",TextDetector.DetectedText,"OK");
-                        await TextSyntezer.SpeakResult(TextDetector.DetectedText);
-
+                        await TextSyntezer.SpeakResult(BanknotesDetector.DetectedBanknote + "рублей");
+                       
                     }
                 }
             }
             catch (Exception ex)
             {
-                await Navigation.PushAsync(new SomethingWentWrongPage());
+                await DisplayAlert("Error", ex.Message, "OK");
+                //await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
         private async void GetPhotoButton_Clicked(object sender, EventArgs e)
@@ -89,7 +88,11 @@ namespace MyApp.Views.Detail
                 {
                     if (CrossMedia.Current.IsPickPhotoSupported)
                     {
-                        MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+                        MediaFile photo = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                        {
+                            PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small
+                        });
+                    
                         if (photo == null)
                             return;
 
@@ -99,18 +102,19 @@ namespace MyApp.Views.Detail
                         {
                             return photo.GetStreamWithImageRotatedForExternalStorage();
                         });
-                        await TextDetector.ReadTextInEnglish(photo.Path);
+
+                        await BanknotesDetector.MakePredictionRequest(photo.Path);
                         BusyIndicator.IsVisible = false;
                         BusyIndicator.IsBusy = false;
 
-                        await DisplayAlert("Info", TextDetector.DetectedText, "OK");
-                        await TextSyntezer.SpeakResult(TextDetector.DetectedText);
+                        await TextSyntezer.SpeakResult(BanknotesDetector.DetectedBanknote + "рублей");
                     }
                 }
             }
             catch (Exception ex)
             {
-                await Navigation.PushAsync(new SomethingWentWrongPage());
+                await DisplayAlert("Error", ex.Message, "OK");
+                //await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
     }

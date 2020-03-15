@@ -71,7 +71,7 @@
                     AutoFitMode="Height"
                     SelectionMode="Single"
                     SelectionGesture="Tap"
-                    
+                    ItemTapped="BanknotesItem_Clicked"
                     IsScrollBarVisible="False"
                     ItemSpacing="0,27,0,0"
                     ItemsSource="{Binding NavigationList2}"

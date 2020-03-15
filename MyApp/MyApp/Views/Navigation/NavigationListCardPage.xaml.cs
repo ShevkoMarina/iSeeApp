@@ -3,6 +3,7 @@ using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using MyApp.Views.Detail;
 using MyApp.Views.ButtonNavigation;
+using System;
 
 namespace MyApp.Views.Navigation
 {
@@ -19,7 +20,8 @@ namespace MyApp.Views.Navigation
         }
         private async void BanknotesItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            await Navigation.PushAsync(new BottomNavigationPage());
+            // удалить боттом навигэйшн
+            await Navigation.PushAsync(new BanknotesRecognition());
         }
         private async void PrintedTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {         

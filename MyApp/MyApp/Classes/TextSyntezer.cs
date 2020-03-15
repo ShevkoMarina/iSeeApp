@@ -6,18 +6,19 @@ namespace MyApp.Classes
 {
     public class TextSyntezer
     {
-        public static async Task SpeakResult(string text)
+        public static async Task<string> SpeakResult(string text)
         {
             var locales = await TextToSpeech.GetLocalesAsync();
-            var locale = locales.ElementAtOrDefault(1);
-            int n = locales.Count();
+            //var locale = locales.ElementAtOrDefault(8);
+           // int n = locales.Count();
             var settings = new SpeechOptions()
             {
                 Volume = 1,
-                Locale = locale,
+               // Locale = locale,
                 Pitch = 1,
             };
             await TextToSpeech.SpeakAsync(text, settings);
+            return locales.ToString();
         }
     }
 }

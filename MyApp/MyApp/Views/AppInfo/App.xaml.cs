@@ -17,7 +17,7 @@ namespace MyApp
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            AuthenticationComputerVision.AuthenticationGoogleVision();
         }
 
         protected override void OnSleep()
