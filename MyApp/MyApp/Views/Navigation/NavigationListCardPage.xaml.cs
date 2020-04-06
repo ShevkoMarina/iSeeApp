@@ -11,6 +11,7 @@ namespace MyApp.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationListCardPage
     {
+        public BanknotesRecognitionPage NewBanknotesRecognitionPage { get; private set;}
         public int ItemId { get; private set; }
         public NavigationListCardPage()
         {
@@ -21,7 +22,8 @@ namespace MyApp.Views.Navigation
         private async void BanknotesItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             // удалить боттом навигэйшн
-            await Navigation.PushAsync(new BanknotesRecognition());
+            NewBanknotesRecognitionPage = new BanknotesRecognitionPage();
+            await Navigation.PushAsync(NewBanknotesRecognitionPage);
         }
         private async void PrintedTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {         

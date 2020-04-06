@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MyApp.Views.BanknotesRecognition"
+    x:Class="MyApp.Views.BanknotesRecognitionPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:content="clr-namespace:MyApp.Views.Detail.Templates"
@@ -18,11 +18,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <content:MobileView x:Key="MobileView" />
-
-            <content:TabletView x:Key="TabletView" />
-
         </ResourceDictionary>
     </ContentPage.Resources>
 

@@ -54,6 +54,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Detail\BanknotesRecognitionPage.xaml.cs">
+      <DependentUpon>BanknotesRecognitionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Detail\RecognitionHandwrittenPage.xaml.cs">
       <DependentUpon>RecognitionHandwrittenPage.xaml</DependentUpon>
     </Compile>
@@ -72,7 +75,7 @@
     <EmbeddedResource Update="Views\AboutUs\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Detail\BanknotesRecognition.xaml">
+    <EmbeddedResource Update="Views\Detail\BanknotesRecognitionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ButtonNavigation\AlbumPage.xaml">

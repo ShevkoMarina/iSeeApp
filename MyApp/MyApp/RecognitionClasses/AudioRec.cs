@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Plugin.AudioRecorder;
 
-namespace MyApp.Classes
+namespace MyApp.RecognitionClasses
 {
     public class AudioRec
     {

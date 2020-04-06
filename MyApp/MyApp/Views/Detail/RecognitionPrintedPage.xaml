@@ -33,7 +33,6 @@
 
     <ContentPage.Content>
         <Grid>
-            <buttons:SfButton x:Name="ListenAgainButton" VerticalOptions="Start" HorizontalOptions="Center"  Text="Again" FontSize="24" BackgroundColor="Red" Opacity="0.5" CornerRadius="50"/>
             <busyindicator:SfBusyIndicator x:Name="BusyIndicator" IsBusy="False" AnimationType="Ball" ViewBoxHeight="150" ViewBoxWidth="150"/>
 
 

@@ -1,27 +1,26 @@
-﻿using System;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
-using MyApp.RecognitionClasses;
+﻿using MyApp.RecognitionClasses;
 using Plugin.Media.Abstractions;
+using System;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using MyApp.RecognitionClasses.CameraClass;
 
-namespace MyApp.Views.Detail
-{
 
-    [Preserve(AllMembers = true)]
+namespace MyApp.Views
+// На каком языке приложение?
+{
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecognitionPrintedPage
-    {      
-        public RecognitionPrintedPage()
-        {
+    public partial class BanknotesRecognitionPage : ContentPage
+    {
+
+        public BanknotesRecognitionPage()
+        {         
             InitializeComponent();
         }
 
-        private string detectedText;
+        private string detectedBanknote;
 
         #region Methods
-
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
             try
@@ -29,12 +28,21 @@ namespace MyApp.Views.Detail
                 var photo = await CameraActions.TakePhoto();
 
                 if (photo == null) return;
-                else RecognizeAndVoicePrintedText(photo);
-            }         
+                else RecognizeAndVoiceBacknote(photo);
+      
+            }
+            catch (BanknotesDetectionException)
+            {
+                await DisplayAlert("Error", "Banknote wasn't recognised", "OK");
+            }
+            catch (CameraException ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
-               // await Navigation.PushAsync(new SomethingWentWrongPage());
+                //await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
 
@@ -42,19 +50,24 @@ namespace MyApp.Views.Detail
         {
             try
             {
-                var photo = await CameraActions.GetPhoto();
+                MediaFile photo = await CameraActions.GetPhoto();
 
                 if (photo == null) return;
-                else RecognizeAndVoicePrintedText(photo);
+                else RecognizeAndVoiceBacknote(photo);
+                         
+            }
+            catch (CameraException ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
-                // await Navigation.PushAsync(new SomethingWentWrongPage());
+                //await Navigation.PushAsync(new SomethingWentWrongPage());
             }
         }
 
-        private async void RecognizeAndVoicePrintedText(MediaFile photo)
+        private async void RecognizeAndVoiceBacknote(MediaFile photo)
         {
             try
             {
@@ -65,16 +78,16 @@ namespace MyApp.Views.Detail
                 {
                     return photo.GetStreamWithImageRotatedForExternalStorage();
                 });
-                detectedText = await TextDetector.ReadPrintedText(photo.Path);
+                detectedBanknote = await BanknotesDetector.MakeBanknotesDetectionRequest(photo.Path);
 
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
 
-                await TextSyntezer.SpeakResult(detectedText);
-            }          
-            catch (TextDetectorException)
+                await TextSyntezer.SpeakResult(detectedBanknote + "рублей");
+            }
+            catch (BanknotesDetectionException)
             {
-                await TextSyntezer.SpeakResult("Ничего не распознано. Попробуйте другое фото");
+                await TextSyntezer.SpeakResult("Банкнота не распознана. Попробуйте другое фото");
             }
             finally
             {

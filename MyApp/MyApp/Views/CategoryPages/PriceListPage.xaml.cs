@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MyApp.Classes;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.Media;
@@ -9,8 +8,7 @@ using Plugin.AudioRecorder;
 using System.Collections;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
-
-
+using MyApp.RecognitionClasses;
 
 namespace MyApp
 {
@@ -18,11 +16,13 @@ namespace MyApp
     public partial class PriceListPage : ContentPage
     {
         public static string FilePathAudioRecorded { get; set; }
+        private string detectedText;
         public PriceListPage()
         {
             InitializeComponent();
       
         }
+        /*
         private async Task CheckCommands(string command)
         {
             if (!TextDetector.AnyErrors)
@@ -60,6 +60,7 @@ namespace MyApp
                 }
             }
         }
+        */
 
         private async void StartRecorder_Clicked(object sender, EventArgs e)
         {
@@ -94,7 +95,7 @@ namespace MyApp
                             {
                                 await DisplayAlert("Results", $"We recognized: {result.Text}", "OK");
 
-                                await CheckCommands(result.Text);
+                                //await CheckCommands(result.Text);
                             }
                             else if (result.Reason == ResultReason.NoMatch)
                             {
@@ -167,8 +168,8 @@ namespace MyApp
                 await TextSyntezer.SpeakResult("Фото успешно загружено");
               //  await TextDetector.ReadPrintedText(file.Path);
             }
-            await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
-            await TextSyntezer.SpeakResult(TextDetector.DetectedText);
+           // await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
+           // await TextSyntezer.SpeakResult(TextDetector.DetectedText);
         }
         
         private async void GetPhotoButton_Clicked(object sender, EventArgs eventArgs)
@@ -189,8 +190,8 @@ namespace MyApp
                 await TextSyntezer.SpeakResult("Фото успешно загружено");
                // await TextDetector.ReadPrintedText(photo.Path);
             }
-            await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
-            await TextSyntezer.SpeakResult(TextDetector.DetectedText);
+           // await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
+            //await TextSyntezer.SpeakResult(TextDetector.DetectedText);
         }
     }
 }

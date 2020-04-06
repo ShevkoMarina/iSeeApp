@@ -34,7 +34,7 @@ namespace MyApp
         {
             InitializeComponent();
 
-            EngSpeechConf = SpeechConfig.FromSubscription(Classes.Constants.SpeechKey, "eastus");
+            EngSpeechConf = SpeechConfig.FromSubscription(RecognitionClasses.Constants.SpeechKey, "eastus");
             if (SettingsPage.Language == "Russian")
             {
                 settings.Text = "Настройки";
@@ -141,7 +141,7 @@ namespace MyApp
                             {
                                 //await DisplayAlert("Results", $"We recognized: {result.Text}", "OK");
 
-                                await CheckCommandsForMain(result.Text);
+                              //  await CheckCommandsForMain(result.Text);
                             }
                             else if (result.Reason == ResultReason.NoMatch)
                             {
@@ -176,6 +176,7 @@ namespace MyApp
         {
             await Navigation.PushAsync(new PriceListPage());
         }
+        /*
         private async Task CheckCommandsForMain(string command)
         {
             if (!Classes.TextDetector.AnyErrors)
@@ -202,6 +203,7 @@ namespace MyApp
                 }
             }
         }
+        */
        
         private async Task CheckAudioPermissions()
         {

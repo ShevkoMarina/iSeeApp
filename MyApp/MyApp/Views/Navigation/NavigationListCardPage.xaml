@@ -27,8 +27,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--  Title View  -->
-            <controls:TitleView Title="Home" Grid.Row="0" FontSize="22" />
+            <!--  Title View  
+            <controls:TitleView Title="Recognition" Grid.Row="0" FontSize="20" /> -->
 
             <StackLayout Grid.Row="1" Spacing="0">
 
