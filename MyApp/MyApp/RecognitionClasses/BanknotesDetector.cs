@@ -16,9 +16,6 @@ namespace MyApp.RecognitionClasses
 
         #region FieldsAndProperties
         private static HttpClient client;
-        public static string DetectedBanknote { get; set; }
-        public static string Error { get; set; }
-
         #endregion
 
         #region Methods

@@ -72,7 +72,7 @@ namespace MyApp
             try
             {
                 var filePath = MainPage.recorder.GetAudioFilePath();
-                await TextSyntezer.SpeakResult("I'm a little bit slow. Wait please");
+                await TextSyntezer.VoiceResult("I'm a little bit slow. Wait please");
 
                 if (filePath != null)
                 {
@@ -159,13 +159,13 @@ namespace MyApp
                 return;
             if (SettingsPage.Language == "English")
             {
-                await TextSyntezer.SpeakResult("Photo was successfully uploaded");
+                await TextSyntezer.VoiceResult("Photo was successfully uploaded");
                // await TextDetector.ReadTextInEnglish(file.Path);
                 
             }
             else
             {
-                await TextSyntezer.SpeakResult("Фото успешно загружено");
+                await TextSyntezer.VoiceResult("Фото успешно загружено");
               //  await TextDetector.ReadPrintedText(file.Path);
             }
            // await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");
@@ -181,13 +181,13 @@ namespace MyApp
        
             if (SettingsPage.Language == "English")
             {
-                await TextSyntezer.SpeakResult("Photo was successfully uploaded");
+                await TextSyntezer.VoiceResult("Photo was successfully uploaded");
                 //await TextDetector.ReadTextInEnglish(photo.Path);
 
             }
             else
             {
-                await TextSyntezer.SpeakResult("Фото успешно загружено");
+                await TextSyntezer.VoiceResult("Фото успешно загружено");
                // await TextDetector.ReadPrintedText(photo.Path);
             }
            // await DisplayAlert("Recognition results", TextDetector.DetectedText, "OK");

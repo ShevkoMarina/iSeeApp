@@ -70,11 +70,11 @@ namespace MyApp.Views.Detail
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
 
-                await TextSyntezer.SpeakResultInEnglish(detectedText);
+                await TextSyntezer.VoiceResultInEnglish(detectedText);
             }
             catch(TextDetectorException ex)
             {
-                await TextSyntezer.SpeakResultInEnglish(ex.Message);
+                await TextSyntezer.VoiceResultInEnglish(ex.Message);
             }
             finally
             {

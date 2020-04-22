@@ -1,17 +1,17 @@
 ﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using MyApp.RecognitionClasses.ModelsRecognition;
+using Newtonsoft.Json;
 using System;
 using System.IO;
-using Newtonsoft.Json;
 
 namespace MyApp.RecognitionClasses
 {
     public class AuthenticationComputerVision
     {
-        public static ComputerVisionClient client = AuthenticateGoogleComputerVisionClient(Constants.ComputerVisionEndpoint, Constants.ComputerVisionKey);
+        public static ComputerVisionClient client = AuthenticateMicrosoftComputerVisionClient(Constants.ComputerVisionEndpoint, Constants.ComputerVisionKey);
 
         #region Methods
-        static private ComputerVisionClient AuthenticateGoogleComputerVisionClient(string endpoint, string key)
+        static private ComputerVisionClient AuthenticateMicrosoftComputerVisionClient(string endpoint, string key)
         {
             ComputerVisionClient client =
                 new ComputerVisionClient(new ApiKeyServiceClientCredentials(key))
@@ -23,7 +23,7 @@ namespace MyApp.RecognitionClasses
         {
             GoogleAuth googleAuth = CreateGoogleAuthenticationJson();
             string jsonstring = JsonConvert.SerializeObject(googleAuth);
-            SaveJsonAsync(jsonstring);
+            SaveJson(jsonstring);
             Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS",
                Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/AccessKGoogle.json");
         }
@@ -57,7 +57,7 @@ namespace MyApp.RecognitionClasses
             };
         }
 
-        private static void SaveJsonAsync(string jsonstring)
+        private static void SaveJson(string jsonstring)
         {
             var backingFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/AccessKGoogle.json");
             using (var writer = File.CreateText(backingFile))

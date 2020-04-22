@@ -12,7 +12,7 @@ namespace MyApp.Views.Navigation
     public partial class NavigationListCardPage
     {
         public BanknotesRecognitionPage NewBanknotesRecognitionPage { get; private set;}
-        public int ItemId { get; private set; }
+
         public NavigationListCardPage()
         {
             InitializeComponent();
@@ -21,7 +21,6 @@ namespace MyApp.Views.Navigation
         }
         private async void BanknotesItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            // удалить боттом навигэйшн
             NewBanknotesRecognitionPage = new BanknotesRecognitionPage();
             await Navigation.PushAsync(NewBanknotesRecognitionPage);
         }

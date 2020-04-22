@@ -8,7 +8,7 @@ namespace MyApp.RecognitionClasses
     {
         #region Methods
 
-        public static async Task<string> SpeakResult(string text)
+        public static async Task<string> VoiceResult(string text)
         {
             var locales = await TextToSpeech.GetLocalesAsync();
             //var locale = locales.ElementAtOrDefault(8);
@@ -23,7 +23,7 @@ namespace MyApp.RecognitionClasses
             return locales.ToString();
         }
 
-        public static async Task<string> SpeakResultInEnglish(string text)
+        public static async Task<string> VoiceResultInEnglish(string text)
         {
             var locales = await TextToSpeech.GetLocalesAsync();
           

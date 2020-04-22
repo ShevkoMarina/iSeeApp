@@ -14,11 +14,13 @@ namespace MyApp.RecognitionClasses
         #region Recognition Methods
         public static async Task<string> ReadPrintedText(string localImagePath)
         {
-            // ImageContext context = new ImageContext();
-            // context.LanguageHints.Add("ru");
-            ImageAnnotatorClient client = ImageAnnotatorClient.Create();
+            string detectedText; 
+            ImageAnnotatorClient client = ImageAnnotatorClient.Create(); 
             IReadOnlyList<EntityAnnotation> textAnnotations = await client.DetectTextAsync(Google.Cloud.Vision.V1.Image.FromFile(localImagePath));
-            return textAnnotations[0].Description;
+            detectedText = textAnnotations[0].Description;
+            if (detectedText != null) return detectedText;
+            else throw new TextDetectorException();
+
         }
 
         public static async Task<string> ReadHandwrittenText(string localImagePath)
@@ -26,7 +28,7 @@ namespace MyApp.RecognitionClasses
             const int numberOfCharsInOperationId = 36;
             using (Stream imageStream = File.OpenRead(localImagePath))
             {
-
+                // 
                 BatchReadFileInStreamHeaders localFileTextHeaders = await AuthenticationComputerVision.client.BatchReadFileInStreamAsync(imageStream);            
                 string operationLocation = localFileTextHeaders.OperationLocation;              
                 string operationId = operationLocation.Substring(operationLocation.Length - numberOfCharsInOperationId);

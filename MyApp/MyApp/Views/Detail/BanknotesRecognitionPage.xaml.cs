@@ -83,11 +83,11 @@ namespace MyApp.Views
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
 
-                await TextSyntezer.SpeakResult(detectedBanknote + "рублей");
+                await TextSyntezer.VoiceResult(detectedBanknote + "рублей");
             }
             catch (BanknotesDetectionException)
             {
-                await TextSyntezer.SpeakResult("Банкнота не распознана. Попробуйте другое фото");
+                await TextSyntezer.VoiceResult("Банкнота не распознана. Попробуйте другое фото");
             }
             finally
             {

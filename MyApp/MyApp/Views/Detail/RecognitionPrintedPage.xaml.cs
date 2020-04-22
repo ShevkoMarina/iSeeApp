@@ -70,11 +70,11 @@ namespace MyApp.Views.Detail
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
 
-                await TextSyntezer.SpeakResult(detectedText);
+                await TextSyntezer.VoiceResult(detectedText);
             }          
             catch (TextDetectorException)
             {
-                await TextSyntezer.SpeakResult("Ничего не распознано. Попробуйте другое фото");
+                await TextSyntezer.VoiceResult("Ничего не распознано. Попробуйте другое фото");
             }
             finally
             {
