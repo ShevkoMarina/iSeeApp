@@ -8,6 +8,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:template="clr-namespace:MyApp.Views.Templates"
     xmlns:viewModel="clr-namespace:MyApp.ViewModels.Navigation"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
@@ -19,18 +20,19 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+
     <ContentPage.Content>
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!--  Title View  
             <controls:TitleView Title="Recognition" Grid.Row="0" FontSize="20" /> -->
 
-            <StackLayout Grid.Row="1" Spacing="0">
+            <StackLayout Grid.Row="0" Spacing="0">
 
                 <listView:SfListView  
                     IsScrollingEnabled="False"
@@ -105,7 +107,7 @@
                     SelectionGesture="Tap"
                     ItemTapped="HandwrittenTextItem_Clicked"
                     IsScrollBarVisible="False"
-                    ItemSpacing="0,27,0,0"
+                    ItemSpacing="0,20,0,0"
                     ItemsSource="{Binding NavigationList3}"
                     SelectionBackgroundColor="Transparent"
                     VerticalOptions="FillAndExpand">
@@ -130,6 +132,66 @@
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
             </StackLayout>
+
+            <Grid VerticalOptions="EndAndExpand"  Grid.Row="1">
+                <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
+                <Grid         
+                        Padding="5"
+                        ColumnSpacing="10"
+                        RowSpacing="8"
+                        VerticalOptions="EndAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Profile Image  -->
+                    <border:SfBorder      
+                            Grid.Column="0"
+                            BorderWidth="0"
+                            CornerRadius="55"
+                         HeightRequest="80"
+                            Style="{StaticResource CommonSfBorderStyle}"
+                            WidthRequest="80">
+                        <ImageButton    
+                                Clicked="SettingsButtonClicked"
+                                x:Name="SettingsButton"
+                                Source="Camera.png"/>
+                    </border:SfBorder>
+
+                    <border:SfBorder   
+                            Grid.Column="1"
+                            BorderWidth="0"
+                            CornerRadius="55"
+                        HeightRequest="80"
+                            Style="{StaticResource CommonSfBorderStyle}"
+                            WidthRequest="80">
+                        <ImageButton          
+                                Clicked='VoiceButtonClicked'
+                                x:Name="VoiceButton"
+                                Source="micro.png"/>
+                    </border:SfBorder>
+
+                    <border:SfBorder   
+                            Grid.Column="2"
+                            BorderWidth="0"
+                            CornerRadius="55"
+                            HeightRequest="80"
+                            Style="{StaticResource CommonSfBorderStyle}"
+                            WidthRequest="80">
+                        <ImageButton 
+                                Clicked="TipsButtonClicked"
+                                x:Name="TipsButton"
+                                Source="gallery.png"/>
+                    </border:SfBorder>
+                </Grid>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -4,10 +4,9 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MyApp.RecognitionClasses.CameraClass;
-
+using System.Threading.Tasks;
 
 namespace MyApp.Views
-// На каком языке приложение?
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BanknotesRecognitionPage : ContentPage
@@ -21,6 +20,28 @@ namespace MyApp.Views
         private string detectedBanknote;
 
         #region Methods
+
+        public async Task VoiceCommand(string cameraCommand)
+        {
+            switch(cameraCommand)
+            {
+                case "камера":
+                    {
+                        var photo = await CameraActions.TakePhoto();
+                        if (photo == null) return;
+                        else RecognizeAndVoiceBacknote(photo);
+                        break;
+                    }
+                case "галерея":
+                    {
+                        MediaFile photo = await CameraActions.GetPhoto();
+                        if (photo == null) return;
+                        else RecognizeAndVoiceBacknote(photo);
+                        break;
+                    }
+            }
+        }
+
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
             try

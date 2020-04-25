@@ -22,8 +22,8 @@
         <Image
             Aspect="AspectFill"
             BackgroundColor="{DynamicResource Gray-200}"
-            HeightRequest="200"
-            WidthRequest="200"
+            HeightRequest="130"
+            WidthRequest="130"
             Source ="{Binding ItemImage}"/>
         <StackLayout
             Grid.Column="1"

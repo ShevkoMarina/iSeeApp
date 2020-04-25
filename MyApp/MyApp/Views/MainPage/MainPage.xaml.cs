@@ -141,7 +141,7 @@ namespace MyApp
                             {
                                 //await DisplayAlert("Results", $"We recognized: {result.Text}", "OK");
 
-                              //  await CheckCommandsForMain(result.Text);
+                              //await CheckCommandsForMain(result.Text);
                             }
                             else if (result.Reason == ResultReason.NoMatch)
                             {
@@ -171,39 +171,6 @@ namespace MyApp
             }
         }
 
-      
-        public async void Meth()
-        {
-            await Navigation.PushAsync(new PriceListPage());
-        }
-        /*
-        private async Task CheckCommandsForMain(string command)
-        {
-            if (!Classes.TextDetector.AnyErrors)
-            {
-                switch (command)
-                {
-                    case "Pricelist.":
-                        await Navigation.PushAsync(new PriceListPage());
-                        break;                    
-                    case "Money.":
-                        break;
-                    case "Text.":
-                        break;
-                    case "Camera":
-                       // await CameraActions.TakePhoto();
-                        break;
-                    case "Gallery":
-                       // await CameraActions.GetPhoto();
-                        break;
-                    default:
-                        await Classes.TextSyntezer.SpeakResult("This command doesn't exist.");
-                        break;
-                  
-                }
-            }
-        }
-        */
        
         private async Task CheckAudioPermissions()
         {

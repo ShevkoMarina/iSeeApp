@@ -126,6 +126,11 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AsyncFixer">
+      <Version>1.1.6</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Google.Cloud.Vision.V1">
       <Version>1.7.0</Version>
     </PackageReference>

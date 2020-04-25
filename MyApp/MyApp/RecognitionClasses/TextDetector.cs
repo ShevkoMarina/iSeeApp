@@ -15,8 +15,8 @@ namespace MyApp.RecognitionClasses
         public static async Task<string> ReadPrintedText(string localImagePath)
         {
             string detectedText; 
-            ImageAnnotatorClient client = ImageAnnotatorClient.Create(); 
-            IReadOnlyList<EntityAnnotation> textAnnotations = await client.DetectTextAsync(Google.Cloud.Vision.V1.Image.FromFile(localImagePath));
+            ImageAnnotatorClient client = await ImageAnnotatorClient.CreateAsync(); 
+            IReadOnlyList<EntityAnnotation> textAnnotations = await client.DetectTextAsync(await Google.Cloud.Vision.V1.Image.FromFileAsync(localImagePath));
             detectedText = textAnnotations[0].Description;
             if (detectedText != null) return detectedText;
             else throw new TextDetectorException();

@@ -6,6 +6,7 @@ using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using MyApp.Views.ErrorAndEmpty;
 using MyApp.RecognitionClasses.CameraClass;
+using System.Threading.Tasks;
 
 namespace MyApp.Views.Detail
 {
@@ -21,6 +22,27 @@ namespace MyApp.Views.Detail
         private string detectedText;
 
         #region Methods
+
+        public async Task VoiceCommand(string cameraCommand)
+        {
+            switch (cameraCommand)
+            {
+                case "камера":
+                    {
+                        var photo = await CameraActions.TakePhoto();
+                        if (photo == null) return;
+                        else RecognizeAndVoiceHandwrittenText(photo);
+                        break;
+                    }
+                case "галерея":
+                    {
+                        MediaFile photo = await CameraActions.GetPhoto();
+                        if (photo == null) return;
+                        else RecognizeAndVoiceHandwrittenText(photo);
+                        break;
+                    }
+            }
+        }
 
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
