@@ -2,6 +2,7 @@
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using MyApp.Views.Detail;
+using MyApp.Views.Hints;
 using System;
 using MyApp.RecognitionClasses;
 using System.Threading.Tasks;
@@ -38,14 +39,16 @@ namespace MyApp.Views.Navigation
             await Navigation.PushAsync(new RecognitionHandwrittenPage());
         }
 
-        private void SettingsButtonClicked(object sender, EventArgs e)
+        private async void SettingsButtonClicked(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void TipsButtonClicked(object sender, EventArgs e)
+        private async void TipsButtonClicked(object sender, EventArgs e)
         {
-
+         
+            await Navigation.PushAsync(new OnBoardingAnimationPage());
+            await TextSyntezer.VoiceResult("Выберите в главном меню нужную функцию распознавания");
         }
 
         private async void VoiceButtonClicked(object sender, EventArgs e)
@@ -53,7 +56,6 @@ namespace MyApp.Views.Navigation
             if (await AudioRecording.CheckAudioPermissions())
             {
                 string path = await AudioRecording.RecordAudio();
-                await DisplayAlert("f", path, "OK");
                 await AnalizeCommand(path);
             }
         }
@@ -109,10 +111,6 @@ namespace MyApp.Views.Navigation
         }
 
         public static SpeechConfig SpeechConfig;
-        private static List<string> commandList = new List<string>()
-        {
-        "деньги", "печатный", "рукописный", "камера", "галерея", "помощь", "настройки"
-        };
 
         public async Task AnalizeCommand(string filePath)
         {
@@ -131,7 +129,6 @@ namespace MyApp.Views.Navigation
 
                         
                             var result = await recognizer.RecognizeOnceAsync();
-                            await DisplayAlert("D", result.Text, "Fdsf");
                             if (result.Reason == ResultReason.RecognizedSpeech)
                             {
                                 string command = result.Text.ToLower();

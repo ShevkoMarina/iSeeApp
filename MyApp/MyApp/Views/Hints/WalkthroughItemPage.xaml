@@ -36,6 +36,7 @@
 
             <!--  Label to display header  -->
             <Label
+                x:Name="HeaderHint"
                 Margin="0,30,0,8"
                 FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="14"
@@ -51,6 +52,7 @@
 
             <!--  Label to display content  -->
             <Label
+                x:Name="ContentHint"
                 FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="16"
                 HorizontalOptions="Center"

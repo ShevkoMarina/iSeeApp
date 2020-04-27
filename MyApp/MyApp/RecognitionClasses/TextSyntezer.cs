@@ -7,7 +7,7 @@ namespace MyApp.RecognitionClasses
     public class TextSyntezer
     {
         #region Methods
-
+        // возвращать таск без стринг
         public static async Task<string> VoiceResult(string text)
         {
             var locales = await TextToSpeech.GetLocalesAsync();

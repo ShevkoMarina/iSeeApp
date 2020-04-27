@@ -14,6 +14,7 @@ namespace MyApp.RecognitionClasses
             client = new HttpClient();
         }
 
+
         #region FieldsAndProperties
         private static HttpClient client;
         #endregion

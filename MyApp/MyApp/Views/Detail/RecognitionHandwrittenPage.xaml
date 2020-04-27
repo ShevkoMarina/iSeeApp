@@ -64,7 +64,7 @@
                         <ImageButton 
                             Clicked="TakePhotoButton_Clicked"
                             x:Name="TakePhotoButton"
-                            Source="Camera.png"/>
+                            Source="Camera2.png"/>
                     </border:SfBorder>
 
                     <border:SfBorder   
@@ -77,7 +77,7 @@
                         <ImageButton 
                             Clicked ="GetPhotoButton_Clicked"
                             x:Name="GetPhotoButton"
-                            Source="gallery.png"/>
+                            Source="gallery2.png"/>
                     </border:SfBorder>
 
                     <Grid.GestureRecognizers>

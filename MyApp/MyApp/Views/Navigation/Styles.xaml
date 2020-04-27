@@ -53,15 +53,6 @@
         <Setter Property="CornerRadius" Value="4" />
     </Style>
 
-    <!--  Common style for sfBorder  -->
-    <Style x:Key="CommonSfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="VerticalOptions" Value="Center" />
-    </Style>
-
     <!-- Common style for right arrow labels -->
     <Style x:Key="RightArrowLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
@@ -292,6 +283,16 @@
         <Setter Property="HorizontalOptions" Value="End"/>
         <Setter Property="WidthRequest" Value="88"/>
         
+    </Style>
+
+
+    <!--  Common style for sfBorder  -->
+    <Style x:Key="CommonSfBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
 </ResourceDictionary>

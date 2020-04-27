@@ -24,10 +24,5 @@ namespace MyApp.Views.Templates
         {
             InitializeComponent();  
         }
-        
-        private async void PrintedTextButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new RecognitionPrintedPage());
-        }
     }
 }

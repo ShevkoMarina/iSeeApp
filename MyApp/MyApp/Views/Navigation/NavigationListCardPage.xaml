@@ -23,15 +23,13 @@
 
     <ContentPage.Content>
 
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <!--  Title View  
-            <controls:TitleView Title="Recognition" Grid.Row="0" FontSize="20" /> -->
-
+            
             <StackLayout Grid.Row="0" Spacing="0">
 
                 <listView:SfListView  
@@ -61,12 +59,14 @@
                                     HasShadow="True"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="FillAndExpand">
-                                    <template:NavigationListTemplate />
+                                    <template:NavigationListTemplate/>
                                 </controls:CustomShadowFrame>
                             </ViewCell>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
+                
+                
                 <listView:SfListView                   
                     IsScrollingEnabled="False"
                     Padding="15,0,10,0"
@@ -93,12 +93,14 @@
                                     HasShadow="True"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="FillAndExpand">
-                                    <template:NavigationListTemplate />
+                                    <template:BanknotesCardTemplate />
                                 </controls:CustomShadowFrame>
                             </ViewCell>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
+                
+                
                 <listView:SfListView                   
                     IsScrollingEnabled="False"
                     Padding="15,0,10,0"
@@ -125,7 +127,7 @@
                                     HasShadow="True"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="FillAndExpand">
-                                    <template:NavigationListTemplate />
+                                    <template:HandwrittenCardTemplate />
                                 </controls:CustomShadowFrame>
                             </ViewCell>
                         </DataTemplate>
@@ -175,7 +177,7 @@
                         <ImageButton          
                                 Clicked='VoiceButtonClicked'
                                 x:Name="VoiceButton"
-                                Source="micro.png"/>
+                                Source="MicroVoice.png"/>
                     </border:SfBorder>
 
                     <border:SfBorder   

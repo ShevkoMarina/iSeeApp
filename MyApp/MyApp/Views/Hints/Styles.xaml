@@ -18,10 +18,11 @@
         <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
         <Setter Property="VerticalOptions" Value="EndAndExpand"/>
         <Setter Property="Margin" Value="0,10,0,24"/>
-        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="CornerRadius" Value="40"/>
         <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="WidthRequest" Value="245"/>
-        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="WidthRequest" Value="260"/>
+        <Setter Property="HeightRequest" Value="60"/>
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
         <Setter Property="BackgroundColor" Value="{StaticResource Gray-White}"/>
         <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}"/>

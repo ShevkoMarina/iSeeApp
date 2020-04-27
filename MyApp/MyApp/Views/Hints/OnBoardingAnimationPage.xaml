@@ -46,14 +46,15 @@
                 BackgroundColor="Transparent"
                 Command="{Binding SkipCommand}"
                 CornerRadius="20"
-                FontFamily="{StaticResource Montserrat-SemiBold}"
-                HeightRequest="40"
+                FontSize="18"
+                FontFamily="{StaticResource Montserrat-Medium}"
+                HeightRequest="50"
                 HorizontalOptions="End"
                 IsVisible="{Binding IsSkipButtonVisible}"
-                Text="Skip"
+                Text="Пропустить"
                 TextColor="{x:StaticResource Gray-White}"
                 VerticalOptions="StartAndExpand"
-                WidthRequest="80" />
+                WidthRequest="160" />
 
             <!--  Rotator used to navigate the view  -->
             <rotator:SfRotator
@@ -65,7 +66,7 @@
                 BackgroundColor="Transparent"
                 DotPlacement="None"
                 EnableLooping="False"
-                EnableSwiping="True"
+                EnableSwiping="False"
                 HorizontalOptions="FillAndExpand"
                 ItemTemplate="{StaticResource ItemTemplate}"
                 ItemsSource="{Binding Boardings}"

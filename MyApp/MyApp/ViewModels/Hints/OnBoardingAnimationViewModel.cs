@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using MyApp.Models.Hints;
+using MyApp.RecognitionClasses;
 using MyApp.Views.Hints;
 using Syncfusion.SfRotator.XForms;
 using Xamarin.Forms;
@@ -43,22 +44,36 @@ namespace MyApp.ViewModels.Hints
                 new Boarding()
                 {
                     ImagePath = "ReSchedule.png",
-                    Header = "RESCHEDULE",
-                    Content = "Drag and drop meetings in order to reschedule them easily.",
+                    Header = "Главное меню",
+                    Content = "Выберите в главном меню нужную функцию распознавания",
                     RotatorItem = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
                     ImagePath = "ViewMode.png",
-                    Header = "VIEW MODE",
-                    Content = "Display your meetings using four configurable view modes",
+                    Header = "Выбор фото",
+                    Content = "Сделайте фотографию на камеру или загрузите из галереи",
                     RotatorItem = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
                     ImagePath = "TimeZone.png",
-                    Header = "TIME ZONE",
-                    Content = "Display meetings created for different time zones.",
+                    Header = "Озвучка",
+                    Content = "Подождите, когда приложение озвучит текст на фото",
+                    RotatorItem = new WalkthroughItemPage()
+                },
+                  new Boarding()
+                {
+                    ImagePath = "TimeZone.png",
+                    Header = "Голосовое управление",
+                    Content = "Вы можете управлять приложением голосом используя команды",
+                    RotatorItem = new WalkthroughItemPage()
+                },
+                     new Boarding()
+                {
+                    ImagePath = "TimeZone.png",
+                    Header = "Список команд",
+                    Content = "Деньги, Печатный, Рукописный, Камера, Галерея, Настройки, Помощь",
                     RotatorItem = new WalkthroughItemPage()
                 }
             };
@@ -193,12 +208,30 @@ namespace MyApp.ViewModels.Hints
         /// </summary>
         /// <param name="obj">The Object</param>
         private void Next(object obj)
-        {
+        {            
             var itemCount = (obj as SfRotator).ItemsSource.Count();
+
+            switch(selectedIndex)
+            {
+                case 0:
+                    TextSyntezer.VoiceResult("Сделайте фотографию на камеру или загрузите из галереи");
+                    break;
+                case 1:
+                    TextSyntezer.VoiceResult("Подождите, когда приложение озвучит текст на фото");                
+                    break;
+                case 2:
+                    TextSyntezer.VoiceResult("Вы можете управлять приложением голосом используя команды");
+                    break;
+                case 3:
+                    TextSyntezer.VoiceResult("Cписок команд: Деньги, Печатный, Рукописный, Камера, Галерея, Настройки, Помощь");
+                    break;
+                default:
+                    break;
+            }
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
                 this.MoveToNextPage();
-            }
+            }        
         }
 
         private void MoveToNextPage()

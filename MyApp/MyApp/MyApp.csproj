@@ -67,8 +67,8 @@
     <Compile Update="Views\Detail\RecognitionPrintedPage.xaml.cs">
       <DependentUpon>RecognitionPrintedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Navigation\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Update="Views\Templates\NavigationListTemplate.xaml.cs">
+      <DependentUpon>NavigationListTemplate.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -100,23 +100,11 @@
     <EmbeddedResource Update="Views\Hints\WalkthroughItemPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\FAQPage.xaml">
+    <EmbeddedResource Update="Views\Navigation\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Navigation\NavigationListCardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\SettingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\SettingsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CategoryPages\PriceListPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CategoryPages\TextPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -133,8 +121,11 @@
     <EmbeddedResource Update="Views\ErrorandEmpty\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Navigation\Settings\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <EmbeddedResource Update="Views\Templates\BanknotesCardTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\HandwrittenCardTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\NavigationListTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>

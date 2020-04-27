@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    x:Class="MyApp.Views.Templates.NavigationListTemplate"
+    x:Class="MyApp.Views.Templates.HandwrittenCardTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -24,7 +24,7 @@
             BackgroundColor="{DynamicResource Gray-200}"
             HeightRequest="180"
             WidthRequest="180"
-            Source ="Printed.png"/>
+            Source ="Handwritten.png"/>
         <StackLayout
             Grid.Column="1"
             Padding="16"
@@ -38,7 +38,7 @@
                 FontSize="20"
                 LineHeight="{OnPlatform Android=1.5,
                                         Default=-1}"
-                Text="Печатный текст"
+                Text="Рукописный текст"
                 TextColor="{DynamicResource Gray-900}" />
 
             <!--  Description about the item  -->
@@ -48,7 +48,7 @@
                 FontSize="16"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Text="Ценники, этикетки в магазине, меню "
+                Text="Рукописные записи, заметки"
                 TextColor="{DynamicResource Gray-700}" />
         </StackLayout>
     </Grid>

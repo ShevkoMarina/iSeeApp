@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms.Internals;
+﻿using MyApp.RecognitionClasses;
+using System.Threading;
+using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace MyApp.Views.Hints
