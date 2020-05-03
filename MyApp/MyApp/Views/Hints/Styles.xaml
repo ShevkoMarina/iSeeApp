@@ -33,7 +33,7 @@
             <Setter.Value>
                 <gradient:SfLinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <gradient:SfLinearGradientBrush.GradientStops>
-                        <gradient:SfGradientStop Color="#d54381" Offset="0.0" />
+                        <gradient:SfGradientStop Color="#CCCCCC" Offset="0.0" />
                         <gradient:SfGradientStop Color="#7644ad" Offset="1.0" />
                     </gradient:SfLinearGradientBrush.GradientStops>
                 </gradient:SfLinearGradientBrush>

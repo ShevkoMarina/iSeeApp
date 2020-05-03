@@ -43,35 +43,35 @@ namespace MyApp.ViewModels.Hints
             {
                 new Boarding()
                 {
-                    ImagePath = "ReSchedule.png",
+                    ImagePath = "MainForTips.png",
                     Header = "Главное меню",
                     Content = "Выберите в главном меню нужную функцию распознавания",
                     RotatorItem = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
-                    ImagePath = "ViewMode.png",
+                    ImagePath = "DetailForTips.png",
                     Header = "Выбор фото",
                     Content = "Сделайте фотографию на камеру или загрузите из галереи",
                     RotatorItem = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
-                    ImagePath = "TimeZone.png",
+                    ImagePath = "WaitVoicing.png",
                     Header = "Озвучка",
                     Content = "Подождите, когда приложение озвучит текст на фото",
                     RotatorItem = new WalkthroughItemPage()
                 },
                   new Boarding()
                 {
-                    ImagePath = "TimeZone.png",
+                    ImagePath = "VoiceForTips.png",
                     Header = "Голосовое управление",
                     Content = "Вы можете управлять приложением голосом используя команды",
                     RotatorItem = new WalkthroughItemPage()
                 },
                      new Boarding()
                 {
-                    ImagePath = "TimeZone.png",
+                    ImagePath = "TipsForTips.png",
                     Header = "Список команд",
                     Content = "Деньги, Печатный, Рукописный, Камера, Галерея, Настройки, Помощь",
                     RotatorItem = new WalkthroughItemPage()

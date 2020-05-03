@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Plugin.AudioRecorder;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using Xamarin.Forms;
 
 namespace MyApp.RecognitionClasses
 {
@@ -24,8 +25,8 @@ namespace MyApp.RecognitionClasses
                 //RecordButton.IsEnabled = false;
                 //PlayButton.IsEnabled = false;
                 //start recording audio
+     
                 var audioRecordTask = recorder.StartRecording();
-
                 // RecordButton.IsEnabled = true;
                 await audioRecordTask.Unwrap();
                 // RecordButton.Text = "Record";

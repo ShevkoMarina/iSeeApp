@@ -53,11 +53,14 @@ namespace MyApp.Views.Navigation
 
         private async void VoiceButtonClicked(object sender, EventArgs e)
         {
+            VoiceButton.IsEnabled = false;
             if (await AudioRecording.CheckAudioPermissions())
             {
                 string path = await AudioRecording.RecordAudio();
                 await AnalizeCommand(path);
             }
+            VoiceButton.IsEnabled = true;
+
         }
 
 
@@ -150,7 +153,6 @@ namespace MyApp.Views.Navigation
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
-        }
-        
+        }       
     }
 }

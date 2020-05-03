@@ -150,38 +150,24 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <!--  Profile Image  -->
-                    <border:SfBorder      
-                            Grid.Column="0"
-                            BorderWidth="0"
-                            CornerRadius="55"
-                         HeightRequest="80"
-                            Style="{StaticResource CommonSfBorderStyle}"
-                            WidthRequest="80">
-                        <ImageButton    
-                                Clicked="SettingsButtonClicked"
-                                x:Name="SettingsButton"
-                                Source="Camera.png"/>
-                    </border:SfBorder>
-
                     <border:SfBorder   
-                            Grid.Column="1"
+                            Grid.Column="0"
                             BorderWidth="0"
                             CornerRadius="55"
                         HeightRequest="80"
                             Style="{StaticResource CommonSfBorderStyle}"
                             WidthRequest="80">
                         <ImageButton          
-                                Clicked='VoiceButtonClicked'
-                                x:Name="VoiceButton"
-                                Source="MicroVoice.png"/>
+                            Clicked='VoiceButtonClicked'
+                            x:Name="VoiceButton" 
+                            Source="Micro2.png"/>
                     </border:SfBorder>
 
                     <border:SfBorder   
-                            Grid.Column="2"
+                            Grid.Column="1"
                             BorderWidth="0"
                             CornerRadius="55"
                             HeightRequest="80"
@@ -190,7 +176,7 @@
                         <ImageButton 
                                 Clicked="TipsButtonClicked"
                                 x:Name="TipsButton"
-                                Source="gallery.png"/>
+                                Source="Tips.png"/>
                     </border:SfBorder>
                 </Grid>
             </Grid>

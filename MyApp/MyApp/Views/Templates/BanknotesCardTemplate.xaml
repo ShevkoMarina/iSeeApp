@@ -45,7 +45,7 @@
             <Label
                 Margin="0,4,0,8"
                 FontFamily="{StaticResource Montserrat-Medium}"
-                FontSize="16"
+                FontSize="18"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
                 Text="Распознавание номиналов банкнот"

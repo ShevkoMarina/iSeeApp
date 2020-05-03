@@ -46,6 +46,7 @@ namespace MyApp.Views
         {
             try
             {
+                TakePhotoButton.IsEnabled = false;
                 var photo = await CameraActions.TakePhoto();
 
                 if (photo == null) return;
@@ -65,12 +66,17 @@ namespace MyApp.Views
                 await DisplayAlert("Error", ex.Message, "OK");
                 //await Navigation.PushAsync(new SomethingWentWrongPage());
             }
+            finally
+            {
+                TakePhotoButton.IsEnabled = true;
+            }
         }
 
         private async void GetPhotoButton_Clicked(object sender, EventArgs e)
         {
             try
             {
+                GetPhotoButton.IsEnabled = false;
                 MediaFile photo = await CameraActions.GetPhoto();
 
                 if (photo == null) return;
@@ -86,9 +92,13 @@ namespace MyApp.Views
                 await DisplayAlert("Error", ex.Message, "OK");
                 //await Navigation.PushAsync(new SomethingWentWrongPage());
             }
+            finally
+            {
+                GetPhotoButton.IsEnabled = true;
+            }
         }
 
-        private async void RecognizeAndVoiceBacknote(MediaFile photo)
+        private async Task RecognizeAndVoiceBacknote(MediaFile photo)
         {
             try
             {

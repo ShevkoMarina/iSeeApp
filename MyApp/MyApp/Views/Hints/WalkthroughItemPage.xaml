@@ -18,11 +18,11 @@
             Spacing="0"
             VerticalOptions="Center">
 
-            <!--  Image for display svg image  -->
+            <!--  Image for display image  -->
             <Image
                 BackgroundColor="Transparent"
-                HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
-                                                                      AndroidPhonePortrait=200,
+                HeightRequest="{core:OnPlatformOrientationDoubleValue Default=500,
+                                                                      AndroidPhonePortrait=400,
                                                                       AndroidPhoneLandscape=140,
                                                                       iOSPhonePortrait=200,
                                                                       iOSPhoneLandscape=140}"
@@ -30,7 +30,7 @@
                                      UWP=1}"
                 Source="{Binding ImagePath}"
                 VerticalOptions="Center"
-                WidthRequest="{x:OnIdiom Phone=200,
+                WidthRequest="{x:OnIdiom Phone=100,
                                          Desktop=300,
                                          Tablet=300}" />
 
@@ -46,7 +46,7 @@
                                      UWP=1}"
                 Style="{StaticResource LabelStyle}"
                 Text="{Binding Header}"
-                TranslationY="{OnPlatform Default=60,
+                TranslationY="{OnPlatform Default=100,
                                           UWP=0}"
                 VerticalTextAlignment="Center" />
 
@@ -60,7 +60,7 @@
                                      UWP=1}"
                 Style="{StaticResource LabelStyle}"
                 Text="{Binding Content}"
-                TranslationY="{OnPlatform Default=60,
+                TranslationY="{OnPlatform Default=100,
                                           UWP=0}" />
 
         </StackLayout>

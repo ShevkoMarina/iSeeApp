@@ -90,7 +90,7 @@
                 Command="{Binding NextCommand}"
                 CommandParameter="{x:Reference Rotator}"
                 Style="{StaticResource SfButtonStyle}"
-                Text="{Binding NextButtonText}" />
+                Text="Далее" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

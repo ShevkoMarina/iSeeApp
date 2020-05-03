@@ -48,6 +48,7 @@ namespace MyApp.Views.Detail
         {
             try
             {
+                TakePhotoButton.IsEnabled = false;
                 var photo = await CameraActions.TakePhoto();
 
                 if (photo == null) return;
@@ -58,12 +59,17 @@ namespace MyApp.Views.Detail
                 await DisplayAlert("Error", ex.Message, "OK");
                 // await Navigation.PushAsync(new SomethingWentWrongPage());
             }
+            finally
+            {
+                TakePhotoButton.IsEnabled = true;
+            }
         }
 
         private async void GetPhotoButton_Clicked(object sender, EventArgs e)
         {
             try
             {
+                GetPhotoButton.IsEnabled = false;
                 var photo = await CameraActions.GetPhoto();
 
                 if (photo == null) return;
@@ -73,6 +79,10 @@ namespace MyApp.Views.Detail
             {
                 await DisplayAlert("Error", ex.Message, "OK");
                 // await Navigation.PushAsync(new SomethingWentWrongPage());
+            }
+            finally
+            {
+                GetPhotoButton.IsEnabled = true;
             }
         }
 
