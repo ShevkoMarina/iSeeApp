@@ -21,9 +21,6 @@ namespace MyApp.ViewModels.ErrorAndEmpty
 
         #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance for the <see cref="NoInternetConnectionPageViewModel" /> class.
-        /// </summary>
         public NoInternetConnectionPageViewModel()
         {
             this.ImagePath = "NoInternet.png";
@@ -34,20 +31,12 @@ namespace MyApp.ViewModels.ErrorAndEmpty
 
         #endregion
 
-        #region Commands
 
-        /// <summary>
-        /// Gets or sets the command that is executed when the TryAgain button is clicked.
-        /// </summary>
         public ICommand TryAgainCommand { get; set; }
 
-        #endregion
 
         #region Properties
 
-        /// <summary>
-        /// Gets or sets the ImagePath.
-        /// </summary>
         public string ImagePath
         {
             get
@@ -62,9 +51,6 @@ namespace MyApp.ViewModels.ErrorAndEmpty
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Header.
-        /// </summary>
         public string Header
         {
             get
@@ -79,9 +65,6 @@ namespace MyApp.ViewModels.ErrorAndEmpty
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Content.
-        /// </summary>
         public string Content
         {
             get

@@ -10,6 +10,11 @@ namespace MyApp.RecognitionClasses.CameraClass
     public static class CameraActions
     {
         #region Methods
+
+       /// <summary>
+       /// Сделать фото с помощью камеры девайса и сохранить в альбом приложения в галереи
+       /// </summary>
+       /// <returns></returns>
         public static async Task<MediaFile> TakePhoto()
         {
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
@@ -28,7 +33,7 @@ namespace MyApp.RecognitionClasses.CameraClass
                     {
                         DefaultCamera = CameraDevice.Rear,
                         PhotoSize = PhotoSize.Small,
-                        SaveToAlbum = false,
+                        SaveToAlbum = true,
                         Directory = "iSeeApp",
                         Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg",
                     }); ;
@@ -37,11 +42,15 @@ namespace MyApp.RecognitionClasses.CameraClass
                 }
                 else
                 {
-                    throw new CameraException("Camera is not supported");
+                    throw new CameraException("Камера не поддерживается");
                 }
             }
         }
 
+        /// <summary>
+        /// Выбрать фото из галлереи
+        /// </summary>
+        /// <returns></returns>
         public static async Task<MediaFile> GetPhoto()
         {
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
@@ -64,7 +73,7 @@ namespace MyApp.RecognitionClasses.CameraClass
                 }
                 else
                 {
-                    throw new CameraException("Picking photo is not supported");
+                    throw new CameraException("Загрузка фото из галереи не поддерживается");
                 }
             }
         }

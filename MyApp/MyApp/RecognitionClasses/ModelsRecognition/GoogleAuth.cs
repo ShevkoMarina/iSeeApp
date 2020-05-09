@@ -6,7 +6,6 @@ namespace MyApp.RecognitionClasses.ModelsRecognition
 {
     public class GoogleAuth
     {
-
         public string type { get; set; }
         public string project_id { get; set; }
         public string private_key_id { get; set; }

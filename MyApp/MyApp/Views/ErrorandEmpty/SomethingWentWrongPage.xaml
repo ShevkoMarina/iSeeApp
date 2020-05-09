@@ -4,8 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:svg="clr-namespace:MyApp.Controls"
     xmlns:viewModel="clr-namespace:MyApp.ViewModels.ErrorAndEmpty"
     BackgroundColor="{StaticResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
@@ -39,21 +37,8 @@
                 VerticalOptions="Center">
 
                 <!--  Display the svg illustration image  -->
-                <svg:SVGImage 
-                    x:Name="ErrorImage"
-                    Margin="{x:OnIdiom Phone='0,0,0,0',
-                                       Desktop='0',
-                                       Tablet='0'}"
-                    HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
-                                                                          AndroidPhonePortrait=200,
-                                                                          AndroidPhoneLandscape=140,
-                                                                          iOSPhonePortrait=200,
-                                                                          iOSPhoneLandscape=140}"
-                    Source = "{Binding ImagePath}"
-                    VerticalOptions="Center"
-                    WidthRequest="{x:OnIdiom Phone=200,
-                                             Desktop=300,
-                                             Tablet=300}" />
+                <Image
+                    Source="Error.png"/>
 
                 <!--  Label to display header  -->
                 <Label
@@ -69,7 +54,7 @@
                 <Label
                     Margin="8,0,8,0"
                     FontFamily="{StaticResource Montserrat-Medium}"
-                    FontSize="16"
+                    FontSize="18"
                     Style="{StaticResource LabelStyle}"
                     Text="{Binding Content}"
                     VerticalTextAlignment="Center" />
@@ -77,10 +62,10 @@
 
             <!--  Try again button  -->
             <button:SfButton
-                Grid.Row="1"
-                Command="{Binding TryAgainCommand}"
-                Style="{StaticResource SfGradientButtonStyle}"
-                Text="TRY AGAIN" />
+                 Grid.Row="1"
+                 Clicked="GoBack_Clicked"
+                 Style="{StaticResource SfButtonStyle}"
+                 Text="Вернуться" />
 
         </Grid>
 

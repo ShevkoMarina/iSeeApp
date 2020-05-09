@@ -8,14 +8,20 @@ namespace MyApp.RecognitionClasses
 {
     class CommandsChecker
     {
-        public static SpeechConfig SpeechConfig;
+        private static SpeechConfig speechConfig;
         private static List<string> commandList = new List<string>()
         {
             "деньги", "печатный", "рукописный", "камера", "галерея", "помощь", "настройки"
         };
 
         public static List<string> CommandList { get => commandList; set => commandList = value; }
+        public static SpeechConfig SpeechConfig { get => speechConfig; set => speechConfig = value; }
 
+        /// <summary>
+        /// Проанализировать голосовую команду
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public static async Task AnalizeCommand(string filePath)
         {
             try
@@ -27,13 +33,7 @@ namespace MyApp.RecognitionClasses
                     {
                         using (var recognizer = new SpeechRecognizer(SpeechConfig, audioInput))
                         {
-                            /*
-                            PhraseListGrammar phraseList = PhraseListGrammar.FromRecognizer(recognizer);
-                            phraseList.AddPhrase("Pricelist.");
-                            phraseList.AddPhrase("Camera.");
-                            phraseList.AddPhrase("Gallery.");
-                            */
-                            //await DisplayAlert("Results", "Recognizing first result...", "OK");
+                          
                             var result = await recognizer.RecognizeOnceAsync();
 
                             if (result.Reason == ResultReason.RecognizedSpeech)

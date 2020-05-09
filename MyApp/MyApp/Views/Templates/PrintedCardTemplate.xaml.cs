@@ -20,6 +20,11 @@ namespace MyApp.Views.Templates
             this.BindingContext = new NavigationViewModel().FunctionsList[0];
         }
 
+        /// <summary>
+        /// Открывает страницу распознавания печатного текста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void PrintedTextItem_Clicked(object sender, EventArgs e)
         {
             var current = Connectivity.NetworkAccess;

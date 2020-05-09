@@ -40,12 +40,12 @@ namespace MyApp.Behaviors.Hints
                 var viewModel = rotator.BindingContext as OnBoardingAnimationViewModel;
                 if (selectedIndex == itemsCount - 1)
                 {
-                    viewModel.NextButtonText = "DONE";
+                    viewModel.NextButtonText = "Готово";
                     viewModel.IsSkipButtonVisible = false;
                 }
                 else
                 {
-                    viewModel.NextButtonText = "NEXT";
+                    viewModel.NextButtonText = "Далее";
                     viewModel.IsSkipButtonVisible = true;
                 }
 
@@ -87,7 +87,7 @@ namespace MyApp.Behaviors.Hints
         /// </summary>
         /// <param name="childElement">The Child Element</param>
         /// <param name="item">The Item</param>
-        public async void StartAnimation(List<View> childElement, Boarding item)
+        public Task StartAnimation(List<View> childElement, Boarding item)
         {
             var fadeAnimationImage = childElement[0].FadeTo(1, 250);
             var fadeAnimationtaskTitleTime = childElement[1].FadeTo(1, 1000);
@@ -101,7 +101,7 @@ namespace MyApp.Behaviors.Hints
             animation.Add(0, 1, scaleDownAnimation);
             animation.Commit((item as Boarding).RotatorItem as ContentView, "animation", 16, 500);
 
-            await Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation);
+            return Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation);
         }
 
         /// <summary>

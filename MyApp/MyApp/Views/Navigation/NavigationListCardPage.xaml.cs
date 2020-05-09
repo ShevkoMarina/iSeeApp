@@ -5,16 +5,12 @@ using MyApp.Views.Hints;
 using System;
 using MyApp.RecognitionClasses;
 using System.Threading.Tasks;
-using MyApp.RecognitionClasses.CameraClass;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
-using System.Collections.Generic;
-using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
 using MyApp.ViewModels.Navigation;
-using System.Xml;
-using System.Threading;
-using System.IO;
+using MyApp.Views.ErrorAndEmpty;
+using Xamarin.Forms;
+using System.ComponentModel.Design;
 
 namespace MyApp.Views.Navigation
 {
@@ -22,31 +18,41 @@ namespace MyApp.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationListCardPage
     {
+        private static SpeechConfig speechConfig;
+
+        public static SpeechConfig SpeechConfig { get => speechConfig; set => speechConfig = value; }
+
         public NavigationListCardPage()
         {
             InitializeComponent();
             SpeechConfig = SpeechConfig.FromSubscription(Constants.SpeechKey, "eastus");
             this.BindingContext = new NavigationViewModel().FunctionsList[0];   
         }
-        private async void BanknotesItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
-        {    
-            await Navigation.PushAsync(new BanknotesRecognitionPage());
-        }
-        private async void PrintedTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
-        {         
-            await Navigation.PushAsync(new RecognitionPrintedPage());          
-        }
-        private async void HandwrittenTextItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+
+        /// <summary>
+        /// Отменяет озвучку при выходе со страницы
+        /// </summary>
+        protected override void OnDisappearing()
         {
-            await Navigation.PushAsync(new RecognitionHandwrittenPage());
+            SpeechSyntezer.CancelSpeech();
         }
 
+        /// <summary>
+        /// Открывает страницу обучения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void TipsButtonClicked(object sender, EventArgs e)
         {        
             await Navigation.PushAsync(new OnBoardingAnimationPage());
-            await TextSyntezer.VoiceResult("Выберите в главном меню нужную функцию распознавания");
+            await SpeechSyntezer.VoiceResult("Выберите в главном меню нужную функцию распознавания");
         }
 
+        /// <summary>
+        /// Записывает голосовую команду
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void VoiceButtonClicked(object sender, EventArgs e)
         {
            
@@ -61,58 +67,72 @@ namespace MyApp.Views.Navigation
             VoiceButton.Source = "micro.png";       
         }
 
-
+        /// <summary>
+        /// Определяет назначение голосовой команды из 2 слов
+        /// </summary>
+        /// <param name="commandPage"></param>
+        /// <param name="commandCamera"></param>
+        /// <returns></returns>
         private async Task CheckCommandsPage(string commandPage, string commandCamera)
         {
-            switch (commandPage)
+            switch (commandPage.Substring(0,5))
             {
-                case "деньги":
+                case "деньг":
                     var BP = new BanknotesRecognitionPage();
                     await Navigation.PushAsync(BP);
                     await BP.VoiceCommand(commandCamera);
                     break;
-                case "печатный":
+                case "печат":
                     var PP = new RecognitionPrintedPage();
                     await Navigation.PushAsync(new RecognitionPrintedPage());
                     await PP.VoiceCommand(commandCamera);
                     break;
-                case "рукописный":
+                case "рукоп":
                     var RP = new RecognitionHandwrittenPage();
                     await Navigation.PushAsync(RP);
                     await RP.VoiceCommand(commandCamera);
                     break;
-                case "помощь":
+                case "помощ":
+                    await Navigation.PushAsync(new OnBoardingAnimationPage());
                     break;
                 default:
-                    await TextSyntezer.VoiceResult("Такой команды не существует.");
+                    await SpeechSyntezer.VoiceResult("Такой команды не существует.");
                     break;
             }
         }
 
+        /// <summary>
+        /// Определяет назначение голосовой команды из 1 слова
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         private async Task CheckCommandsPageOneCommand(string command)
         {
-            
-            switch (command)
+            switch (command.Substring(0,5))
             {
-                case "деньги":
+                case "деньг":
                     await Navigation.PushAsync(new BanknotesRecognitionPage());                
                     break;
-                case "печатный":
+                case "печат":
                     await Navigation.PushAsync(new RecognitionPrintedPage());
                     break;
-                case "рукописный":
+                case "рукоп":
                     await Navigation.PushAsync(new RecognitionHandwrittenPage());
                     break;
-                case "помощь":
+                case "помощ":
                      break;
                 default:
-                    await TextSyntezer.VoiceResult("Такой команды не существует.");
+                    await SpeechSyntezer.VoiceResult("Такой команды не существует.");
                     break;
             }          
         }
 
-        public static SpeechConfig SpeechConfig;
 
+        /// <summary>
+        /// Анализирует голосовую команду
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public async Task AnalizeAudioCommand(string filePath)
         {
             try
@@ -124,33 +144,53 @@ namespace MyApp.Views.Navigation
                     {
                         using (var recognizer = new SpeechRecognizer(SpeechConfig, audioInput))
                         {          
-                           
-                            PhraseListGrammar phraseList = PhraseListGrammar.FromRecognizer(recognizer);
-                            phraseList.AddPhrase("камера");
 
-                        
                             var result = await recognizer.RecognizeOnceAsync();
                             if (result.Reason == ResultReason.RecognizedSpeech)
                             {
-                                string command = result.Text.ToLower();
-                                command = command.Replace(".", "").Replace("?", "").Replace("!", "").Replace(",", "");
-                                string[] commands = command.Split(' ');
-                                await DisplayAlert("sdfs", commands[0], "ok");
-                                if (commands.Length > 1) await CheckCommandsPage(commands[0], commands[1]);
-                                else await CheckCommandsPageOneCommand(commands[0]);
+                                string[] commands = PreprocessingCommands(result);
+                                switch(commands.Length)
+                                {
+                                    case 0:
+                                        await SpeechSyntezer.VoiceResult("Речь не распознана");
+                                        break;
+                                    case 1:
+                                        await CheckCommandsPageOneCommand(commands[0]);
+                                        break;
+                                    case 2:
+                                        await CheckCommandsPage(commands[0], commands[1]);
+                                        break;
+                                    default:
+                                        await SpeechSyntezer.VoiceResult("Такой команды не существует");
+                                        break;
+
+                                }           
                             }
                             else
                             {
-                                await TextSyntezer.VoiceResult("Речь не распознана");
+                                await SpeechSyntezer.VoiceResult("Речь не распознана");
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await Navigation.PushAsync(new SomethingWentWrongPage());
             }
-        }       
+        }
+
+        /// <summary>
+        /// Предобработка голосовых команд
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private static string[] PreprocessingCommands(SpeechRecognitionResult result)
+        {
+            string command = result.Text.ToLower();
+            command = command.Replace(".", "").Replace("?", "").Replace("!", "").Replace(",", "");
+            string[] commands = command.Split(' ');
+            return commands;
+        }
     }
 }

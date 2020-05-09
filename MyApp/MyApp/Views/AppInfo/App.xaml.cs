@@ -18,17 +18,18 @@ namespace MyApp
 
         protected override void OnStart()
         {
-            AuthenticationComputerVision.AuthenticationGoogleVision();
+            AuthenticationComputerVision.AuthenticateGoogleVision();
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            SpeechSyntezer.CancelSpeech();
+            SpeechSyntezer.CancelEnglishSpeech();
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
+           
         }
     }
 }

@@ -5,15 +5,12 @@ using Xamarin.Forms.Internals;
 
 namespace MyApp.Converters
 {
-    /// <summary>
-    /// This class have methods to convert the DynamicResource to color objects. 
-    /// This is needed when DynamicResource is set based on idiom/platform.
-    /// </summary>
+    
     [Preserve(AllMembers = true)]
     public class DynamicResourceToColorConverter : IValueConverter
     {
         /// <summary>
-        /// This method is used to convert the DynamicResource to color.
+        /// Конвертирует динамический ресурс в цвет
         /// </summary>
         /// <param name="value">Gets the value.</param>
         /// <param name="targetType">Gets the target type.</param>
@@ -32,13 +29,13 @@ namespace MyApp.Converters
         }
 
         /// <summary>
-        /// This method is used to convert the color to DynamicResource.
+        /// Конвертирует цвет в динамический ресурс
         /// </summary>
-        /// <param name="value">Gets the value.</param>
-        /// <param name="targetType">Gets the target type.</param>
-        /// <param name="parameter">Gets the parameter.</param>
-        /// <param name="culture">Gets the culture.</param>
-        /// <returns>Returns the string.</returns>        
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return null;

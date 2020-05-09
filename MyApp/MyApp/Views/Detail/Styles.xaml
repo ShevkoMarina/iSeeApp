@@ -27,10 +27,6 @@
         <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
     </Style>
 
-    <Style TargetType="control:TitleView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
-    </Style>
-
     <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />

@@ -5,12 +5,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:content="clr-namespace:MyApp.Views.Detail.Templates"
-    xmlns:viewmodel="clr-namespace:MyApp.ViewModels.Function"
     xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:controls="clr-namespace:MyApp.Controls"
     NavigationPage.HasNavigationBar="False">
-    
+
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -25,11 +23,6 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <!--  Binding Context for OverAllFeedback Page  -->
-    <ContentPage.BindingContext>
-        <viewmodel:FunctionViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <Grid>

@@ -17,6 +17,10 @@ namespace MyApp.RecognitionClasses
         };
 
         #region Methods
+        /// <summary>
+        /// Записать аудио с микрофона устройства
+        /// </summary>
+        /// <returns></returns>
         public static async Task<string> RecordAudio()
         {
             recorder.FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/iSee_recording.wav");
@@ -30,6 +34,10 @@ namespace MyApp.RecognitionClasses
             return recorder.FilePath;
         }
 
+        /// <summary>
+        /// Проверить разрешение на использование микрофона
+        /// </summary>
+        /// <returns></returns>
         public static async Task<bool> CheckAudioPermissions()
         {
             var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Microphone);

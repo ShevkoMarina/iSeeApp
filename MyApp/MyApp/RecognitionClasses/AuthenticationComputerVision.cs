@@ -11,6 +11,13 @@ namespace MyApp.RecognitionClasses
         public static ComputerVisionClient client = AuthenticateMicrosoftComputerVisionClient(Constants.ComputerVisionEndpoint, Constants.ComputerVisionKey);
 
         #region Methods
+
+        /// <summary>
+        /// Аутентификация клиента компьютерного зрения Microsoft
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         static private ComputerVisionClient AuthenticateMicrosoftComputerVisionClient(string endpoint, string key)
         {
             ComputerVisionClient client =
@@ -19,7 +26,11 @@ namespace MyApp.RecognitionClasses
 
             return client;
         }
-        public static void AuthenticationGoogleVision()
+
+        /// <summary>
+        ///  Аутентификация клиента компьютерного зрения Google
+        /// </summary>
+        public static void AuthenticateGoogleVision()
         {
             GoogleAuth googleAuth = CreateGoogleAuthenticationJson();
             string jsonstring = JsonConvert.SerializeObject(googleAuth);
@@ -28,6 +39,10 @@ namespace MyApp.RecognitionClasses
                Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/AccessKGoogle.json");
         }
 
+        /// <summary>
+        /// Генерация ключа для аутентификации
+        /// </summary>
+        /// <returns></returns>
         private static GoogleAuth CreateGoogleAuthenticationJson()
         {
             return new GoogleAuth
@@ -57,6 +72,10 @@ namespace MyApp.RecognitionClasses
             };
         }
 
+        /// <summary>
+        /// Сохранение ключа аутентификации в папку приложения
+        /// </summary>
+        /// <param name="jsonstring"></param>
         private static void SaveJson(string jsonstring)
         {
             var backingFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/AccessKGoogle.json");

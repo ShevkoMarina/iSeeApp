@@ -204,16 +204,6 @@
         <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
 
-    <!-- Common style for tab animation grids -->
-    <Style x:Key="TabAnimationGridStyle" TargetType="control:TapAnimationGrid">
-        <Setter Property="BackgroundColor" Value="#ffffff" />
-        <Setter Property="RowSpacing" Value="0" />
-        <Setter Property="ColumnSpacing" Value="0" />
-        <Setter Property="HeightRequest" Value="56" />
-        <Setter Property="Padding" Value="16,0,0,0" />
-        <Setter Property="Tapped" Value="False" />
-    </Style>
-
     <!--  Common style for More  SfButton  -->
     <Style x:Key="MoreButton" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />

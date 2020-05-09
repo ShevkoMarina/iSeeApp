@@ -8,9 +8,6 @@ using Xamarin.Forms.Internals;
 
 namespace MyApp.ViewModels
 {
-    /// <summary>
-    /// This viewmodel extends in another viewmodels.
-    /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
     public class BaseViewModel : INotifyPropertyChanged
@@ -18,7 +15,7 @@ namespace MyApp.ViewModels
         #region Event handler
 
         /// <summary>
-        /// Occurs when the property is changed.
+        /// Вызывается когда свойство изменено
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -27,9 +24,9 @@ namespace MyApp.ViewModels
         #region Methods
 
         /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
+        /// PropertyChanged событие вызывается когда значение свойства меняется
         /// </summary>
-        /// <param name="propertyName">The PropertyName</param>
+        /// <param name="propertyName"></param>
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -6,9 +6,6 @@ using Xamarin.Forms.Internals;
 
 namespace MyApp.ViewModels.ErrorAndEmpty
 {
-    /// <summary>
-    /// ViewModel for something went wrong page.
-    /// </summary>
     [Preserve(AllMembers = true)]
     public class SomethingWentWrongPageViewModel : BaseViewModel
     {
@@ -24,33 +21,22 @@ namespace MyApp.ViewModels.ErrorAndEmpty
 
         #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance for the <see cref="SomethingWentWrongPageViewModel" /> class.
-        /// </summary>
         public SomethingWentWrongPageViewModel()
         {
-            this.ImagePath = "SomethingWentWrong.svg";
-            this.Header = "SOMETHING WENT WRONG";
-            this.Content = "We’re not sure what happened, but we know an error occurred";
-            this.TryAgainCommand = new Command(this.TryAgain);
+            this.ImagePath = "Error.png";
+            this.Header = "Ошибка";
+            this.Content = "Что-то пошло не так. Вернитесь на главную страницу";
         }
 
         #endregion
 
         #region Commands
 
-        /// <summary>
-        /// Gets or sets the command that is executed when the TryAgain button is clicked.
-        /// </summary>
-        public ICommand TryAgainCommand { get; set; }
+        public ICommand GoBackCommand { get; set; }
 
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// Gets or sets the ImagePath.
-        /// </summary>
         public string ImagePath
         {
             get
@@ -65,9 +51,6 @@ namespace MyApp.ViewModels.ErrorAndEmpty
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Header.
-        /// </summary>
         public string Header
         {
             get
@@ -82,9 +65,6 @@ namespace MyApp.ViewModels.ErrorAndEmpty
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Content.
-        /// </summary>
         public string Content
         {
             get
@@ -101,16 +81,5 @@ namespace MyApp.ViewModels.ErrorAndEmpty
 
         #endregion
 
-        #region Methods
-
-        /// <summary>
-        /// Invoked when the TryAgain button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void TryAgain(object obj)
-        {
-            // Do something
-        }
-        #endregion
     }
 }

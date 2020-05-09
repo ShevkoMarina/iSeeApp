@@ -1,7 +1,6 @@
 ﻿using System;
 
 namespace MyApp.RecognitionClasses.CameraClass
-// На каком языке приложение?
 {
     [Serializable]
     public class CameraException : Exception

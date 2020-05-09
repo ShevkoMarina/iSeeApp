@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows.Input;
 using MyApp.Models.Hints;
 using MyApp.RecognitionClasses;
@@ -12,9 +13,7 @@ using Xamarin.Forms.Internals;
 
 namespace MyApp.ViewModels.Hints
 {
-    /// <summary>
-    /// ViewModel for on-boarding gradient page with animation.
-    /// </summary>
+
     [Preserve(AllMembers = true)]
     public class OnBoardingAnimationViewModel : BaseViewModel
     {
@@ -32,9 +31,6 @@ namespace MyApp.ViewModels.Hints
 
         #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance for the <see cref="OnBoardingAnimationViewModel" /> class.
-        /// </summary>
         public OnBoardingAnimationViewModel()
         {
             this.SkipCommand = new Command(this.Skip);
@@ -62,6 +58,13 @@ namespace MyApp.ViewModels.Hints
                     Content = "Подождите, когда приложение озвучит текст на фото",
                     RotatorItem = new WalkthroughItemPage()
                 },
+                new Boarding()
+                {
+                    ImagePath = "WaitVoicing.png",
+                    Header = "Повтор",
+                    Content = "Вы можете еще раз прослушать результат, нажав на кнопку повтора",
+                    RotatorItem = new WalkthroughItemPage()
+                },
                   new Boarding()
                 {
                     ImagePath = "VoiceForTips.png",
@@ -72,13 +75,12 @@ namespace MyApp.ViewModels.Hints
                      new Boarding()
                 {
                     ImagePath = "TipsForTips.png",
-                    Header = "Список команд",
-                    Content = "Деньги, Печатный, Рукописный, Камера, Галерея, Настройки, Помощь",
+                    Header = "Команды",
+                    Content = "Функция: печатный, деньги, рукописный, помощь\n\rФото: камера, галерея ",
                     RotatorItem = new WalkthroughItemPage()
                 }
             };
 
-            // Set bindingcontext to content view.
             foreach (var boarding in this.Boardings)
             {
                 boarding.RotatorItem.BindingContext = boarding;
@@ -169,20 +171,19 @@ namespace MyApp.ViewModels.Hints
 
         #region Commands
 
-        /// <summary>
-        /// Gets or sets the command that is executed when the Skip button is clicked.
-        /// </summary>
         public ICommand SkipCommand { get; set; }
 
-        /// <summary>
-        /// Gets or sets the command that is executed when the Done button is clicked.
-        /// </summary>
         public ICommand NextCommand { get; set; }
 
         #endregion
 
         #region Methods
 
+        /// <summary>
+        /// Проверяет и обноляет индекс просматриваемой страницы
+        /// </summary>
+        /// <param name="itemCount"></param>
+        /// <returns></returns>
         private bool ValidateAndUpdateSelectedIndex(int itemCount)
         {
             if (this.SelectedIndex >= itemCount - 1)
@@ -195,45 +196,55 @@ namespace MyApp.ViewModels.Hints
         }
 
         /// <summary>
-        /// Invoked when the Skip button is clicked.
+        /// Выход со страницы подсказок при нажатии на кнопку
         /// </summary>
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
+            SpeechSyntezer.CancelSpeech();
             this.MoveToNextPage();
         }
 
         /// <summary>
-        /// Invoked when the Done button is clicked.
+        /// Переход на следующую страницу при нажатии на кнопку
         /// </summary>
         /// <param name="obj">The Object</param>
         private void Next(object obj)
-        {            
+        {
+            SpeechSyntezer.CancelSpeech();
             var itemCount = (obj as SfRotator).ItemsSource.Count();
 
             switch(selectedIndex)
             {
                 case 0:
-                    TextSyntezer.VoiceResult("Сделайте фотографию на камеру или загрузите из галереи");
+                    SpeechSyntezer.VoiceResult("Сделайте фотографию на камеру или загрузите из галереи");
                     break;
                 case 1:
-                    TextSyntezer.VoiceResult("Подождите, когда приложение озвучит текст на фото");                
+                    SpeechSyntezer.VoiceResult("Подождите, когда приложение озвучит текст на фото");                
                     break;
                 case 2:
-                    TextSyntezer.VoiceResult("Вы можете управлять приложением голосом используя команды");
+                    SpeechSyntezer.VoiceResult("Вы можете еще раз прослушать результат, нажав на кнопку повтора");
                     break;
                 case 3:
-                    TextSyntezer.VoiceResult("Cписок команд: Деньги, Печатный, Рукописный, Камера, Галерея, Настройки, Помощь");
+                    SpeechSyntezer.VoiceResult("Вы можете управлять приложением голосом используя команды");                     
+                    break;
+                case 4:
+                    SpeechSyntezer.VoiceResult("Команда состоит из одной или двух частей. Первая: название функции. " +
+                       "Печатный. Деньги. Рукописный. Помощь. Вторая часть это способ выбора фото.    камера. или. галерея.");
                     break;
                 default:
                     break;
             }
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
+              
                 this.MoveToNextPage();
             }        
         }
 
+        /// <summary>
+        /// Выход со страницы подсказок
+        /// </summary>
         private void MoveToNextPage()
         {
             Application.Current.MainPage.Navigation.PopAsync();

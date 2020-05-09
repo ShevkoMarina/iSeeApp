@@ -1,15 +1,11 @@
 ﻿using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 using NavigationModel = MyApp.Models.Navigation.NavigationModel;
 
 namespace MyApp.ViewModels.Navigation
 {
-    /// <summary>
-    /// ViewModel for the Navigation list with cards page.
-    /// </summary>
+
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class NavigationViewModel
     {
         #region Fields
@@ -20,9 +16,6 @@ namespace MyApp.ViewModels.Navigation
 
         #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance for the <see cref="NavigationViewModel"/> class.
-        /// </summary>
         public NavigationViewModel()
         {
             functionsList =  new ObservableCollection<NavigationModel>()

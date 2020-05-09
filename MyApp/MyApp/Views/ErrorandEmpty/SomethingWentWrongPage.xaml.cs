@@ -1,44 +1,38 @@
-﻿using Xamarin.Forms;
+﻿using Grpc.Core;
+using MyApp.RecognitionClasses;
+using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace MyApp.Views.ErrorAndEmpty
 {
-    /// <summary>
-    /// Page to show the something went wrong
-    /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SomethingWentWrongPage
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SomethingWentWrongPage" /> class.
-        /// </summary>
         public SomethingWentWrongPage()
         {
             InitializeComponent();
+            SpeechSyntezer.VoiceResult("Произошла ошибка");
         }
 
         /// <summary>
-        /// Invoked when view size is changed.
+        /// Возвращает на главную страницу
         /// </summary>
-        /// <param name="width">The Width</param>
-        /// <param name="height">The Height</param>
-        protected override void OnSizeAllocated(double width, double height)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void GoBack_Clicked(object sender, EventArgs e)
         {
-            base.OnSizeAllocated(width, height);
+            await Navigation.PopToRootAsync();
+        }
 
-            if (width > height)
-            {
-                if (Device.Idiom == TargetIdiom.Phone)
-                {
-                    ErrorImage.IsVisible = false;
-                }
-            }
-            else
-            {
-                ErrorImage.IsVisible = true;
-            }
+        /// <summary>
+        /// Отменяет озвучку при выходе со страницы
+        /// </summary>
+        protected override void OnDisappearing()
+        {
+            SpeechSyntezer.CancelSpeech();
         }
     }
 }

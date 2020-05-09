@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Xamarin.Essentials;
-using System.Threading.Tasks;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MyApp.Views.ErrorAndEmpty;
-using MyApp.Models.Navigation;
 using MyApp.ViewModels.Navigation;
 
 namespace MyApp.Views.Templates
@@ -23,6 +18,11 @@ namespace MyApp.Views.Templates
             this.BindingContext = new NavigationViewModel().FunctionsList[1];
         }
 
+        /// <summary>
+        /// Открывает страницу функции распознавания бакнот
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void BanknotesRecognition_Clicked(object sender, EventArgs e)
         {
             var current = Connectivity.NetworkAccess;

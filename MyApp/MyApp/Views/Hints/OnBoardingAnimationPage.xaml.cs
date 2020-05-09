@@ -6,19 +6,21 @@ using Xamarin.Forms.Xaml;
 
 namespace MyApp.Views.Hints
 {
-    /// <summary>
-    /// Page to display on-boarding gradient with animation
-    /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OnBoardingAnimationPage
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OnBoardingAnimationPage" /> class.
-        /// </summary>
         public OnBoardingAnimationPage()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Отменяет озвучку при выходе со страницы
+        /// </summary>
+        protected override void OnDisappearing()
+        {
+            SpeechSyntezer.CancelSpeech();
         }
     }
 }

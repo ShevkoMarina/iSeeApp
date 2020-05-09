@@ -19,40 +19,32 @@ namespace MyApp.Views.ErrorAndEmpty
         public NoInternetConnectionPage()
         {
             InitializeComponent();
-            TextSyntezer.VoiceResult("Нет Интернета");
+            SpeechSyntezer.VoiceResult("Нет Интернета");
         }
 
         /// <summary>
-        /// Invoked when view size is changed.
+        /// Повтроная проверка подключения к интернету
         /// </summary>
-        /// <param name="width">The Width</param>
-        /// <param name="height">The Height</param>
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-
-            if (width > height)
-            {
-                if (Device.Idiom == TargetIdiom.Phone)
-                {
-                    ErrorImage.IsVisible = false;
-                }
-            }
-            else
-            {
-                ErrorImage.IsVisible = true;
-            }
-        }
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void TryAgain_Clicked(object sender, EventArgs e)
         {
             if (Xamarin.Essentials.Connectivity.NetworkAccess != Xamarin.Essentials.NetworkAccess.Internet)
             {
-                await Navigation.PushAsync(new NoInternetConnectionPage(), false);
+                await SpeechSyntezer.VoiceResult("Нет Интернета");
             }
             else
             {
                 await Navigation.PopToRootAsync();
             }
+        }
+
+        /// <summary>
+        /// Отменяет озвучку при выходе со страницы
+        /// </summary>
+        protected override void OnDisappearing()
+        {
+            SpeechSyntezer.CancelSpeech();
         }
     }
 }

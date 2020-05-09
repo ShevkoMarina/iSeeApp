@@ -6,6 +6,7 @@ using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
+using MyApp.Views.ErrorAndEmpty;
 
 namespace MyApp.Views.Detail
 {
@@ -23,6 +24,11 @@ namespace MyApp.Views.Detail
 
         #region Methods
 
+        /// <summary>
+        /// Распознать печатный текст с помощью голосового управления
+        /// </summary>
+        /// <param name="cameraCommand"></param>
+        /// <returns></returns>
         public async Task VoiceCommand(string cameraCommand)
         {
             switch (cameraCommand)
@@ -31,19 +37,24 @@ namespace MyApp.Views.Detail
                     {
                         var photo = await CameraActions.TakePhoto();
                         if (photo == null) return;
-                        else RecognizeAndVoicePrintedText(photo);
+                        else await RecognizeAndVoicePrintedText(photo);
                         break;
                     }
                 case "галерея":
                     {
                         MediaFile photo = await CameraActions.GetPhoto();
                         if (photo == null) return;
-                        else RecognizeAndVoicePrintedText(photo);
+                        else await RecognizeAndVoicePrintedText(photo);
                         break;
                     }
             }
         }
 
+        /// <summary>
+        ///  Сделать фото, распознать печатный текст и озвучить результат
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void TakePhotoButton_Clicked(object sender, EventArgs e)
         {
             try
@@ -52,12 +63,15 @@ namespace MyApp.Views.Detail
                 var photo = await CameraActions.TakePhoto();
 
                 if (photo == null) return;
-                else RecognizeAndVoicePrintedText(photo);
-            }         
-            catch (Exception ex)
+                else await RecognizeAndVoicePrintedText(photo);
+            }
+            catch (CameraException ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
-               // await Navigation.PushAsync(new SomethingWentWrongPage());
+                await SpeechSyntezer.VoiceResult(ex.Message);
+            }
+            catch (Exception)
+            {
+                await Navigation.PushAsync(new SomethingWentWrongPage());
             }
             finally
             {
@@ -65,6 +79,11 @@ namespace MyApp.Views.Detail
             }
         }
 
+        /// <summary>
+        ///  Выбрать фото из галереи, распознать печтаный текст и озвучить результат
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void GetPhotoButton_Clicked(object sender, EventArgs e)
         {
             try
@@ -73,12 +92,15 @@ namespace MyApp.Views.Detail
                 var photo = await CameraActions.GetPhoto();
 
                 if (photo == null) return;
-                else RecognizeAndVoicePrintedText(photo);
+                else await RecognizeAndVoicePrintedText(photo);
             }
-            catch (Exception ex)
+            catch (CameraException ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
-                // await Navigation.PushAsync(new SomethingWentWrongPage());
+                await SpeechSyntezer.VoiceResult(ex.Message);
+            }
+            catch (Exception)
+            {
+                await Navigation.PushAsync(new SomethingWentWrongPage());
             }
             finally
             {
@@ -86,7 +108,12 @@ namespace MyApp.Views.Detail
             }
         }
 
-        private async void RecognizeAndVoicePrintedText(MediaFile photo)
+        /// <summary>
+        /// Распознать печатный текст и озвучить
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
+        private async Task RecognizeAndVoicePrintedText(MediaFile photo)
         {
             try
             {
@@ -102,25 +129,41 @@ namespace MyApp.Views.Detail
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
 
-                await TextSyntezer.VoiceResult(detectedText);
+                await SpeechSyntezer.VoiceResult(detectedText);
             }          
             catch (TextDetectorException)
             {
-                await TextSyntezer.VoiceResult("Ничего не распознано. Попробуйте другое фото");
+                await SpeechSyntezer.VoiceResult("Ничего не распознано. Попробуйте другое фото");
             }
             finally
             {
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
-                this.BackgroundImageSource = "UploadPhoto.png";
             }
         }
 
+        /// <summary>
+        /// Повторить озвучку результатов распознавания
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void RepeatButtton_Clicked(object sender, EventArgs e)
         {
             if (detectedText != null)
-                await TextSyntezer.VoiceResult(detectedText);
+            {
+                SpeechSyntezer.CancelSpeech();
+                await SpeechSyntezer.VoiceResult(detectedText);
+            }
         }
+
+        /// <summary>
+        /// Отменяет озвучку при выходе со страницы
+        /// </summary>
+        protected override void OnDisappearing()
+        {
+            SpeechSyntezer.CancelSpeech();
+        }
+
         #endregion
     }
 }

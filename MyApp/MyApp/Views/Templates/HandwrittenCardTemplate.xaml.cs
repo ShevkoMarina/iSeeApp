@@ -23,6 +23,11 @@ namespace MyApp.Views.Templates
             this.BindingContext = new NavigationViewModel().FunctionsList[2];
         }
 
+        /// <summary>
+        /// Открывает функцию распознавания рукописного текста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void HandwrittenTextItem_Clicked(object sender, EventArgs e)
         {
             var current = Connectivity.NetworkAccess;

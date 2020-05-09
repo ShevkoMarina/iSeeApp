@@ -20,6 +20,12 @@ namespace MyApp.RecognitionClasses
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Распознать номинал банкноты
+        /// </summary>
+        /// <param name="imageFilePath"></param>
+        /// <returns></returns>
         public static async Task<string> MakeBanknotesDetectionRequest(string imageFilePath)
         {
             string detectedBanknote = null;
@@ -58,6 +64,11 @@ namespace MyApp.RecognitionClasses
             }
         }
         
+        /// <summary>
+        /// Представить картинку в виде байтов
+        /// </summary>
+        /// <param name="imageFilePath"></param>
+        /// <returns></returns>
         private static byte[] GetImageAsByteArray(string imageFilePath)
         {
 
