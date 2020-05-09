@@ -2,6 +2,7 @@
 <Grid
     x:Class="MyApp.Views.Templates.BanknotesCardTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:imagebuttons ="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Grid.Resources>
@@ -19,12 +20,14 @@
         </Grid.ColumnDefinitions>
 
         <!--  Image to display the Item  -->
-        <Image
-            Aspect="AspectFill"
+        <ImageButton          
+            Aspect="Fill"
+            Clicked="BanknotesRecognition_Clicked"
             BackgroundColor="{DynamicResource Gray-200}"
             HeightRequest="180"
             WidthRequest="180"
-            Source ="Banknotes2.png"/>
+            Source="{Binding FunctionImage}">
+        </ImageButton>
         <StackLayout
             Grid.Column="1"
             Padding="16"
@@ -32,24 +35,24 @@
             Spacing="0"
             VerticalOptions="FillAndExpand">
 
-            <!--  Name of the item  -->
+            <!--  Title  -->
             <Label
                 FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="20"
                 LineHeight="{OnPlatform Android=1.5,
-                                        Default=-1}"
-                Text="Банкноты"
+                                     Default=-1}"
+                Text="{Binding FunctionName}"
                 TextColor="{DynamicResource Gray-900}" />
 
-            <!--  Description about the item  -->
+            <!--  Description   -->
             <Label
                 Margin="0,4,0,8"
                 FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="18"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Text="Распознавание номиналов банкнот"
-                TextColor="{DynamicResource Gray-700}" />
+                Text="{Binding FunctionDescription}"
+                TextColor="{StaticResource DescriptionGray}" />
         </StackLayout>
     </Grid>
 </Grid>

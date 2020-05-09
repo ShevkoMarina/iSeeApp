@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyApp.RecognitionClasses;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -18,6 +19,7 @@ namespace MyApp.Views.ErrorAndEmpty
         public NoInternetConnectionPage()
         {
             InitializeComponent();
+            TextSyntezer.VoiceResult("Нет Интернета");
         }
 
         /// <summary>

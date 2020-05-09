@@ -12,28 +12,10 @@
     <x:String x:Key="Rating">&#xe70c;</x:String>
     <x:String x:Key="ArrowRight">&#xe728;</x:String>
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
+    <Color x:Key="DescriptionGray">#625A5F</Color>
+    <Color x:Key="LightGreen">#35c659</Color>
 
-    <!--  Common style for Navigation bar SfButton  -->
-    <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Fill" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
-    </Style>
-
-    <!--  Common style for Navigation bar SfButton  -->
-    <Style x:Key="BookmarkIconStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
-    </Style>
 
     <!--  Common style for sfBorder  -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
@@ -55,60 +37,6 @@
         <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
 
-    <rating:SfRatingSettings
-        x:Key="RatingSettings"
-        RatedFill="{StaticResource Gold}"
-        RatedStroke="{StaticResource Gold}"
-        UnRatedStroke="{DynamicResource Gray-600}"
-        UnRatedStrokeWidth="1" />
-
-    <!--  Common style for SfRating  -->
-    <Style x:Key="SfRatingStyle" TargetType="rating:SfRating">
-        <Setter Property="ItemCount" Value="5" />
-        <Setter Property="ReadOnly" Value="True" />
-        <Setter Property="ItemSize" Value="13" />
-        <Setter Property="ItemSpacing" Value="1" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Start" />
-    </Style>
-
-    <!--  Common style for favourite button  -->
-    <Style x:Key="FavouriteButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="HeightRequest" Value="32" />
-        <Setter Property="HorizontalOptions" Value="End" />
-        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-        <Setter Property="WidthRequest" Value="32" />
-    </Style>
-
-    <!--  Common style for rating label  -->
-    <Style x:Key="RatingLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="Text" Value="{StaticResource Rating}" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
-    </Style>
-
-    <!--  Common style for SfComboBox  -->
-    <Style x:Key="SfComboBoxStyle" TargetType="combobox:SfComboBox">
-        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-900}" />
-        <Setter Property="TextSize" Value="16" />
-        <Setter Property="DropDownTextSize" Value="16" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="FontFamily" Value="Montserrat-Regular" />
-        <Setter Property="DropDownItemFontFamily" Value="Montserrat-Regular" />
-    </Style>
-
-    <Style
-        x:Key="CartComboBoxStyle"
-        BasedOn="{StaticResource SfComboBoxStyle}"
-        TargetType="combobox:SfComboBox">
-        <Setter Property="WidthRequest" Value="84" />
-        <Setter Property="HeightRequest" Value="32" />
-    </Style>
 
     <!--  Common style for arrow label  -->
     <Style x:Key="RightArrowLabelStyle" TargetType="Label">

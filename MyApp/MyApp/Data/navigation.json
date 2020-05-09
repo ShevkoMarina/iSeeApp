@@ -1,255 +1,28 @@
 {
-  "navigationList1": [
+ 
+  "FunctionsList": [
     {
-
-      "itemName": "Printed text",
-      "name": "Burger King",
-      "description": "Burger, Pizza",
+      "functionName": "Печатный текст",
       "itemDescription": "Recognition of labels in shops and pricelists restaurants",
-      "itemImage": "PrintedTextImage.png"
-    }
-    
-  ],
-  "navigationList2": [
-    {
-      "itemName": "Banknotes",
-      "itemDescription": "Recognition of the nominal value of banknotes ",
-      "itemImage": "Banknotes.png",
-      "name": "McDonalds",
-      "description": "Burger, Fast Food"
-    }
-  ],
-  "navigationList3": [
-    {
-      "itemName": "Handwritten text",
-      "itemDescription": "Recognition of handwritten text like notes",
-      "itemImage": "letter.png",
-      "name": "Macrons",
-      "description": "Cafe, Beverages"
-    }
-  ],
-
-
-  "questions": [
-    {
-      "question": "How do I return or exchange an item?",
-      "answer": [
-        "To return or exchange your order, follow these simple steps :",
-        "1. Go to My Orders.",
-        "2. Choose the item you wish to return.",
-        "3. Fill in the details.",
-        "4. Tap Request Return."
-      ]
+      "itemImage": "Printed.png",
+      "functionCommand": "RecognizePrintedtext"
     },
     {
-      "question": "What is the replacement process for orders?",
-      "answer": [
-        "1. Upon clicking Request Return, a replacement item will be shipped to you automatically, free of charge.",
-        "2. If the damaged item is not received by our warehouse within 15 days, you will be charged for the replacement item."
-      ]
+      "functionName": "sddddddd",
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "Banknotes2.png",
+      "functionCommand": "RecognizePrintedtext"
     },
     {
-      "question": "Why haven't I received my refund in my bank account yet?",
-      "answer": [
-        "Refunds can take up to 10 business days to process after our warehouse receives the returned item. If you have not received your refund after 10 days plus shipping time, please contact returns@coolxxstuff.com."
-      ]
-    },
-    {
-      "question": "When are refunds given?",
-      "answer": [
-        "If a refund is requested within 30 days of receiving the product, refunds will be processed within 10 days of the returned product delivery to our warehouse. Please allow for shipping time."
-      ]
-    },
-    {
-      "question": "Why are faster delivery options not available at my location?",
-      "answer": [
-        "We use FedEx to deliver our products. All estimates for shipping times and all available shipping options come from calculations on their website."
-      ]
-    },
-    {
-      "question": "I have requested a return for my item. When will it happen?",
-      "answer": [
-        "If you have requested a return within 30 days of receiving your item, approval will be automatic and a shipping label will be printable from your device. Your refund will be processed within 10 days of your items delivery to our warehouse."
-      ]
-    },
-    {
-      "question": "How do I get an invoice for my order?",
-      "answer": [
-        "Invoices are automatically sent to the email you provided during the purchasing process. If you did not receive an invoice, please contact xxxx@coolxxstuff.com"
-      ]
-    },
-    {
-      "question": "How do I deactivate my account?",
-      "answer": [
-        "To deactivate your account:",
-        "1. Go to My Account.",
-        "2. Click Manage My Account.",
-        "3. Near the bottom of the screen is a Deactivate option. Click it.",
-        "4. Confirm that you want to deactivate your account.",
-        "An email will be sent to you confirming your accounts deactivation."
-      ]
-    }
-  ],
-
-  "suggestionList": [
-    {
-      "imagePath": "ProfileImage2.png",
-      "suggestionName": "Alice Russell",
-      "id": "@alice.russell"
-    },
-    {
-      "imagePath": "ProfileImage3.png",
-      "suggestionName": "Danielle Schneider",
-      "id": "@danielle.schneider"
-    },
-    {
-      "imagePath": "ProfileImage4.png",
-      "suggestionName": "Jessica Park",
-      "id": "@jessica.park"
-    },
-    {
-      "imagePath": "ProfileImage5.png",
-      "suggestionName": "Julia Grant",
-      "id": "@julia.grant"
-    },
-    {
-      "imagePath": "ProfileImage6.png",
-      "suggestionName": "Kyle Greene",
-      "id": "@kyle.greene"
-    },
-    {
-      "imagePath": "ProfileImage7.png",
-      "suggestionName": "Danielle Booker",
-      "id": "@danielle.booker"
-    },
-    {
-      "imagePath": "ProfileImage8.png",
-      "suggestionName": "Jazmine Simmons",
-      "id": "@jazmine.simmons"
-    },
-    {
-      "imagePath": "ProfileImage9.png",
-      "suggestionName": "Ira Membrit",
-      "id": "@ira.membrit"
-    },
-    {
-      "imagePath": "ProfileImage10.png",
-      "suggestionName": "Serina Black",
-      "id": "@serina.black"
-    },
-    {
-      "imagePath": "ProfileImage11.png",
-      "suggestionName": "Alise Valasquez",
-      "id": "@alise.valasquez"
-    },
-    {
-      "imagePath": "ProfileImage12.png",
-      "suggestionName": "Allie Bellew",
-      "id": "@allie.bellew"
-    },
-    {
-      "imagePath": "ProfileImage13.png",
-      "suggestionName": "Navya Sharma",
-      "id": "@navya.sharma"
-    }
-  ],
-  "appUsagePageList": [
-    {
-      "appName": "Music",
-      "progressBarValue": "40",
-      "progressValue": "40%",
-      "backgroundColor": "#837bff"
-    },
-    {
-      "appName": "WhatsApp",
-      "progressBarValue": "60",
-      "progressValue": "60%",
-      "backgroundColor": "#25d366"
-    },
-    {
-      "appName": "Photos",
-      "progressBarValue": "30",
-      "progressValue": "30%",
-      "backgroundColor": "#db7faa"
-    },
-    {
-      "appName": "FaceBook",
-      "progressBarValue": "50",
-      "progressValue": "50%",
-      "backgroundColor": "#3b5998"
-    },
-    {
-      "appName": "Settings",
-      "progressBarValue": "70",
-      "progressValue": "70%",
-      "backgroundColor": "#a8d35f"
-    },
-    {
-      "appName": "Messages",
-      "progressBarValue": "20",
-      "progressValue": "20%",
-      "backgroundColor": "#6c88ff"
-    },
-    {
-      "appName": "Phone",
-      "progressBarValue": "25",
-      "progressValue": "25%",
-      "backgroundColor": "#cf62e2"
-    },
-    {
-      "appName": "Calendar",
-      "progressBarValue": "10",
-      "progressValue": "10%",
-      "backgroundColor": "#ec5b76"
-    }
-  ],
-  "documentsPageList": [
-    {
-      "documentName": "Sample Browser Notes.docx",
-      "time": "8mins ago",
-      "documentSize": "100KB"
-    },
-    {
-      "documentName": "Attendance Sheet.xlsx",
-      "time": "20mins ago",
-      "documentSize": "86KB"
-    },
-    {
-      "documentName": "Button Requirement.docx",
-      "time": "45mins ago",
-      "documentSize": "117KB"
-    },
-    {
-      "documentName": "Invoice October.pdf",
-      "time": "1hr ago",
-      "documentSize": "600KB"
-    },
-    {
-      "documentName": "UG Documentation.docx",
-      "time": "2hrs ago",
-      "documentSize": "98KB"
-    },
-    {
-      "documentName": "Pay Slip October.pdf",
-      "time": "2hrs ago",
-      "documentSize": "749KB"
-    },
-    {
-      "documentName": "UI Template Requirement.docx",
-      "time": "19hrs ago",
-      "documentSize": "48KB"
-    },
-    {
-      "documentName": "Avatar UG Documentation.docx",
-      "time": "1 day ago",
-      "documentSize": "45KB"
-    },
-    {
-      "documentName": "Button UX Document.docx",
-      "time": "1 day ago",
-      "documentSize": "38KB"
+      "functionName": "Pt",
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "Handwritten.png",
+      "functionCommand": "RecognizePrintedtext"
     }
   ]
 }
+
+
+  
 
 

@@ -22,7 +22,7 @@ namespace MyApp.ViewModels.Hints
 
         private ObservableCollection<Boarding> boardings;
 
-        private string nextButtonText = "NEXT";
+        private string nextButtonText = "Далее";
 
         private bool isSkipButtonVisible = true;
 

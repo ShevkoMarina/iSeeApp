@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Plugin.AudioRecorder;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Xamarin.Forms;
 
 namespace MyApp.RecognitionClasses
 {
@@ -16,23 +16,15 @@ namespace MyApp.RecognitionClasses
             AudioSilenceTimeout = TimeSpan.FromSeconds(3)
         };
 
+        #region Methods
         public static async Task<string> RecordAudio()
         {
-            recorder.FilePath = "/data/user/0/com.companyname.myapp/cache/ARS_recording.wav";
+            recorder.FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/iSee_recording.wav");
             if (!recorder.IsRecording) //Record button clicked
             {
-                //recorder.StopRecordingOnSilence = TimeoutSwitch.IsToggled;
-                //RecordButton.IsEnabled = false;
-                //PlayButton.IsEnabled = false;
-                //start recording audio
-     
                 var audioRecordTask = recorder.StartRecording();
-                // RecordButton.IsEnabled = true;
                 await audioRecordTask.Unwrap();
-                // RecordButton.Text = "Record";
-                //  PlayButton.IsEnabled = true;
                 await recorder.StopRecording();
-             
             }
 
             return recorder.FilePath;
@@ -52,6 +44,7 @@ namespace MyApp.RecognitionClasses
             }
             return status == PermissionStatus.Granted;
         }
+        #endregion
     }
 }
 

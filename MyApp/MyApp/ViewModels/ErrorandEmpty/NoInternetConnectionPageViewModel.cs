@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using System.Windows.Input;
 using Xamarin.Forms.Internals;
 
 namespace MyApp.ViewModels.ErrorAndEmpty
@@ -29,9 +26,9 @@ namespace MyApp.ViewModels.ErrorAndEmpty
         /// </summary>
         public NoInternetConnectionPageViewModel()
         {
-            this.ImagePath = "NoInternet.svg";
-            this.Header = "NO INTERNET";
-            this.Content = "Check your internet connection";
+            this.ImagePath = "NoInternet.png";
+            this.Header = "НЕТ ИНТЕРНЕТА";
+            this.Content = "Проверьте свое подключение к сети Интернет";
            
         }
 

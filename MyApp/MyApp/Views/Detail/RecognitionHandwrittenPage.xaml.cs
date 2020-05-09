@@ -86,7 +86,7 @@ namespace MyApp.Views.Detail
             }
         }
 
-        private async void RecognizeAndVoiceHandwrittenText(MediaFile photo)
+        private async Task RecognizeAndVoiceHandwrittenText(MediaFile photo)
         {
             BusyIndicator.IsVisible = true;
             BusyIndicator.IsBusy = true;
@@ -114,6 +114,12 @@ namespace MyApp.Views.Detail
                 BusyIndicator.IsBusy = false;
                 this.BackgroundImageSource = "UploadPhoto.png";
             }
+        }
+
+        private async void RepeatButton_Clicked(object sender, EventArgs e)
+        {
+            if (detectedText != null)
+                await TextSyntezer.VoiceResultInEnglish(detectedText);
         }
 
         #endregion

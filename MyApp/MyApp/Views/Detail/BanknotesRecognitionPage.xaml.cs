@@ -29,14 +29,14 @@ namespace MyApp.Views
                     {
                         var photo = await CameraActions.TakePhoto();
                         if (photo == null) return;
-                        else RecognizeAndVoiceBacknote(photo);
+                        else await RecognizeAndVoiceBacknote(photo);
                         break;
                     }
                 case "галерея":
                     {
                         MediaFile photo = await CameraActions.GetPhoto();
                         if (photo == null) return;
-                        else RecognizeAndVoiceBacknote(photo);
+                        else await RecognizeAndVoiceBacknote(photo);
                         break;
                     }
             }
@@ -50,7 +50,7 @@ namespace MyApp.Views
                 var photo = await CameraActions.TakePhoto();
 
                 if (photo == null) return;
-                else RecognizeAndVoiceBacknote(photo);
+                else await RecognizeAndVoiceBacknote(photo);
       
             }
             catch (BanknotesDetectionException)
@@ -80,7 +80,7 @@ namespace MyApp.Views
                 MediaFile photo = await CameraActions.GetPhoto();
 
                 if (photo == null) return;
-                else RecognizeAndVoiceBacknote(photo);
+                else await RecognizeAndVoiceBacknote(photo);
                          
             }
             catch (CameraException ex)
@@ -126,6 +126,12 @@ namespace MyApp.Views
                 BusyIndicator.IsBusy = false;
                 this.BackgroundImageSource = "UploadPhoto.png";
             }
+        }
+
+        private async void RepeatButton_Clicked(object sender, EventArgs e)
+        {
+            if (detectedBanknote != null)
+                await TextSyntezer.VoiceResult(detectedBanknote + "рублей");
         }
         #endregion
     }

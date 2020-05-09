@@ -39,7 +39,7 @@
                 VerticalOptions="Center">
 
                 <!--  Display the svg illustration image  -->
-                <svg:SVGImage 
+                <Image 
                     x:Name="ErrorImage"
                     Margin="{x:OnIdiom Phone='0,0,0,0',
                                        Desktop='0',
@@ -79,8 +79,8 @@
             <button:SfButton
                 Grid.Row="1"
                 Clicked="TryAgain_Clicked"
-                Style="{StaticResource SfGradientButtonStyle}"
-                Text="TRY AGAIN" />
+                Style="{StaticResource SfButtonStyle}"
+                Text="Попробовать снова" />
 
         </Grid>
 

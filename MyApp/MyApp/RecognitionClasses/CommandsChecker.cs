@@ -1,15 +1,7 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
-using MyApp.Views;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MyApp.DataService;
-using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
-using MyApp.Views.Detail;
-using MyApp.RecognitionClasses;
 using System.Threading.Tasks;
 
 namespace MyApp.RecognitionClasses

@@ -1,5 +1,4 @@
-﻿using MyApp.DataService;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using MyApp.Views.Detail;
 using MyApp.Views.Hints;
@@ -12,6 +11,10 @@ using Microsoft.CognitiveServices.Speech.Audio;
 using System.Collections.Generic;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
+using MyApp.ViewModels.Navigation;
+using System.Xml;
+using System.Threading;
+using System.IO;
 
 namespace MyApp.Views.Navigation
 {
@@ -23,8 +26,7 @@ namespace MyApp.Views.Navigation
         {
             InitializeComponent();
             SpeechConfig = SpeechConfig.FromSubscription(Constants.SpeechKey, "eastus");
-            this.BindingContext = NavigationDataService.Instance.NavigationViewModel;
-         
+            this.BindingContext = new NavigationViewModel().FunctionsList[0];   
         }
         private async void BanknotesItem_Clicked(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {    
@@ -39,28 +41,24 @@ namespace MyApp.Views.Navigation
             await Navigation.PushAsync(new RecognitionHandwrittenPage());
         }
 
-        private async void SettingsButtonClicked(object sender, EventArgs e)
-        {
-            
-        }
-
         private async void TipsButtonClicked(object sender, EventArgs e)
-        {
-         
+        {        
             await Navigation.PushAsync(new OnBoardingAnimationPage());
             await TextSyntezer.VoiceResult("Выберите в главном меню нужную функцию распознавания");
         }
 
         private async void VoiceButtonClicked(object sender, EventArgs e)
         {
+           
             VoiceButton.IsEnabled = false;
+            VoiceButton.Source = "MicroRecording.png";
             if (await AudioRecording.CheckAudioPermissions())
             {
-                string path = await AudioRecording.RecordAudio();
-                await AnalizeCommand(path);
+                string filePath = await AudioRecording.RecordAudio();
+                await AnalizeAudioCommand(filePath);
             }
             VoiceButton.IsEnabled = true;
-
+            VoiceButton.Source = "micro.png";       
         }
 
 
@@ -115,7 +113,7 @@ namespace MyApp.Views.Navigation
 
         public static SpeechConfig SpeechConfig;
 
-        public async Task AnalizeCommand(string filePath)
+        public async Task AnalizeAudioCommand(string filePath)
         {
             try
             {

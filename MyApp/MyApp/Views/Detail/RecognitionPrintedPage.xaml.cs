@@ -115,6 +115,12 @@ namespace MyApp.Views.Detail
                 this.BackgroundImageSource = "UploadPhoto.png";
             }
         }
+
+        private async void RepeatButtton_Clicked(object sender, EventArgs e)
+        {
+            if (detectedText != null)
+                await TextSyntezer.VoiceResult(detectedText);
+        }
         #endregion
     }
 }

@@ -1,18 +1,18 @@
 ﻿using System.Linq;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace MyApp.RecognitionClasses
 {
     public class TextSyntezer
     {
         #region Methods
-        // возвращать таск без стринг
-        public static async Task<string> VoiceResult(string text)
+        public static async Task VoiceResult(string text)
         {
+            
             var locales = await TextToSpeech.GetLocalesAsync();
             //var locale = locales.ElementAtOrDefault(8);
-           // int n = locales.Count();
             var settings = new SpeechOptions()
             {
                 Volume = 1,
@@ -20,7 +20,6 @@ namespace MyApp.RecognitionClasses
                 Pitch = 1,
             };
             await TextToSpeech.SpeakAsync(text, settings);
-            return locales.ToString();
         }
 
         public static async Task<string> VoiceResultInEnglish(string text)

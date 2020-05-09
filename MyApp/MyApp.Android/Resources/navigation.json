@@ -1,0 +1,56 @@
+{
+  "navigationList1": [
+    {
+
+      "itemName": "Printed text",
+      "name": "Burger King",
+      "description": "Burger, Pizza",
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "PrintedTextImage.png"
+    }
+
+  ],
+  "navigationList2": [
+    {
+      "itemName": "Banknotes",
+      "itemDescription": "Recognition of the nominal value of banknotes ",
+      "itemImage": "Banknotes.png",
+      "name": "McDonalds",
+      "description": "Burger, Fast Food"
+    }
+  ],
+  "navigationList3": [
+    {
+      "itemName": "Handwritten text",
+      "itemDescription": "Recognition of handwritten text like notes",
+      "itemImage": "letter.png",
+      "name": "Macrons",
+      "description": "Cafe, Beverages"
+    }
+  ],
+  "FunctionsList": [
+    {
+      "functionName": "Печатный текст",
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "PrintedTextImage.png",
+      "functionCommand": "RecognizePrintedtext"
+    },
+    {
+      "functionName": "sddddddd",
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "PrintedTextImage.png",
+      "functionCommand": "RecognizePrintedtext"
+    },
+    {
+      "functionName": "Pt",
+      "itemDescription": "Recognition of labels in shops and pricelists restaurants",
+      "itemImage": "PrintedTextImage.png",
+      "functionCommand": "RecognizePrintedtext"
+    }
+  ]
+}
+
+
+  
+
+

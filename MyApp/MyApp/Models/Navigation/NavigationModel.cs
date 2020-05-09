@@ -1,13 +1,9 @@
-﻿using System.Runtime.Serialization;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 
 namespace MyApp.Models.Navigation
 {
-    /// <summary>
-    /// Model for the Navigation List and Tile with Cards page.
-    /// </summary>
+
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class NavigationModel
     {
         #region Field
@@ -18,33 +14,14 @@ namespace MyApp.Models.Navigation
 
         #region Properties
 
-        /// <summary>
-        /// Gets or sets the name of an item.
-        /// </summary>
-        [DataMember(Name = "itemName")]
-        public string ItemName { get; set; }
+        public string FunctionName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the description of an item.
-        /// </summary>
-        [DataMember(Name = "itemDescription")]
-        public string ItemDescription { get; set; }
+        public string FunctionDescription { get; set; }
 
-        /// <summary>
-        /// Gets or sets the image of an item.
-        /// </summary>
-        [DataMember(Name = "itemImage")]
-        public string ItemImage
+        public string FunctionImage
         {
-            get
-            {
-                return 
-                    this.itemImage;
-            }
-            set
-            {
-                this.itemImage = value;
-            }
+            get => this.itemImage;
+            set => this.itemImage = value;
         }
 
         #endregion

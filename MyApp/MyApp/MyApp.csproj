@@ -52,6 +52,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing.Common">
       <HintPath>..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Facades\System.Drawing.Common.dll</HintPath>
     </Reference>
@@ -67,8 +70,8 @@
     <Compile Update="Views\Detail\RecognitionPrintedPage.xaml.cs">
       <DependentUpon>RecognitionPrintedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Templates\NavigationListTemplate.xaml.cs">
-      <DependentUpon>NavigationListTemplate.xaml</DependentUpon>
+    <Compile Update="Views\Templates\PrintedCardTemplate.xaml.cs">
+      <DependentUpon>PrintedCardTemplate.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -106,9 +109,6 @@
     <EmbeddedResource Update="Views\Navigation\NavigationListCardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CategoryPages\TextPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -127,7 +127,7 @@
     <EmbeddedResource Update="Views\Templates\HandwrittenCardTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\NavigationListTemplate.xaml">
+    <EmbeddedResource Update="Views\Templates\PrintedCardTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\Styles.xaml">

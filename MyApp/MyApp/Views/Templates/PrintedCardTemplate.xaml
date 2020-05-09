@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Grid
-    x:Class="MyApp.Views.Templates.NavigationListTemplate"
+    x:Class="MyApp.Views.Templates.PrintedCardTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -19,15 +19,16 @@
         </Grid.ColumnDefinitions>
 
         <!--  Image to display the Item  -->
-        <Image
+        <ImageButton
             Aspect="AspectFill"
             BackgroundColor="{DynamicResource Gray-200}"
             HeightRequest="180"
             WidthRequest="180"
-            Source ="Printed.png"/>
+            Clicked ="PrintedTextItem_Clicked"
+            Source="{Binding FunctionImage}"/>
         <StackLayout
             Grid.Column="1"
-            Padding="16"
+            Padding="10"
             HorizontalOptions="FillAndExpand"
             Spacing="0"
             VerticalOptions="FillAndExpand">
@@ -38,7 +39,7 @@
                 FontSize="20"
                 LineHeight="{OnPlatform Android=1.5,
                                         Default=-1}"
-                Text="Печатный текст"
+                Text="{Binding FunctionName}"
                 TextColor="{DynamicResource Gray-900}" />
 
             <!--  Description about the item  -->
@@ -48,8 +49,8 @@
                 FontSize="18"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Text="Ценники, этикетки в магазине, меню "
-                TextColor="{DynamicResource Gray-700}" />
+                Text="{Binding FunctionDescription}"
+                TextColor="{StaticResource DescriptionGray}" />
         </StackLayout>
     </Grid>
 </Grid>

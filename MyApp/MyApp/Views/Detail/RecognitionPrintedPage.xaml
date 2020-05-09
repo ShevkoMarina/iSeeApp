@@ -5,7 +5,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:content="clr-namespace:MyApp.Views.Detail.Templates"
-    xmlns:viewmodel="clr-namespace:MyApp.ViewModels.Detail"
+    xmlns:viewmodel="clr-namespace:MyApp.ViewModels.Function"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:controls="clr-namespace:MyApp.Controls"
     xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
@@ -28,7 +28,7 @@
 
     <!--  Binding Context for OverAllFeedback Page  -->
     <ContentPage.BindingContext>
-        <viewmodel:DetailViewModel />
+        <viewmodel:FunctionViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
@@ -54,37 +54,49 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                        
-                    <border:SfBorder                    
+
+                    <!--  Take Photo button  -->
+                    <border:SfBorder      
+                        Grid.Column="0"
                         BorderWidth="0"
-                        CornerRadius="55"
-                        HeightRequest="110"
+                        CornerRadius="45"
+                        HeightRequest="90"
                         Style="{StaticResource CommonSfBorderStyle}"
-                        WidthRequest="110">
+                        WidthRequest="90">
                         <ImageButton 
                             Clicked="TakePhotoButton_Clicked"
                             x:Name="TakePhotoButton"
                             Source="Camera2.png"/>
                     </border:SfBorder>
 
-                    <border:SfBorder   
+                    <!--  Take Photo button  -->
+                    <border:SfBorder                    
                         Grid.Column="1"
                         BorderWidth="0"
-                        CornerRadius="55"
-                        HeightRequest="110"
+                        CornerRadius="45"
+                        HeightRequest="90"
                         Style="{StaticResource CommonSfBorderStyle}"
-                        WidthRequest="110">
+                        WidthRequest="90">
+                        <ImageButton 
+                            Clicked="TakePhotoButton_Clicked"
+                            x:Name="RepeatButton"
+                            Source="Repeat.png"/>
+                    </border:SfBorder>
+
+                    <!--  Get Photo Button  -->
+                    <border:SfBorder   
+                        Grid.Column="2"
+                        BorderWidth="0"
+                        CornerRadius="45"
+                        HeightRequest="90"
+                        Style="{StaticResource CommonSfBorderStyle}"
+                        WidthRequest="90">
                         <ImageButton 
                             Clicked ="GetPhotoButton_Clicked"
                             x:Name="GetPhotoButton"
                             Source="gallery2.png"/>
                     </border:SfBorder>
-
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
-                    </Grid.GestureRecognizers>
                 </Grid>
-
             </Grid>
         </Grid>
     </ContentPage.Content>

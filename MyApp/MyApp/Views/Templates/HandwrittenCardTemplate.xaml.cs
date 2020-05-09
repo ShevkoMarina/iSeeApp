@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MyApp.Views.Detail;
+using Xamarin.Essentials;
+using MyApp.Views.ErrorAndEmpty;
+using MyApp.ViewModels.Navigation;
 
 namespace MyApp.Views.Templates
 {
@@ -16,6 +20,21 @@ namespace MyApp.Views.Templates
         public HandwrittenCardTemplate()
         {
             InitializeComponent();
+            this.BindingContext = new NavigationViewModel().FunctionsList[2];
+        }
+
+        private async void HandwrittenTextItem_Clicked(object sender, EventArgs e)
+        {
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet)
+            {
+                await Navigation.PushAsync(new RecognitionHandwrittenPage());
+            }
+            else
+            {
+                await Navigation.PushAsync(new NoInternetConnectionPage());
+            }
         }
     }
 }

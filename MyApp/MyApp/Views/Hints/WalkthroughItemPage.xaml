@@ -39,7 +39,7 @@
                 x:Name="HeaderHint"
                 Margin="0,30,0,8"
                 FontFamily="{StaticResource Montserrat-SemiBold}"
-                FontSize="14"
+                FontSize="16"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
                 Opacity="{OnPlatform Default=0,
@@ -54,7 +54,7 @@
             <Label
                 x:Name="ContentHint"
                 FontFamily="{StaticResource Montserrat-Medium}"
-                FontSize="16"
+                FontSize="18"
                 HorizontalOptions="Center"
                 Opacity="{OnPlatform Default=0,
                                      UWP=1}"

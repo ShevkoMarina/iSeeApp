@@ -27,7 +27,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <!--  Skip Button  -->
-                <RowDefinition Height="50" />
+                <RowDefinition Height="70" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -45,10 +45,9 @@
                                                              iOSPhoneLandscape='0,10,10,0'}"
                 BackgroundColor="Transparent"
                 Command="{Binding SkipCommand}"
-                CornerRadius="20"
-                FontSize="18"
+                FontSize="20"
                 FontFamily="{StaticResource Montserrat-Medium}"
-                HeightRequest="50"
+                HeightRequest="100"
                 HorizontalOptions="End"
                 IsVisible="{Binding IsSkipButtonVisible}"
                 Text="Пропустить"

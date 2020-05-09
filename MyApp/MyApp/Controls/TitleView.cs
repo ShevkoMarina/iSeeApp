@@ -67,11 +67,11 @@ namespace MyApp.Controls
 
             this.ColumnDefinitions = new ColumnDefinitionCollection
             {
-                new ColumnDefinition { Width = 8 },
+                new ColumnDefinition { Width = 2 },
                 new ColumnDefinition(),
                 new ColumnDefinition(),
                 new ColumnDefinition(),
-                new ColumnDefinition { Width = 8 },
+                new ColumnDefinition { Width = 2 },
             };
 
             this.RowDefinitions = new RowDefinitionCollection
@@ -224,7 +224,7 @@ namespace MyApp.Controls
                 {
                     Text = newText,
                     TextColor = (Color)Application.Current.Resources["Gray-900"],
-                    FontSize = 16,
+                    FontSize = 20,
                     Margin = new Thickness(0, 8),
                     FontFamily = Device.RuntimePlatform == Device.Android
                             ? "Montserrat-Medium.ttf#Montserrat-Medium"
