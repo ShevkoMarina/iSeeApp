@@ -6,7 +6,6 @@ using Xamarin.Forms.Xaml;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
 using MyApp.Views.ErrorAndEmpty;
-using System.Runtime.CompilerServices;
 
 namespace MyApp.Views
 {

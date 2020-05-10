@@ -9,8 +9,6 @@ using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using MyApp.ViewModels.Navigation;
 using MyApp.Views.ErrorAndEmpty;
-using Xamarin.Forms;
-using System.ComponentModel.Design;
 
 namespace MyApp.Views.Navigation
 {

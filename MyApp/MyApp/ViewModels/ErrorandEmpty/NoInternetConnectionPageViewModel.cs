@@ -3,9 +3,6 @@ using Xamarin.Forms.Internals;
 
 namespace MyApp.ViewModels.ErrorAndEmpty
 {
-    /// <summary>
-    /// ViewModel for no internet connection page.
-    /// </summary>
     [Preserve(AllMembers = true)]
     public class NoInternetConnectionPageViewModel : BaseViewModel
     {

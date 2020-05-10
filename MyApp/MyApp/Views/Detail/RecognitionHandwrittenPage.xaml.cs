@@ -97,9 +97,8 @@ namespace MyApp.Views.Detail
             {
                 await SpeechSyntezer.VoiceResult(ex.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                await DisplayAlert("ddd", ex.Message, "OK");
                 await Navigation.PushAsync(new SomethingWentWrongPage());
             }
             finally

@@ -1,7 +1,5 @@
-﻿using Grpc.Core;
-using MyApp.RecognitionClasses;
+﻿using MyApp.RecognitionClasses;
 using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 

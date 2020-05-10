@@ -1,8 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Windows.Input;
 using MyApp.Models.Hints;
 using MyApp.RecognitionClasses;
@@ -60,7 +57,7 @@ namespace MyApp.ViewModels.Hints
                 },
                 new Boarding()
                 {
-                    ImagePath = "WaitVoicing.png",
+                    ImagePath = "RepeatForTips.png",
                     Header = "Повтор",
                     Content = "Вы можете еще раз прослушать результат, нажав на кнопку повтора",
                     RotatorItem = new WalkthroughItemPage()
