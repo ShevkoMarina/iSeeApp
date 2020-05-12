@@ -19,12 +19,16 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="MainGrid">
 
-            <busyindicator:SfBusyIndicator x:Name="BusyIndicator" IsBusy="False" AnimationType="Ball"  ViewBoxHeight="150" ViewBoxWidth="150"/>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="RecordAndAnalyze"/>
+            </Grid.GestureRecognizers>
+
+                <busyindicator:SfBusyIndicator x:Name="BusyIndicator" IsBusy="False" AnimationType="Ball"  ViewBoxHeight="150" ViewBoxWidth="150"/>
 
             <Grid VerticalOptions="EndAndExpand">
-                <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
+                <BoxView BackgroundColor="Black" Opacity="0.7" x:Name="BottomPanel" />
 
                 <Grid
                     Padding="16"
@@ -84,7 +88,6 @@
                             Source="gallery2.png"/>
                     </border:SfBorder>
                 </Grid>
-                
             </Grid>
         </Grid>
     </ContentPage.Content>

@@ -9,7 +9,7 @@
         public const string SpeechKey2 = "892d8395a413440b820305d1a16c56e5";
         public const string SpeechEndpoint = "https://northeurope.api.cognitive.microsoft.com/";
         public const string BanknotesKey = "892d8395a413440b820305d1a16c56e5";
-        public const string BanknotesURL = "https://northeurope.api.cognitive.microsoft.com/customvision/v3.0/Prediction/bf1cd76a-1f88-44c0-8a1e-3a0766b0b6c5/classify/iterations/Iteration2/image";
+        public const string BanknotesURL = "https://northeurope.api.cognitive.microsoft.com/customvision/v3.0/Prediction/bf1cd76a-1f88-44c0-8a1e-3a0766b0b6c5/classify/iterations/Iteration4/image";
 
         public const string GAuthType = "service_account";
 

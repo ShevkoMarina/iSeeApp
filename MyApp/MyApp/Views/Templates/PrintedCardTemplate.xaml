@@ -27,11 +27,16 @@
             Clicked ="PrintedTextItem_Clicked"
             Source="{Binding FunctionImage}"/>
         <StackLayout
+            x:Name="ItemDescription"
             Grid.Column="1"
             Padding="10"
             HorizontalOptions="FillAndExpand"
             Spacing="0"
             VerticalOptions="FillAndExpand">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PrintedTextItem_Clicked" NumberOfTapsRequired="1"/>
+            </StackLayout.GestureRecognizers>
 
             <!--  Name of the item  -->
             <Label

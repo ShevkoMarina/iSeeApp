@@ -29,10 +29,15 @@
             Source="{Binding FunctionImage}"/>
         <StackLayout
             Grid.Column="1"
+            x:Name="ItemDescription"
             Padding="10"
             HorizontalOptions="FillAndExpand"
             Spacing="0"
             VerticalOptions="FillAndExpand">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="HandwrittenTextItem_Clicked" NumberOfTapsRequired="1"/>
+            </StackLayout.GestureRecognizers>
 
             <!--  Name of the item  -->
             <Label

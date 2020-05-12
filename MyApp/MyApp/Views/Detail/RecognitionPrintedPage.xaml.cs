@@ -7,6 +7,10 @@ using Xamarin.Forms;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
 using MyApp.Views.ErrorAndEmpty;
+using MyApp.Views.Navigation;
+using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+using Xamarin.Essentials;
 
 namespace MyApp.Views.Detail
 {
@@ -17,7 +21,7 @@ namespace MyApp.Views.Detail
     {      
         public RecognitionPrintedPage()
         {
-            InitializeComponent();
+            InitializeComponent();         
         }
 
         private string detectedText;
@@ -69,8 +73,10 @@ namespace MyApp.Views.Detail
             {
                 await SpeechSyntezer.VoiceResult(ex.Message);
             }
-            catch (Exception)
+            
+            catch (Exception ex)
             {
+                await DisplayAlert("OK", ex.Message, "OK");
                 await Navigation.PushAsync(new SomethingWentWrongPage());
             }
             finally
@@ -98,13 +104,44 @@ namespace MyApp.Views.Detail
             {
                 await SpeechSyntezer.VoiceResult(ex.Message);
             }
+            catch (Exception ex)
+            {
+                await DisplayAlert("OK", ex.Message, "OK");
+                await Navigation.PushAsync(new SomethingWentWrongPage());
+            }
+            finally
+            {
+                GetPhotoButton.IsEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Запуск записи голсовой команды и ее анализ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void RecordAndAnalyze(object sender, EventArgs e)
+        {
+            try
+            {
+                MainGrid.IsEnabled = false;
+                Vibration.Vibrate(300);
+                BottomPanel.BackgroundColor = Color.FromHex("#C00000");
+
+                if (await AudioRecording.CheckAudioPermissions())
+                {
+                    await AudioRecording.RecordAudio();
+                    await AnalizeCommandPrinted();
+                }
+            }
             catch (Exception)
             {
                 await Navigation.PushAsync(new SomethingWentWrongPage());
             }
             finally
             {
-                GetPhotoButton.IsEnabled = true;
+                MainGrid.IsEnabled = true;
+                BottomPanel.BackgroundColor = Color.Black;
             }
         }
 
@@ -164,6 +201,92 @@ namespace MyApp.Views.Detail
             SpeechSyntezer.CancelSpeech();
         }
 
+        /// <summary>
+        /// Анализирует голосовую команду
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private async Task AnalizeCommandPrinted()
+        {
+            string filePath = AudioRecording.RecorderPath;
+            if (!String.IsNullOrEmpty(filePath))
+            {
+                NavigationListCardPage.SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
+                using (var audioInput = AudioConfig.FromWavFileInput(filePath))
+                {
+                    using (var recognizer = new SpeechRecognizer(NavigationListCardPage.SpeechConfig, audioInput))
+                    {
+
+                        var result = await recognizer.RecognizeOnceAsync();
+                        if (result.Reason == ResultReason.RecognizedSpeech)
+                        {
+                            if (String.IsNullOrEmpty(result.Text))
+                            {
+                                await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
+                            }
+                            else
+                            {
+                                string processedText = NavigationListCardPage.PreprocessingCommands(result.Text);
+                                await CheckCommandsOnPrinted(processedText);
+                            }
+                        }
+                        else
+                        {
+                            await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Распознавание и озвучка при голосовом управлении
+        /// </summary>
+        /// <param name="cameraCommand"></param>
+        /// <returns></returns>
+        public async Task CheckCommandsOnPrinted(string cameraCommand)
+        {
+            if (cameraCommand.Length < 3)
+            {
+                await SpeechSyntezer.VoiceResult("Такой команды не существует");
+            }
+            else
+            {
+                if (cameraCommand.Contains("камер"))
+                {
+                    var photo = await CameraActions.TakePhoto();
+                    if (photo == null) return;
+                    else await RecognizeAndVoicePrintedText(photo);
+                    return;
+                }
+                if (cameraCommand.Contains("галер"))
+                {
+                    MediaFile photo = await CameraActions.GetPhoto();
+                    if (photo == null) return;
+                    else await RecognizeAndVoicePrintedText(photo);
+                    return;
+                }
+                if (cameraCommand.Contains("наз"))
+                {
+                    await Navigation.PopToRootAsync();
+                    return;
+                }
+                if (cameraCommand.Contains("повтор"))
+                {
+                    if (detectedText != null)
+                    {
+                        SpeechSyntezer.CancelSpeech();
+                        await SpeechSyntezer.VoiceResult(detectedText);
+                    }
+                    return;
+                }
+                else 
+                {
+                        await SpeechSyntezer.VoiceResult("Такой команды не существует");
+                        return;
+                }
+            }
+        }
         #endregion
     }
 }

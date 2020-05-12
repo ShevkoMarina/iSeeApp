@@ -9,6 +9,8 @@ namespace MyApp.RecognitionClasses
 {
     public static class AudioRecording
     {
+        private static string recorderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/iSee_recording.wav");
+
         public static AudioRecorderService recorder = new AudioRecorderService
         {
             StopRecordingAfterTimeout = true,
@@ -16,22 +18,22 @@ namespace MyApp.RecognitionClasses
             AudioSilenceTimeout = TimeSpan.FromSeconds(3)
         };
 
+        public static string RecorderPath { get => recorderPath; set => recorderPath = value; }
+
         #region Methods
         /// <summary>
         /// Записать аудио с микрофона устройства
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> RecordAudio()
+        public static async Task RecordAudio()
         {
-            recorder.FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/iSee_recording.wav");
+            recorder.FilePath = recorderPath;
             if (!recorder.IsRecording) //Record button clicked
             {
                 var audioRecordTask = recorder.StartRecording();
                 await audioRecordTask.Unwrap();
                 await recorder.StopRecording();
             }
-
-            return recorder.FilePath;
         }
 
         /// <summary>

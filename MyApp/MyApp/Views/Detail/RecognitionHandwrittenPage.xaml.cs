@@ -7,6 +7,10 @@ using Xamarin.Forms;
 using MyApp.Views.ErrorAndEmpty;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using MyApp.Views.Navigation;
+using Microsoft.CognitiveServices.Speech.Audio;
+using Microsoft.CognitiveServices.Speech;
 
 namespace MyApp.Views.Detail
 {
@@ -24,28 +28,40 @@ namespace MyApp.Views.Detail
         #region Methods
 
         /// <summary>
-        /// Распознать рукописный текст с помощью голосового управления
+        /// Анализирует голосовую команду
         /// </summary>
-        /// <param name="cameraCommand"></param>
+        /// <param name="filePath"></param>
         /// <returns></returns>
-        public async Task VoiceCommand(string cameraCommand)
+        private async Task AnalizeCommandHandwritten()
         {
-            switch (cameraCommand)
+            string filePath = AudioRecording.RecorderPath;
+            if (!String.IsNullOrEmpty(filePath))
             {
-                case "камера":
+                NavigationListCardPage.SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
+                using (var audioInput = AudioConfig.FromWavFileInput(filePath))
+                {
+                    using (var recognizer = new SpeechRecognizer(NavigationListCardPage.SpeechConfig, audioInput))
                     {
-                        var photo = await CameraActions.TakePhoto();
-                        if (photo == null) return;
-                        else await RecognizeAndVoiceHandwrittenText(photo);
-                        break;
+
+                        var result = await recognizer.RecognizeOnceAsync();
+                        if (result.Reason == ResultReason.RecognizedSpeech)
+                        {
+                            if (String.IsNullOrEmpty(result.Text))
+                            {
+                                await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
+                            }
+                            else
+                            {
+                                string processedText = NavigationListCardPage.PreprocessingCommands(result.Text);
+                                await CheckCommandsOnHandwritten(processedText);
+                            }
+                        }
+                        else
+                        {
+                            await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
+                        }
                     }
-                case "галерея":
-                    {
-                        MediaFile photo = await CameraActions.GetPhoto();
-                        if (photo == null) return;
-                        else await RecognizeAndVoiceHandwrittenText(photo);
-                        break;
-                    }
+                }
             }
         }
 
@@ -142,6 +158,87 @@ namespace MyApp.Views.Detail
         }
 
         /// <summary>
+        /// Запись и анализ голосовой команды
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void RecordAndAnalyze(object sender, EventArgs e)
+        {
+            try
+            {
+                MainGrid.IsEnabled = false;
+                Vibration.Vibrate();
+                BottomPanel.BackgroundColor = Color.FromHex("#C00000");
+
+                if (await AudioRecording.CheckAudioPermissions())
+                {
+                    await AudioRecording.RecordAudio();
+                    await AnalizeCommandHandwritten();
+                }
+            }
+            catch (Exception)
+            {
+                await Navigation.PushAsync(new SomethingWentWrongPage());
+            }
+            finally
+            {
+                MainGrid.IsEnabled = true;
+                BottomPanel.BackgroundColor = Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// Распознавание и озвучка при голосовом управлении
+        /// </summary>
+        /// <param name="cameraCommand"></param>
+        /// <returns></returns>
+        public async Task CheckCommandsOnHandwritten(string cameraCommand)
+        {
+            
+            if (cameraCommand.Length < 3)
+            {
+                await SpeechSyntezer.VoiceResult("Такой команды не существует");
+            }
+            else
+            {
+                if (cameraCommand.Contains("камер"))
+                {
+                    var photo = await CameraActions.TakePhoto();
+                    if (photo == null) return;
+                    else await RecognizeAndVoiceHandwrittenText(photo);
+                    return;
+                }
+                if (cameraCommand.Contains("галер"))
+                {
+                    MediaFile photo = await CameraActions.GetPhoto();
+                    if (photo == null) return;
+                    else await RecognizeAndVoiceHandwrittenText(photo);
+                    return;
+                }
+                if (cameraCommand.Contains("наз"))
+                {
+                    await Navigation.PopToRootAsync();
+                    return;
+                }
+                if (cameraCommand.Contains("повтор"))
+                {
+                    if (detectedText != null)
+                    {
+                        SpeechSyntezer.CancelSpeech();
+                        await SpeechSyntezer.VoiceResultInEnglish(detectedText);
+                    }
+                    return;
+                }
+                else
+                {
+                    await SpeechSyntezer.VoiceResult("Такой команды не существует");
+                    return;
+                }
+            }
+            
+        }
+
+        /// <summary>
         /// Повторить озвучку результатов распознавания
         /// </summary>
         /// <param name="sender"></param>
@@ -162,6 +259,8 @@ namespace MyApp.Views.Detail
         {
             SpeechSyntezer.CancelEnglishSpeech();
         }
+
+        
 
         #endregion
     }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -28,39 +29,38 @@ namespace MyApp.RecognitionClasses
         /// <returns></returns>
         public static async Task<string> MakeBanknotesDetectionRequest(string imageFilePath)
         {
-            string detectedBanknote = null;
-            client.DefaultRequestHeaders.Add("Prediction-Key", Constants.BanknotesKey);
-
-            HttpResponseMessage response;
-            byte[] byteData = GetImageAsByteArray(imageFilePath);
-
-            using (var content = new ByteArrayContent(byteData))
+            try
             {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-                response = await client.PostAsync(Constants.BanknotesURL, content);
-                var json = await response.Content.ReadAsStringAsync();
+                string detectedBanknote = null;
+                client.DefaultRequestHeaders.Add("Prediction-Key", Constants.BanknotesKey);
 
-                JObject jsonObj = JObject.Parse(json);
-                BanknotesDetectorResponse banknotesDetectorResponse = new BanknotesDetectorResponse();
-                banknotesDetectorResponse = jsonObj.ToObject<BanknotesDetectorResponse>();
+                HttpResponseMessage response;
+                byte[] byteData = GetImageAsByteArray(imageFilePath);
 
-                foreach (var prediction in banknotesDetectorResponse.predictions)
+                using (var content = new ByteArrayContent(byteData))
                 {
-                    if (prediction.probability > 0.5)
-                    {
-                        detectedBanknote = prediction.tagName;
-                        break;
-                    }                
-                }       
-            }
+                    content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                    response = await client.PostAsync(Constants.BanknotesURL, content);
+                    var json = await response.Content.ReadAsStringAsync();
 
-            if (detectedBanknote != null)
-            {
-                return detectedBanknote;
+                    JObject jsonObj = JObject.Parse(json);
+                    BanknotesDetectorResponse banknotesDetectorResponse = new BanknotesDetectorResponse();
+                    banknotesDetectorResponse = jsonObj.ToObject<BanknotesDetectorResponse>();
+                    detectedBanknote = banknotesDetectorResponse.predictions[0].tagName;
+
+                    if (detectedBanknote == "Negative")
+                    {
+                        return "Не удалось распознать банкноту";
+                    }
+                    else
+                    {
+                        return detectedBanknote + "рублей";
+                    }
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new BanknotesDetectionException();
+                throw new BanknotesDetectionException("Не удалось распознать банкноту");
             }
         }
         

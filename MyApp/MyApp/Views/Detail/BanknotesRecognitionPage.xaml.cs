@@ -2,10 +2,14 @@
 using Plugin.Media.Abstractions;
 using System;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using Xamarin.Forms.Xaml;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
 using MyApp.Views.ErrorAndEmpty;
+using MyApp.Views.Navigation;
+using Microsoft.CognitiveServices.Speech.Audio;
+using Microsoft.CognitiveServices.Speech;
 
 namespace MyApp.Views
 {
@@ -14,9 +18,8 @@ namespace MyApp.Views
     {
 
         public BanknotesRecognitionPage()
-        {         
-            InitializeComponent();
-            
+        {
+            InitializeComponent();           
         }
 
         private string detectedBanknote;
@@ -32,29 +35,54 @@ namespace MyApp.Views
         }
 
         /// <summary>
-        /// Распознование и озвучка при голосовом управлении
+        /// Распознавание и озвучка при голосовом управлении
         /// </summary>
         /// <param name="cameraCommand"></param>
         /// <returns></returns>
-        public async Task VoiceCommand(string cameraCommand)
+        public async Task CheckCommandsOnBanknotes(string cameraCommand)
         {
-            switch(cameraCommand.Substring(0,3))
+            
+           
+            if (cameraCommand.Length < 3)
             {
-                case "кам":
-                    {
-                        var photo = await CameraActions.TakePhoto();
-                        if (photo == null) return;
-                        else await RecognizeAndVoiceBacknote(photo);
-                        break;
-                    }
-                case "гал":
-                    {
-                        MediaFile photo = await CameraActions.GetPhoto();
-                        if (photo == null) return;
-                        else await RecognizeAndVoiceBacknote(photo);
-                        break;
-                    }
+                await SpeechSyntezer.VoiceResult("Такой команды не существует");
             }
+            else
+            {
+                if (cameraCommand.Contains("камер"))
+                {
+                    var photo = await CameraActions.TakePhoto();
+                    if (photo == null) return;
+                    else await RecognizeAndVoiceBanknote(photo);
+                    return;
+                }
+                if (cameraCommand.Contains("галер"))
+                {
+                    MediaFile photo = await CameraActions.GetPhoto();
+                    if (photo == null) return;
+                    else await RecognizeAndVoiceBanknote(photo);
+                    return;
+                }
+                if (cameraCommand.Contains("наз"))
+                {
+                    await Navigation.PopToRootAsync();
+                    return;
+                }
+                if (cameraCommand.Contains("повтор"))
+                {
+                    if (detectedBanknote != null)
+                    {
+                        SpeechSyntezer.CancelSpeech();
+                        await SpeechSyntezer.VoiceResult(detectedBanknote);
+                    }
+                    return;
+                }
+                else
+                {
+                    await SpeechSyntezer.VoiceResult("Такой команды не существует");
+                    return;
+                }
+            } 
         }
 
         /// <summary>
@@ -70,10 +98,14 @@ namespace MyApp.Views
                 var photo = await CameraActions.TakePhoto();
 
                 if (photo == null) return;
-                else await RecognizeAndVoiceBacknote(photo);
+                else await RecognizeAndVoiceBanknote(photo);
       
             }
             catch (CameraException ex)
+            {
+                await SpeechSyntezer.VoiceResult(ex.Message);
+            }
+            catch (BanknotesDetectionException ex)
             {
                 await SpeechSyntezer.VoiceResult(ex.Message);
             }
@@ -100,9 +132,13 @@ namespace MyApp.Views
                 MediaFile photo = await CameraActions.GetPhoto();
 
                 if (photo == null) return;
-                else await RecognizeAndVoiceBacknote(photo);                       
+                else await RecognizeAndVoiceBanknote(photo);                       
             }
             catch (CameraException ex)
+            {
+                await SpeechSyntezer.VoiceResult(ex.Message);
+            }
+            catch (BanknotesDetectionException ex)
             {
                 await SpeechSyntezer.VoiceResult(ex.Message);
             }
@@ -121,7 +157,7 @@ namespace MyApp.Views
         /// </summary>
         /// <param name="photo"></param>
         /// <returns></returns>
-        private async Task RecognizeAndVoiceBacknote(MediaFile photo)
+        private async Task RecognizeAndVoiceBanknote(MediaFile photo)
         {
             try
             {
@@ -138,10 +174,6 @@ namespace MyApp.Views
                 BusyIndicator.IsBusy = false;
 
                 await SpeechSyntezer.VoiceResult(detectedBanknote + "рублей");
-            }
-            catch (BanknotesDetectionException)
-            {           
-                await SpeechSyntezer.VoiceResult("Банкнота не распознана");
             }
             finally
             {
@@ -162,6 +194,75 @@ namespace MyApp.Views
                 SpeechSyntezer.CancelSpeech();
                 await SpeechSyntezer.VoiceResult(detectedBanknote + "рублей");
             }
+        }
+
+
+        /// <summary>
+        /// Запуск записи голсовой команды и ее анализ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void RecordAndAnalyze(object sender, EventArgs e)
+        {
+            try
+            {
+                MainGrid.IsEnabled = false;
+                Vibration.Vibrate();
+                BottomPanel.BackgroundColor = Color.FromHex("#C00000");
+
+                if (await AudioRecording.CheckAudioPermissions())
+                {
+                    await AudioRecording.RecordAudio();
+                    await AnalizeAudioCommandBanknote();
+                }
+            }
+            catch(Exception)
+            {
+                await Navigation.PushAsync(new SomethingWentWrongPage());
+            }
+            finally
+            {
+                MainGrid.IsEnabled = true;
+                BottomPanel.BackgroundColor = Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// Анализирует голосовую команду
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private async Task AnalizeAudioCommandBanknote()
+        {
+            string filePath = AudioRecording.RecorderPath;
+            if (!String.IsNullOrEmpty(filePath))
+            {
+                NavigationListCardPage.SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
+                using (var audioInput = AudioConfig.FromWavFileInput(filePath))
+                {
+                    using (var recognizer = new SpeechRecognizer(NavigationListCardPage.SpeechConfig, audioInput))
+                    {
+
+                        var result = await recognizer.RecognizeOnceAsync();
+                        if (result.Reason == ResultReason.RecognizedSpeech)
+                        {
+                            if (String.IsNullOrEmpty(result.Text))
+                            {
+                                await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
+                            }
+                            else
+                            {
+                                string processedText = NavigationListCardPage.PreprocessingCommands(result.Text);
+                                await CheckCommandsOnBanknotes(processedText);
+                            }
+                        }
+                        else
+                        {
+                            await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
+                        }
+                    }
+                }
+            } 
         }
         #endregion
     }

@@ -33,8 +33,12 @@
             Padding="16"
             HorizontalOptions="FillAndExpand"
             Spacing="0"
+            x:Name="ItemDescription"
             VerticalOptions="FillAndExpand">
 
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="BanknotesRecognition_Clicked" NumberOfTapsRequired="1"/>
+            </StackLayout.GestureRecognizers>
             <!--  Title  -->
             <Label
                 FontFamily="{StaticResource Montserrat-SemiBold}"

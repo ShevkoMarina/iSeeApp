@@ -75,14 +75,18 @@
 
             </StackLayout>
 
-            <Grid VerticalOptions="EndAndExpand"  Grid.Row="2">
-                <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
+            <Grid VerticalOptions="EndAndExpand"  Grid.Row="2" x:Name="BottomPanel">
+                <BoxView BackgroundColor= "Black" Opacity="0.7" x:Name="BottomBoxView"/>
                 <Grid         
                         Padding="16"
                         ColumnSpacing="10"
                         RowSpacing="8"
                         VerticalOptions="EndAndExpand">
 
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="VoiceButtonClicked" NumberOfTapsRequired="2"/>
+                    </Grid.GestureRecognizers>
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
