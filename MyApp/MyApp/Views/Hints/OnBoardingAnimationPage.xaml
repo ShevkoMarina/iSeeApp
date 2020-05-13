@@ -25,6 +25,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
+            
             <Grid.RowDefinitions>
                 <!--  Skip Button  -->
                 <RowDefinition Height="70" />

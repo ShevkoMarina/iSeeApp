@@ -11,7 +11,6 @@ using MyApp.ViewModels.Navigation;
 using MyApp.Views.ErrorAndEmpty;
 using Xamarin.Forms;
 using Xamarin.Essentials;
-using System.IO;
 
 namespace MyApp.Views.Navigation
 {
@@ -19,15 +18,11 @@ namespace MyApp.Views.Navigation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationListCardPage
     {
-        private static SpeechConfig speechConfig;
-
-        public static SpeechConfig SpeechConfig { get => speechConfig; set => speechConfig = value; }
 
         public NavigationListCardPage()
         {
             InitializeComponent();
-            SpeechConfig = SpeechConfig.FromSubscription(Constants.SpeechKey, "eastus");
-            this.BindingContext = new NavigationViewModel().FunctionsList[0];   
+            this.BindingContext = new NavigationViewModel().FunctionsList[0];
         }
 
         /// <summary>
@@ -44,13 +39,13 @@ namespace MyApp.Views.Navigation
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void TipsButtonClicked(object sender, EventArgs e)
-        {        
+        {
             await Navigation.PushAsync(new OnBoardingAnimationPage());
             await SpeechSyntezer.VoiceResult("Выберите в главном меню нужную функцию распознавания");
         }
 
         /// <summary>
-        /// Записывает голосовую команду
+        /// Запускает голосовое управление
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,7 +66,7 @@ namespace MyApp.Views.Navigation
                 VoiceButton.IsEnabled = true;
                 BottomBoxView.BackgroundColor = Color.Black;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 await Navigation.PushAsync(new SomethingWentWrongPage());
             }
@@ -85,11 +80,11 @@ namespace MyApp.Views.Navigation
 
 
         /// <summary>
-        /// Определяет назначение голосовой команды из 1 слова
+        /// Выполняет задачу заданную голосом на главной странице
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        private async Task CheckCommandsOnMainPage(string command)
+        private async Task DoCommandActionOnMain(string command)
         {
             if (command.Length < 5)
             {
@@ -113,65 +108,52 @@ namespace MyApp.Views.Navigation
                     return;
                 }
                 if (command.Contains("помощ"))
-                { 
-                    await Navigation.PushAsync(new RecognitionHandwrittenPage());
+                {
+                    await Navigation.PushAsync(new OnBoardingAnimationPage());
+                    await SpeechSyntezer.VoiceResult("Выберите в главном меню нужную функцию распознавания");
                     return;
                 }
                 else
                 {
                     await SpeechSyntezer.VoiceResult("Такой команды не существует");
+
                 }
             }
         }
 
-
         /// <summary>
-        /// Анализирует голосовую команду
+        /// Преобразует речь в текст и запускает выполнение команды
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
         public async Task AnalizeAudioCommand(string filePath)
         {
             if (!String.IsNullOrEmpty(filePath))
-                {       
-                    SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
-                    using (var audioInput = AudioConfig.FromWavFileInput(filePath))
+            {
+                using (var audioInput = AudioConfig.FromWavFileInput(filePath))
+                {
+                    using (var recognizer = new SpeechRecognizer(SpeechAnalyzer.SpeechConfiguration, audioInput))
                     {
-                        using (var recognizer = new SpeechRecognizer(SpeechConfig, audioInput))
-                        {          
-
-                            var result = await recognizer.RecognizeOnceAsync();
-                            if (result.Reason == ResultReason.RecognizedSpeech)
-                            {
-                                if (String.IsNullOrEmpty(result.Text))
-                                {
-                                    await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
-                                }
-                                else
-                                {
-                                    string processedText = PreprocessingCommands(result.Text);
-                                    await CheckCommandsOnMainPage(processedText);
-                                }
-                            }
-                            else
+                        var result = await recognizer.RecognizeOnceAsync();
+                        if (result.Reason == ResultReason.RecognizedSpeech)
+                        {
+                            if (String.IsNullOrEmpty(result.Text))
                             {
                                 await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
                             }
+                            else
+                            {
+                                string processedText = SpeechAnalyzer.PreprocessingCommands(result.Text);
+                                await DoCommandActionOnMain(processedText);
+                            }
+                        }
+                        else
+                        {
+                            await SpeechSyntezer.VoiceResult("Не удалось распознать речь");
                         }
                     }
                 }
             }
-        
-        /// <summary>
-        /// Предобработка голосовых команд
-        /// </summary>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public static string PreprocessingCommands(string result)
-        {
-            string command = result.ToLower();
-            command = command.Replace(".", "").Replace("?", "").Replace("!", "").Replace(",", "");
-            return command;
         }
     } 
 }

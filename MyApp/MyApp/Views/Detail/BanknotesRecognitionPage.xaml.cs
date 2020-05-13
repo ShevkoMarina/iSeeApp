@@ -7,7 +7,6 @@ using Xamarin.Forms.Xaml;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
 using MyApp.Views.ErrorAndEmpty;
-using MyApp.Views.Navigation;
 using Microsoft.CognitiveServices.Speech.Audio;
 using Microsoft.CognitiveServices.Speech;
 
@@ -35,14 +34,13 @@ namespace MyApp.Views
         }
 
         /// <summary>
-        /// Распознавание и озвучка при голосовом управлении
+        /// Выполняет задачу заданную голосом на странице банкнот
         /// </summary>
         /// <param name="cameraCommand"></param>
         /// <returns></returns>
-        public async Task CheckCommandsOnBanknotes(string cameraCommand)
+        public async Task DoCommandActionOnBanknote(string cameraCommand)
         {
-            
-           
+    
             if (cameraCommand.Length < 3)
             {
                 await SpeechSyntezer.VoiceResult("Такой команды не существует");
@@ -56,7 +54,7 @@ namespace MyApp.Views
                     else await RecognizeAndVoiceBanknote(photo);
                     return;
                 }
-                if (cameraCommand.Contains("галер"))
+                if (cameraCommand.Contains("гал"))
                 {
                     MediaFile photo = await CameraActions.GetPhoto();
                     if (photo == null) return;
@@ -173,7 +171,7 @@ namespace MyApp.Views
                 BusyIndicator.IsVisible = false;
                 BusyIndicator.IsBusy = false;
 
-                await SpeechSyntezer.VoiceResult(detectedBanknote + "рублей");
+                await SpeechSyntezer.VoiceResult(detectedBanknote);
             }
             finally
             {
@@ -192,13 +190,12 @@ namespace MyApp.Views
             if (detectedBanknote != null)
             {
                 SpeechSyntezer.CancelSpeech();
-                await SpeechSyntezer.VoiceResult(detectedBanknote + "рублей");
+                await SpeechSyntezer.VoiceResult(detectedBanknote);
             }
         }
 
-
         /// <summary>
-        /// Запуск записи голсовой команды и ее анализ
+        /// Запускает голосовое управление
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -228,7 +225,7 @@ namespace MyApp.Views
         }
 
         /// <summary>
-        /// Анализирует голосовую команду
+        /// Преобразует речь в текст и запускает выполнение команды
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -237,10 +234,9 @@ namespace MyApp.Views
             string filePath = AudioRecording.RecorderPath;
             if (!String.IsNullOrEmpty(filePath))
             {
-                NavigationListCardPage.SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
                 using (var audioInput = AudioConfig.FromWavFileInput(filePath))
                 {
-                    using (var recognizer = new SpeechRecognizer(NavigationListCardPage.SpeechConfig, audioInput))
+                    using (var recognizer = new SpeechRecognizer(SpeechAnalyzer.SpeechConfiguration, audioInput))
                     {
 
                         var result = await recognizer.RecognizeOnceAsync();
@@ -252,8 +248,8 @@ namespace MyApp.Views
                             }
                             else
                             {
-                                string processedText = NavigationListCardPage.PreprocessingCommands(result.Text);
-                                await CheckCommandsOnBanknotes(processedText);
+                                string processedText = SpeechAnalyzer.PreprocessingCommands(result.Text);
+                                await DoCommandActionOnBanknote(processedText);
                             }
                         }
                         else

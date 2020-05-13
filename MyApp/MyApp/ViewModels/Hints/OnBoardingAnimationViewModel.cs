@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using MyApp.Models.Hints;
@@ -73,7 +74,7 @@ namespace MyApp.ViewModels.Hints
                 {
                     ImagePath = "TipsForTips.png",
                     Header = "Команды",
-                    Content = "Функция: печатный, деньги, рукописный, помощь\n\rФото: камера, галерея ",
+                    Content = "Главная: печатный, банкноты, рукописный, помощь\n\rРаспознование: камера, галерея, повтор, назад",
                     RotatorItem = new WalkthroughItemPage()
                 }
             };
@@ -223,11 +224,10 @@ namespace MyApp.ViewModels.Hints
                     SpeechSyntezer.VoiceResult("Вы можете еще раз прослушать результат, нажав на кнопку повтора");
                     break;
                 case 3:
-                    SpeechSyntezer.VoiceResult("Вы можете управлять приложением голосом используя команды");                     
+                    SpeechSyntezer.VoiceResult("Управляйте приложением голосом используя команды. Для запуска коснитесь экрана два раза или кнопки микрофона");                     
                     break;
                 case 4:
-                    SpeechSyntezer.VoiceResult("Команда состоит из одной или двух частей. Первая: название функции. " +
-                       "Печатный. Деньги. Рукописный. Помощь. Вторая часть это способ выбора фото.    камера. или. галерея.");
+                    SpeechSyntezer.VoiceResult("Команды для главной страницы: печатный. банкноты. рукописный. помощь. Команды для функции распознования: камера. галерея. повтор. назад. ");
                     break;
                 default:
                     break;

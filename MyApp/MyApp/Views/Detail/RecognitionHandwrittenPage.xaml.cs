@@ -8,7 +8,6 @@ using MyApp.Views.ErrorAndEmpty;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-using MyApp.Views.Navigation;
 using Microsoft.CognitiveServices.Speech.Audio;
 using Microsoft.CognitiveServices.Speech;
 
@@ -28,7 +27,7 @@ namespace MyApp.Views.Detail
         #region Methods
 
         /// <summary>
-        /// Анализирует голосовую команду
+        /// Преобразует речь в текст и запускает выполнение команды
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -37,10 +36,9 @@ namespace MyApp.Views.Detail
             string filePath = AudioRecording.RecorderPath;
             if (!String.IsNullOrEmpty(filePath))
             {
-                NavigationListCardPage.SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
                 using (var audioInput = AudioConfig.FromWavFileInput(filePath))
                 {
-                    using (var recognizer = new SpeechRecognizer(NavigationListCardPage.SpeechConfig, audioInput))
+                    using (var recognizer = new SpeechRecognizer(SpeechAnalyzer.SpeechConfiguration, audioInput))
                     {
 
                         var result = await recognizer.RecognizeOnceAsync();
@@ -52,8 +50,8 @@ namespace MyApp.Views.Detail
                             }
                             else
                             {
-                                string processedText = NavigationListCardPage.PreprocessingCommands(result.Text);
-                                await CheckCommandsOnHandwritten(processedText);
+                                string processedText = SpeechAnalyzer.PreprocessingCommands(result.Text);
+                                await DoCommandsActionOnHandwritten(processedText);
                             }
                         }
                         else
@@ -158,7 +156,7 @@ namespace MyApp.Views.Detail
         }
 
         /// <summary>
-        /// Запись и анализ голосовой команды
+        /// Запускает голосовое управление
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -188,11 +186,11 @@ namespace MyApp.Views.Detail
         }
 
         /// <summary>
-        /// Распознавание и озвучка при голосовом управлении
+        /// Выполняет задачу заданную голосом на странице рукописного текста
         /// </summary>
         /// <param name="cameraCommand"></param>
         /// <returns></returns>
-        public async Task CheckCommandsOnHandwritten(string cameraCommand)
+        public async Task DoCommandsActionOnHandwritten(string cameraCommand)
         {
             
             if (cameraCommand.Length < 3)
@@ -208,7 +206,7 @@ namespace MyApp.Views.Detail
                     else await RecognizeAndVoiceHandwrittenText(photo);
                     return;
                 }
-                if (cameraCommand.Contains("галер"))
+                if (cameraCommand.Contains("гал"))
                 {
                     MediaFile photo = await CameraActions.GetPhoto();
                     if (photo == null) return;

@@ -7,7 +7,6 @@ using Xamarin.Forms;
 using MyApp.RecognitionClasses.CameraClass;
 using System.Threading.Tasks;
 using MyApp.Views.ErrorAndEmpty;
-using MyApp.Views.Navigation;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
 using Xamarin.Essentials;
@@ -116,7 +115,7 @@ namespace MyApp.Views.Detail
         }
 
         /// <summary>
-        /// Запуск записи голсовой команды и ее анализ
+        /// Запускает голосовое управление
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -202,7 +201,7 @@ namespace MyApp.Views.Detail
         }
 
         /// <summary>
-        /// Анализирует голосовую команду
+        /// Преобразует речь в текст и запускает выполнение команды
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -211,10 +210,9 @@ namespace MyApp.Views.Detail
             string filePath = AudioRecording.RecorderPath;
             if (!String.IsNullOrEmpty(filePath))
             {
-                NavigationListCardPage.SpeechConfig.SpeechRecognitionLanguage = "ru-RU";
                 using (var audioInput = AudioConfig.FromWavFileInput(filePath))
                 {
-                    using (var recognizer = new SpeechRecognizer(NavigationListCardPage.SpeechConfig, audioInput))
+                    using (var recognizer = new SpeechRecognizer(SpeechAnalyzer.SpeechConfiguration, audioInput))
                     {
 
                         var result = await recognizer.RecognizeOnceAsync();
@@ -226,8 +224,8 @@ namespace MyApp.Views.Detail
                             }
                             else
                             {
-                                string processedText = NavigationListCardPage.PreprocessingCommands(result.Text);
-                                await CheckCommandsOnPrinted(processedText);
+                                string processedText = SpeechAnalyzer.PreprocessingCommands(result.Text); 
+                                await DoCommandsActionOnPrinted(processedText);
                             }
                         }
                         else
@@ -240,11 +238,11 @@ namespace MyApp.Views.Detail
         }
 
         /// <summary>
-        /// Распознавание и озвучка при голосовом управлении
+        /// Выполняет задачу заданную голосом на странице печатного текста
         /// </summary>
         /// <param name="cameraCommand"></param>
         /// <returns></returns>
-        public async Task CheckCommandsOnPrinted(string cameraCommand)
+        public async Task DoCommandsActionOnPrinted(string cameraCommand)
         {
             if (cameraCommand.Length < 3)
             {
@@ -259,7 +257,7 @@ namespace MyApp.Views.Detail
                     else await RecognizeAndVoicePrintedText(photo);
                     return;
                 }
-                if (cameraCommand.Contains("галер"))
+                if (cameraCommand.Contains("гал"))
                 {
                     MediaFile photo = await CameraActions.GetPhoto();
                     if (photo == null) return;
