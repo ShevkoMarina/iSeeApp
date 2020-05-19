@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyApp.RecognitionClasses
 {
-    class BanknotesDetector
+    public static class BanknotesDetector
     {
         static BanknotesDetector()
         {

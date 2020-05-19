@@ -21,6 +21,7 @@ namespace MyApp.Views.Detail
         public RecognitionHandwrittenPage()
         {
             InitializeComponent();
+            SpeechSyntezer.VoiceResult("Рукописный текст");
         }
         private string detectedText;
 

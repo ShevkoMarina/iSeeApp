@@ -1,87 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MyApp.Models.Hints.Boarding">
-    <Position X="28.25" Y="7" Width="2" />
+    <Position X="32.75" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Models\Hints\Boarding.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Models.Navigation.NavigationModel" Collapsed="true">
-    <Position X="7.5" Y="3.5" Width="2" />
+  <Class Name="MyApp.Models.Navigation.NavigationModel">
+    <Position X="30.5" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAACAAAAAEAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Navigation\NavigationModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.RecognitionClasses.CameraClass.CameraActions">
-    <Position X="6.75" Y="6.75" Width="2" />
+    <Position X="32.5" Y="6.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>RecognitionClasses\CameraClass\CameraActions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.RecognitionClasses.CameraClass.CameraException" Collapsed="true">
-    <Position X="30.5" Y="5.75" Width="2" />
+  <Class Name="MyApp.RecognitionClasses.CameraClass.CameraException">
+    <Position X="29.25" Y="4" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RecognitionClasses\CameraClass\CameraException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.RecognitionClasses.BanknotesDetectionException" Collapsed="true">
-    <Position X="28.25" Y="5.75" Width="2" />
+  <Class Name="MyApp.RecognitionClasses.BanknotesDetectionException">
+    <Position X="32.75" Y="4" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RecognitionClasses\Exceptions\BanknotesDetectionException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.RecognitionClasses.TextDetectorException" Collapsed="true">
-    <Position X="32.75" Y="5.75" Width="2" />
+    <Position X="16.25" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RecognitionClasses\Exceptions\TextDetectorException.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.RecognitionClasses.AudioRecording">
-    <Position X="4.5" Y="6.75" Width="2" />
+  <Class Name="MyApp.RecognitionClasses.BanknotesDetectorResponse">
+    <Position X="27.5" Y="0.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAAAAAAAEAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAABAgAAAAAAgAAAAAAAgA=</HashCode>
+      <FileName>RecognitionClasses\ModelsRecognition\BanknotesDetectorResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyApp.RecognitionClasses.Prediction" Collapsed="true">
+    <Position X="16.5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABgAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RecognitionClasses\ModelsRecognition\BanknotesDetectorResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyApp.RecognitionClasses.AudioRecording">
+    <Position X="34.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAQEAAAEAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>RecognitionClasses\AudioRecording.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.RecognitionClasses.AuthenticationComputerVision">
-    <Position X="13.25" Y="1.5" Width="2" />
+    <Position X="42.75" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAAAABAAAAAo=</HashCode>
       <FileName>RecognitionClasses\AuthenticationComputerVision.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.RecognitionClasses.BanknotesDetector">
-    <Position X="14.25" Y="6.75" Width="2" />
+    <Position X="29.25" Y="6" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAIAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>RecognitionClasses\BanknotesDetector.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.RecognitionClasses.Constants">
-    <Position X="10.75" Y="1.5" Width="2" />
+  <Class Name="MyApp.RecognitionClasses.SpeechAnalyzer">
+    <Position X="37" Y="5.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAIAABAAAACAAAgAAAAAAAAAAAAACAAA=</HashCode>
-      <FileName>RecognitionClasses\Constants.cs</FileName>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>RecognitionClasses\SpeechAnalyzer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.RecognitionClasses.SpeechSyntezer">
-    <Position X="11.5" Y="6.75" Width="2.5" />
+    <Position X="39.75" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAAAIAIAAAAAAAAAYAAAAAAAAAAAABAAAAAAA=</HashCode>
       <FileName>RecognitionClasses\SpeechSyntezer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.RecognitionClasses.TextDetector">
-    <Position X="9.25" Y="6.75" Width="2" />
+    <Position X="29.25" Y="8" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>RecognitionClasses\TextDetector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyApp.RecognitionClasses.ModelsRecognition.GoogleAuth">
+    <Position X="24.5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAARAAAAIAICAAAABAAAAEEAAAAAAEQA=</HashCode>
+      <FileName>RecognitionClasses\ModelsRecognition\GoogleAuth.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.ViewModels.ErrorAndEmpty.NoInternetConnectionPageViewModel">
@@ -92,21 +113,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.ViewModels.ErrorAndEmpty.SomethingWentWrongPageViewModel">
-    <Position X="3.75" Y="1.75" Width="2.75" />
+    <Position X="3.5" Y="1.75" Width="3" />
     <TypeIdentifier>
       <HashCode>BAACAAQAEgAAAAAAgAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModels\ErrorandEmpty\SomethingWentWrongPageViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.ViewModels.Hints.OnBoardingAnimationViewModel">
-    <Position X="7" Y="1.5" Width="2.5" />
+    <Position X="6.75" Y="1.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAQAAAAAAAAAAAEAAAAAAAAIAgAIAAIgCAEAIUAE=</HashCode>
+      <HashCode>AgAAAQAAAAAAAAAAAEAAAAAAAAIAgAIAIIgCAEAIUAE=</HashCode>
       <FileName>ViewModels\Hints\OnBoardingAnimationViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.ViewModels.Navigation.NavigationViewModel">
-    <Position X="30.75" Y="7" Width="2" />
+    <Position X="9.5" Y="1.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ViewModels\Navigation\NavigationViewModel.cs</FileName>
@@ -121,95 +142,104 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="MyApp.Views.BanknotesRecognitionPage">
-    <Position X="16.5" Y="4.5" Width="2.5" />
+    <Position X="22" Y="4.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AFAAAAAACAAAAQAEAAAAAAAAAAAAAAAAAACAAEAAAAA=</HashCode>
+      <HashCode>AlAAAAAACAAAAAAEAAAAAAAAAAAAABAAgACAAAABAAA=</HashCode>
       <FileName>Views\Detail\BanknotesRecognitionPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.Views.Detail.RecognitionHandwrittenPage">
-    <Position X="19.5" Y="4.5" Width="2.75" />
+    <Position X="15.75" Y="4.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AFAAAAAACABAAAAEAAAAAAAAAAAAAACAAAAAAEAAAAA=</HashCode>
+      <HashCode>AFAAAAAACABAAABEAAAAAAAAAAAAAACAAAABAAABAAA=</HashCode>
       <FileName>Views\Detail\RecognitionHandwrittenPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.Views.Detail.RecognitionPrintedPage">
-    <Position X="22.5" Y="4.5" Width="2.5" />
+    <Position X="18.75" Y="4.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAGAAAAAAEAAAAAAAACAAAAACAAAAAAEAAAAA=</HashCode>
+      <HashCode>ABAAEAAAGBAAAAAEAAAAAAAACAAAAACAAAAAAEABAAA=</HashCode>
       <FileName>Views\Detail\RecognitionPrintedPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Views.ErrorAndEmpty.NoInternetConnectionPage" Collapsed="true">
-    <Position X="25" Y="3" Width="2" />
+  <Class Name="MyApp.Views.ErrorAndEmpty.NoInternetConnectionPage">
+    <Position X="21" Y="8.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Views\ErrorandEmpty\NoInternetConnectionPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Views.ErrorAndEmpty.SomethingWentWrongPage" Collapsed="true">
-    <Position X="25" Y="2" Width="2" />
+  <Class Name="MyApp.Views.ErrorAndEmpty.SomethingWentWrongPage">
+    <Position X="23.5" Y="8.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\ErrorandEmpty\SomethingWentWrongPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MyApp.Views.Hints.OnBoardingAnimationPage">
-    <Position X="13.25" Y="4.5" Width="2.5" />
+    <Position X="18.5" Y="8.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\Hints\OnBoardingAnimationPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Views.Hints.WalkthroughItemPage">
-    <Position X="10.75" Y="4.5" Width="2" />
+  <Class Name="MyApp.Views.Navigation.NavigationListCardPage">
+    <Position X="25" Y="4.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\Hints\WalkthroughItemPage.xaml.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MyApp.Views.Navigation.NavigationListCardPage" Collapsed="true">
-    <Position X="17.75" Y="3" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AACABAAECAABAAgAAIAABAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <HashCode>AACAAAAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAA=</HashCode>
       <FileName>Views\Navigation\NavigationListCardPage.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Views.Templates.BanknotesCardTemplate" Collapsed="true">
-    <Position X="32.5" Y="2.5" Width="2" />
+  <Class Name="MyApp.Views.Navigation.Styles" Collapsed="true">
+    <Position X="12.5" Y="10.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Navigation\Styles.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyApp.Views.Templates.BanknotesCardTemplate">
+    <Position X="39.75" Y="1.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\Templates\BanknotesCardTemplate.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Views.Templates.HandwrittenCardTemplate" Collapsed="true">
-    <Position X="28" Y="2.5" Width="2" />
+  <Class Name="MyApp.Views.Templates.HandwrittenCardTemplate">
+    <Position X="37.25" Y="1.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Views\Templates\HandwrittenCardTemplate.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MyApp.Views.Templates.PrintedCardTemplate" Collapsed="true">
-    <Position X="30.25" Y="2.5" Width="2" />
+  <Class Name="MyApp.Views.Templates.PrintedCardTemplate">
+    <Position X="35" Y="1.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
       <FileName>Views\Templates\PrintedCardTemplate.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="MyApp.Views.Templates.Styles" Collapsed="true">
+    <Position X="14.25" Y="10.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Templates\Styles.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Xamarin.Forms.ContentPage" Collapsed="true">
-    <Position X="20.75" Y="0.5" Width="1.5" />
+    <Position X="21" Y="2.75" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Xamarin.Forms.Grid" Collapsed="true">
-    <Position X="30" Y="0.5" Width="1.5" />
+    <Position X="37.75" Y="0.75" Width="1.5" />
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="System.Exception" Collapsed="true">
-    <Position X="31.25" Y="4" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
+  <Class Name="MyApp.Views.Hints.WalkthroughItemPage">
+    <Position X="44" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Hints\WalkthroughItemPage.xaml.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

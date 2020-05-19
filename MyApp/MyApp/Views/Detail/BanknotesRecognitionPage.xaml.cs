@@ -18,7 +18,8 @@ namespace MyApp.Views
 
         public BanknotesRecognitionPage()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            SpeechSyntezer.VoiceResult("Банкноты");
         }
 
         private string detectedBanknote;
@@ -34,13 +35,13 @@ namespace MyApp.Views
         }
 
         /// <summary>
-        /// Выполняет задачу заданную голосом на странице банкнот
+        /// Выполняет задачу заданную голосом на странице распознавания печатного
         /// </summary>
         /// <param name="cameraCommand"></param>
         /// <returns></returns>
         public async Task DoCommandActionOnBanknote(string cameraCommand)
         {
-    
+
             if (cameraCommand.Length < 3)
             {
                 await SpeechSyntezer.VoiceResult("Такой команды не существует");
@@ -80,7 +81,7 @@ namespace MyApp.Views
                     await SpeechSyntezer.VoiceResult("Такой команды не существует");
                     return;
                 }
-            } 
+            }
         }
 
         /// <summary>

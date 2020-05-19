@@ -6,7 +6,7 @@ using System.IO;
 
 namespace MyApp.RecognitionClasses
 {
-    public class AuthenticationComputerVision
+    public static class AuthenticationComputerVision
     {
         public static ComputerVisionClient client = AuthenticateMicrosoftComputerVisionClient(Constants.ComputerVisionEndpoint, Constants.ComputerVisionKey);
 

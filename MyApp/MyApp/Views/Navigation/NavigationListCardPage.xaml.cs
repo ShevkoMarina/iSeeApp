@@ -26,14 +26,6 @@ namespace MyApp.Views.Navigation
         }
 
         /// <summary>
-        /// Отменяет озвучку при выходе со страницы
-        /// </summary>
-        protected override void OnDisappearing()
-        {
-            SpeechSyntezer.CancelSpeech();
-        }
-
-        /// <summary>
         /// Открывает страницу обучения
         /// </summary>
         /// <param name="sender"></param>
@@ -126,6 +118,7 @@ namespace MyApp.Views.Navigation
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
+        
         public async Task AnalizeAudioCommand(string filePath)
         {
             if (!String.IsNullOrEmpty(filePath))

@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace MyApp.RecognitionClasses
 {
-    public class SpeechSyntezer
+    public static class SpeechSyntezer
     {
         private static CancellationTokenSource ctsRus;
         private static CancellationTokenSource ctsEng;
@@ -59,6 +59,9 @@ namespace MyApp.RecognitionClasses
             ctsRus.Cancel();
         }
 
+        /// <summary>
+        /// Отменяет озвучку английского текста
+        /// </summary>
         public static void CancelEnglishSpeech()
         {
             if (ctsEng?.IsCancellationRequested ?? true)

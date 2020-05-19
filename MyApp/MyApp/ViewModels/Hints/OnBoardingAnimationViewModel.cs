@@ -203,6 +203,11 @@ namespace MyApp.ViewModels.Hints
             this.MoveToNextPage();
         }
 
+        public void MoveNext(object sender, EventArgs e)
+        {
+            Next(sender);
+        }
+
         /// <summary>
         /// Переход на следующую страницу при нажатии на кнопку
         /// </summary>

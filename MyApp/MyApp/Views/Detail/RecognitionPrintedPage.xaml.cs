@@ -20,7 +20,8 @@ namespace MyApp.Views.Detail
     {      
         public RecognitionPrintedPage()
         {
-            InitializeComponent();         
+            InitializeComponent();
+            SpeechSyntezer.VoiceResult("Печатный текст");
         }
 
         private string detectedText;
