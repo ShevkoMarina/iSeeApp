@@ -1,2 +1,2 @@
 # iSeeApp
-Мобильное приложение для слабовидящих и использованием технологий компьютерного зрения
+Mobile app for visually impaired people using computer vision technology
