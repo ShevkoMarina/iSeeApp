@@ -3,7 +3,7 @@ Mobile app for visually impaired people using computer vision technology.
 
 # How to use it?
 
-Just upload a picture from your mobile phone and will voice text in it. It implements recognition of :
+Just upload a picture from your mobile phone and app will voice text in it. It implements recognition of :
 
 1) printed text (for labels or pricelists)
 
@@ -16,6 +16,8 @@ Moreover, it has a **voice control mode**, so you needn't to use buttons to navi
 # Tech Stack
 
 C# (programming language)
+
+Xamarin.Forms
 
 Microsoft Azure Computer Vision API
 
